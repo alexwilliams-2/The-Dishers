@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :users
   resources :businesses, only: %i[index show] # refactored resources code.
 end
