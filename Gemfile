@@ -49,6 +49,7 @@ gem "sassc-rails"
 # gem "image_processing", "~> 1.2"
 
 gem "faker"
+gem 'open-uri'
 gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
