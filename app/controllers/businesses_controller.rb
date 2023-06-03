@@ -1,6 +1,10 @@
 class BusinessesController < ApplicationController
   def index
-    @businesses = Business.where("name ILIKE ?", params[:query])
+    @businesses = Business.all
+    sql_subquery = "name ILIKE :query OR category ILIKE :query"
+    if params[:query].present?
+      @businesses = Business.where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   def show
