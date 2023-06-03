@@ -1,8 +1,13 @@
 class BusinessesController < ApplicationController
+
+  # need to add logic for second location search bar
   def index
     @businesses = Business.all
+    # created a sql query variable for readabilty
     sql_subquery = "name ILIKE :query OR category ILIKE :query"
+    # conditional - so we do not run query if no instances exist
     if params[:query].present?
+      # query: here is what would usually be ? in sql. We have simply named the placeholder
       @businesses = Business.where(sql_subquery, query: "%#{params[:query]}%")
     end
   end
