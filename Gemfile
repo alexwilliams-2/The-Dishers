@@ -52,6 +52,7 @@ gem "dotenv-rails", groups: [:development, :test]
 gem "cloudinary"
 
 gem "faker"
+gem 'open-uri'
 gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
