@@ -1,10 +1,18 @@
 class BusinessesController < ApplicationController
   def index
-    @business = business.all
+    @businesses = Business.all
   end
 
   def show
-    @business = business.find(params[:id])
+    @business = Business.find(params[:id])
   end
 
+  private
+
+  # name, adress rating = boilerplate. To be changed later?
+  # Do we need strong params if we are going to use a new/create method ?
+
+  def business_params
+    params.require(:business).permit(:name, :address, :rating)
+  end
 end
