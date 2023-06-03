@@ -1,6 +1,6 @@
 class BusinessesController < ApplicationController
   def index
-    @businesses = Business.all
+    @businesses = Business.where("name ILIKE ?", params[:query])
   end
 
   def show
