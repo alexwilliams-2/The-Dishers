@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :users
+
+  resources :user_favourites
   resources :businesses do
     resources :reviews, only: [:create]
   end # refactored resources code.
