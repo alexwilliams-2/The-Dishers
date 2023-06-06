@@ -19,6 +19,7 @@
           <% @businesses.each do |business| %>
             <h4><%= business.name %></h4>
             <p><%= business.address %></p>
+            <%= cl_image_tag business.photo.key, height: 300%>
           <% end %>
         <% else %>
           <em>Sorry, no businesses found.</em>
