@@ -1,6 +1,7 @@
 <div class="container">
 
   <h2><%= @business.name %></h2>
+  <%= cl_image_tag @business.photo.key, height: 300%>
   <p> <strong> <%= pluralize @business.reviews.size, "Review" %> </strong></p>
 
   <% if @business.reviews.blank? %>
