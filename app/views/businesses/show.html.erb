@@ -1,12 +1,18 @@
-
 <div class="container">
+
   <h2><%= @business.name %></h2>
-  <p><strong>Reviews</strong></p>
-  <ul class="list-group">
-    <% @business.reviews.each do |review| %>
-    <li class="list-group-item"><%= "#{("⭐" * review.rating)}" %></li>
-      <li class="list-group-item"><%= review.content %></li>
+  <p> <strong> <%= pluralize @business.reviews.size, "Review" %> </strong></p>
+
+  <% if @business.reviews.blank? %>
+    <h3> Be the first to review <%= @business.name %> </h3>
+    <ul class="list-group">
+      <% else @business.reviews.each do |review| %>
+      <li class="list-group-item"><%= "#{("⭐" * review.rating)}" %></li>
+        <li class="list-group-item"><%= review.content %></li>
+      <% end %>
     <% end %>
   </ul>
+
   <%= render :partial => "businesses/review" %>
+
 </div>
