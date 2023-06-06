@@ -1,6 +1,7 @@
 
 <div class="container">
   <h2><%= @business.name %></h2>
+      <%= cl_image_tag @business.photo.key, height: 300%>
   <p><strong>Reviews</strong></p>
   <ul class="list-group">
     <% @business.reviews.each do |review| %>
