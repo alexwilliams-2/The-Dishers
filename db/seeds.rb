@@ -12,7 +12,7 @@ require "open-uri"
 Business.destroy_all
 User.destroy_all
 
-50.times do |i|
+5.times do |i|
   "creating..."
   business = Business.new(
     name: Faker::Company.unique.name,
@@ -29,3 +29,132 @@ User.destroy_all
   business.save
   "#{business.id} has been created"
 end
+  user_1 = User.create!(
+    username: "Joseph",
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(min_length: 6, max_length: 10)
+  )
+
+  user_1.photo.attach(io: File.open(Rails.root.join("app/assets/images/joseph.jpeg")), filename: "joseph.jpeg", content_type: 'image/jpeg')
+
+  user_1.update!(
+    bio: "Master of all things events and hospitality! I'll take your special occasions to the next level, crafting unforgettable moments that will have guests talking about them for years to come.",
+    location: "London"
+  )
+
+  user_2 = User.create!(
+    username: "Maram",
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(min_length: 6, max_length: 10)
+  )
+
+  user_2.photo.attach(io: File.open(Rails.root.join("app/assets/images/maram.jpeg")), filename: "maram.jpeg", content_type: 'image/jpeg')
+
+  user_2.update!(
+    bio: "Friendly front desk ninja with a talent for making everyone feel instantly at ease. From check-ins to check-outs, I'm here to make your stay as smooth and enjoyable as possible!",
+    location: "London"
+  )
+
+  user_3 = User.create!(
+    username: "Alex",
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(min_length: 6, max_length: 10)
+  )
+
+  user_3.photo.attach(io: File.open(Rails.root.join("app/assets/images/alexr.jpg")), filename: "alex.jpg", content_type: 'image/jpg')
+
+  user_3.update!(
+    bio: "People-pleaser extraordinaire and hospitality aficionado. I'll go above and beyond to ensure every guest feels like a VIP, with personalized service and a touch of genuine warmth.",
+    location: "London"
+  )
+
+  user_4 = User.create!(
+    username: "Eli",
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(min_length: 6, max_length: 10)
+  )
+
+  user_4.photo.attach(io: File.open(Rails.root.join("app/assets/images/eli.jpeg")), filename: "eli.jpeg", content_type: 'image/jpeg')
+
+  user_4.update!(
+    bio: "Seasoned hotel guru who knows the ins and outs of creating a great guest experience. I've got the skills to juggle any challenge and keep the vibes high, all while rocking a big smile!",
+    location: "London"
+  )
+
+  user_5 = User.create!(
+    username: "Brett",
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(min_length: 6, max_length: 10)
+  )
+
+  user_5.photo.attach(io: File.open(Rails.root.join("app/assets/images/brett.jpg")), filename: "brett.jpg", content_type: 'image/jpg')
+
+  user_5.update!(
+    bio: "Passionate hospitality rockstar with a flair for making magic happen. From surprise upgrades to secret local recommendations, I'm here to sprinkle some extra sparkle into your stay!",
+    location: "London"
+  )
+
+  user_6 = User.create!(
+    username: "Wojciech",
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(min_length: 6, max_length: 10)
+  )
+
+  user_6.photo.attach(io: File.open(Rails.root.join("app/assets/images/watch.jpeg")), filename: "watch.jpeg", content_type: 'image/jpeg')
+
+  user_6.update!(
+    bio: "Experienced hospitality pro who thrives on making people smile. Whether it's serving up delicious drinks or helping guests find hidden gems in the city, I'm all about creating unforgettable moments.",
+    location: "London"
+  )
+
+  user_7 = User.create!(
+    username: "Tom",
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(min_length: 6, max_length: 10)
+  )
+
+  user_7.photo.attach(io: File.open(Rails.root.join("app/assets/images/tom.jpeg")), filename: "tom.jpeg", content_type: 'image/jpeg')
+
+  user_7.update!(
+    bio: "Hospitality fanatic always on the lookout for opportunities to create awesome experiences. Love making guests feel right at home and going the extra mile to ensure they have a blast!",
+    location: "London"
+  )
+
+  user_8 = User.create!(
+    username: "Luca",
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(min_length: 6, max_length: 10)
+  )
+
+  user_8.photo.attach(io: File.open(Rails.root.join("app/assets/images/luca.jpeg")), filename: "luca.jpeg", content_type: 'image/jpeg')
+
+  user_8.update!(
+    bio: "Adventure-seeking hospitality enthusiast always ready to sprinkle a dash of excitement into your stay. Whether it's arranging epic activities or sharing local hidden gems, I'm your go-to person for unforgettable experiences!",
+    location: "London"
+  )
+
+  user_9 = User.create!(
+    username: "Omesh",
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(min_length: 6, max_length: 10)
+  )
+
+  user_9.photo.attach(io: File.open(Rails.root.join("app/assets/images/omesh.jpeg")), filename: "omesh.jpeg", content_type: 'image/jpeg')
+
+  user_9.update!(
+    bio: "Hospitality superhero with a passion for creating positive vibes. From crafting the coziest rooms to whipping up delicious breakfasts, I'm here to make sure your stay is filled with happy memories and belly laughs.",
+    location: "London"
+  )
+
+  user_10 = User.create!(
+    username: "Oli",
+    email: Faker::Internet.unique.email,
+    password: Faker::Internet.password(min_length: 6, max_length: 10)
+  )
+
+  user_10.photo.attach(io: File.open(Rails.root.join("app/assets/images/oli.jpeg")), filename: "oli.jpeg", content_type: 'image/jpeg')
+
+  user_10.update!(
+    bio: "Adventure-seeking hospitality enthusiast always ready to sprinkle a dash of excitement into your stay. Whether it's arranging epic activities or sharing local hidden gems, I'm your go-to person for unforgettable experiences!",
+    location: "London"
+  )
