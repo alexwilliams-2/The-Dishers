@@ -8,8 +8,8 @@
 </ul>
 <%= render :partial => "businesses/review" %>
 
-<%# <%= button_to 'Add to Favorites', user_user_favourites_path(@business), method: :post %>
-<%= simple_form_for @favourite do |f| %>
-<%= f.input :business, as: :hidden, input_html: { value:  @business.id } %>
-<%= f.button :submit  %>
-<% end %>
+<%= button_to 'Add to Favorites', business_user_favourites_path(@business) %>
+<%# <%= simple_form_for @favourite do |f| %>
+<%#= f.input :business, as: :hidden, input_html: { value:  @business.id } %>
+<%#= f.button :submit  %>
+<%# end %>

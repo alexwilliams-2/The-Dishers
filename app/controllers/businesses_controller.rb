@@ -15,7 +15,7 @@ class BusinessesController < ApplicationController
   def show
     @business = Business.find(params[:id])
     @review = Review.new
-    @favourite = UserFavourite.new
+    # @favourite = UserFavourite.new
   end
 
   private
