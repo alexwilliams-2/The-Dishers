@@ -1,7 +1,1 @@
-
-
- <% @users.each do |user| %>
-              <h4><%= user.username %></h4>
-              <p><%= user.bio %></p>
-              <%= image_tag user.photo, height: 300%>
-              <% end %>
+<%= image_tag @user.photo, height: 300%>

@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def profile #for users
-    @users = User.all
+    @user = current_user
   end
 
 end

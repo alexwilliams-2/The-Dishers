@@ -12,7 +12,7 @@ require "open-uri"
 Business.destroy_all
 User.destroy_all
 
-5.times do |i|
+100.times do |i|
   "creating..."
   business = Business.new(
     name: Faker::Company.unique.name,
@@ -27,7 +27,7 @@ User.destroy_all
   file = URI.open(Faker::LoremFlickr.image(size: "300x300", search_terms: ['bar']))
   business.photo.attach(io: file, filename: "business_#{i}.png", content_type: "image/png")
   business.save
-  "#{business.id} has been created"
+  puts "#{business.id} has been created"
 end
   user_1 = User.create!(
     username: "Joseph",
@@ -61,7 +61,7 @@ end
     password: Faker::Internet.password(min_length: 6, max_length: 10)
   )
 
-  user_3.photo.attach(io: File.open(Rails.root.join("app/assets/images/alexr.jpg")), filename: "alex.jpg", content_type: 'image/jpg')
+  user_3.photo.attach(io: File.open(Rails.root.join("app/assets/images/alex.jpg")), filename: "alex.jpg", content_type: 'image/jpg')
 
   user_3.update!(
     bio: "People-pleaser extraordinaire and hospitality aficionado. I'll go above and beyond to ensure every guest feels like a VIP, with personalized service and a touch of genuine warmth.",
