@@ -24,6 +24,6 @@ class BusinessesController < ApplicationController
   # Do we need strong params if we are going to use a new/create method ?
 
   def business_params
-    params.require(:business).permit(:name, :address, :rating)
+    params.require(:business).permit(:name, :address, :rating, :photo)
   end
 end

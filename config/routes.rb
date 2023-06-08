@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :user_favourites, only: [:index]
+
   resources :businesses do
     resources :user_favourites, only: [:create]
     resources :reviews, only: [:create]
   end # refactored resources code.
+  
   resources :reviews, only: [:destroy]
 end

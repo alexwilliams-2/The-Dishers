@@ -14,14 +14,17 @@
             <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
             <% end %>
         </div>
+
         <div id="businesses">
           <% if @businesses.any? %>
-          <% @businesses.each do |business| %>
-            <h4><%= business.name %></h4>
-            <p><%= business.address %></p>
+            <% @businesses.each do |business| %>
+            <%# need to make sure link is whole card - not just name %>
+            <h4> <%= link_to business.name, business, style: 'text-decoration: none; color: #000000'%> </h4>
+            <p> <%= business.address %> </p>
+            <%= cl_image_tag business.photo.key, height: 300 %>
           <% end %>
         <% else %>
-          <em>Sorry, no businesses found.</em>
+          <em> Sorry, no businesses found. </em>
         <% end %>
         </div>
       </div>
