@@ -1,5 +1,4 @@
 class BusinessesController < ApplicationController
-
   # need to add logic for second location search bar
   def index
     @businesses = Business.all
@@ -14,8 +13,12 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.find(params[:id])
-    @review = Review.new
-    # @favourite = UserFavourite.new
+    @review = Review.new # @favourite = UserFavourite.new
+
+    @marker = {
+      lat: @business.latitude,
+      lng: @business.longitude
+    }
   end
 
   private

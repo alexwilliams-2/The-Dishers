@@ -11,12 +11,19 @@ require "open-uri"
 # Create businesses
 Business.destroy_all
 User.destroy_all
+london_postcodes = [
+  "E1 7AA", "E1 7AB", "E1 7AD", "E1 7AE", "E1 7AF", "E1 7AG", "E1 7AH", "E1 7AJ", "E1 7AL", "E1 7AN",
+  "E1 7AP", "E1 7AQ", "E1 7AR", "E1 7AS", "E1 7AT", "E1 7AU", "E1 7AW", "E1 7AX", "E1 7AY", "E1 7AZ",
+  "E1 7BA", "E1 7BB", "E1 7BD", "E1 7BE", "E1 7BF", "E1 7BG", "E1 7BH", "E1 7BJ", "E1 7BL", "E1 7BN",
+  "E1 7BP", "E1 7BQ", "E1 7BS", "E1 7BT", "E1 7BU", "E1 7BW", "E1 7BX", "E1 7BY", "E1 7BZ", "E1 7DA",
+  "E1 7DB", "E1 7DD", "E1 7DE", "E1 7DF", "E1 7DG", "E1 7DH", "E1 7DJ", "E1 7DL", "E1 7DN"
+]
 
-100.times do |i|
+10.times do |i|
   puts "creating..."
   business = Business.new(
     name: Faker::Company.unique.name,
-    address: Faker::Address.full_address,
+    address: london_postcodes.sample,
     email: Faker::Internet.unique.email,
     phone_number: Faker::PhoneNumber.unique.phone_number,
     category: ['Hotel', 'Restaurant', 'Cafe', 'Bar', 'Resort'].sample,

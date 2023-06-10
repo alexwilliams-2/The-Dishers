@@ -1,4 +1,7 @@
 class Business < ApplicationRecord
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
   has_many :reviews, dependent: :destroy
   has_many :user_favourites, dependent: :destroy
   # favourited user = user_favourites.
