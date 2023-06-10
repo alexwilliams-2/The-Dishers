@@ -6,6 +6,7 @@ class PagesController < ApplicationController
 
   def profile #for users
     @user = current_user
+    @favourites = @user.user_favourites
   end
 
 end
