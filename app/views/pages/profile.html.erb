@@ -9,3 +9,9 @@
     <%= cl_image_tag review.business.photo.key, height: 100 %>
   </div>
 <% end %>
+
+<%# <% raise %>
+<h1> My Favs </h1>
+<% @user.user_favourites.each do |favourite| %>
+<%= favourite.business.name %>
+<% end %>
