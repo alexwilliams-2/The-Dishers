@@ -1,1 +1,11 @@
 <%= image_tag @user.photo, height: 300%>
+
+<h1> My reviews </h1>
+<% @user.reviews.each do |review| %>
+  <div class="review">
+    <h3><%= review.title %></h3>
+    <p><%= review.content %></p>
+    <p>Rating: <%= review.rating %></p>
+    <%= cl_image_tag review.business.photo.key, height: 100 %>
+  </div>
+<% end %>

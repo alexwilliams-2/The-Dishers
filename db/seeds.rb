@@ -13,7 +13,7 @@ Business.destroy_all
 User.destroy_all
 
 100.times do |i|
-  "creating..."
+  puts "creating..."
   business = Business.new(
     name: Faker::Company.unique.name,
     address: Faker::Address.full_address,
@@ -29,7 +29,7 @@ User.destroy_all
   business.save
   puts "#{business.id} has been created"
 end
-  user_1 = User.create!(
+  user_1 = User.create!( #As a User model is held by Devise, bio and location need to be added separately.
     username: "Joseph",
     email: Faker::Internet.unique.email,
     password: Faker::Internet.password(min_length: 6, max_length: 10)
@@ -158,3 +158,25 @@ end
     bio: "Adventure-seeking hospitality enthusiast always ready to sprinkle a dash of excitement into your stay. Whether it's arranging epic activities or sharing local hidden gems, I'm your go-to person for unforgettable experiences!",
     location: "London"
   )
+
+  businesses = Business.all
+  users = User.all
+  titles = ["Great Work Environment", "Excellent Team","I hated every second there", "Flexible Schedule", "Don't work there", "They never pay on time", "They don't pay fair", "Good money", "Free lunches and good management"]
+  user_content = titles
+
+  30.times do
+    business = businesses.sample
+    user = users.sample
+
+  Review.create!(
+    business: business,
+    user: user,
+    title: titles.sample,
+    content: user_content = titles.sample,
+    recommended: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? false : true,
+    job_title: ["Manager", "Bartender", "Waitstaff", "Chef"].sample,
+    rating: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? rand(1..3) : rand(4..5),
+    wage: rand(10.0..50.0),
+    votes: rand(0..10),
+  )
+  end
