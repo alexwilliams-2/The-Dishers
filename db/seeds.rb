@@ -29,6 +29,7 @@ User.destroy_all
   business.save
   puts "#{business.id} has been created"
 end
+  puts "creating 10 users"
   user_1 = User.create!( #As a User model is held by Devise, bio and location need to be added separately.
     username: "Joseph",
     email: Faker::Internet.unique.email,
@@ -159,9 +160,11 @@ end
     location: "London"
   )
 
+  puts "creating 30 reviews"
+
   businesses = Business.all
   users = User.all
-  titles = ["Great Work Environment", "Excellent Team","I hated every second there", "Flexible Schedule", "Don't work there", "They never pay on time", "They don't pay fair", "Good money", "Free lunches and good management"]
+  titles = ["Great Work Environment", "Excellent Team","I hated every second there", "Flexible Schedule", "Don't work there", "They never pay on time", "They don't pay fair", "Good money", "Free lunches and good management"].sample
   user_content = titles
 
   30.times do
@@ -171,8 +174,8 @@ end
   Review.create!(
     business: business,
     user: user,
-    title: titles.sample,
-    content: user_content = titles.sample,
+    title: titles,
+    content: user_content,
     recommended: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? false : true,
     job_title: ["Manager", "Bartender", "Waitstaff", "Chef"].sample,
     rating: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? rand(1..3) : rand(4..5),
