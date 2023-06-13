@@ -1,0 +1,17 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  margin-top: 15px;
+  margin-inline: auto;
+  padding-top: 20px;
+  padding-bottom: 14px;
+  text-decoration: none;
+  background-color: $light-gray;
+  color: $light-gray;
+
+}
+.footer-links a:hover {
+  opacity: 1;
+}
