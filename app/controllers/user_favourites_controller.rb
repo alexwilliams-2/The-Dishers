@@ -9,7 +9,7 @@ class UserFavouritesController < ApplicationController
     @favourite.user = current_user
     @favourite.business = Business.find(params[:business_id])
     @favourite.save
-    redirect_to user_favourites_path
+    redirect_to profile_path
   end
 
   private

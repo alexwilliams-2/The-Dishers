@@ -13,6 +13,6 @@ Rails.application.routes.draw do
     resources :user_favourites, only: [:create]
     resources :reviews, only: [:create]
   end # refactored resources code.
-  
+
   resources :reviews, only: [:destroy]
 end
