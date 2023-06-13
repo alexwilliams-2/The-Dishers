@@ -20,14 +20,18 @@ export default class extends Controller {
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
-    bounds.extend([ this.markerValue.lng, this.markerValue.lat ])
+    this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
 
   #addMarkersToMap() {
+    this.markersValue.forEach((marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window_html) // Adds info window
       new mapboxgl.Marker()
-        .setLngLat([ this.markerValue.lng, this.markerValue.lat ])
-        .addTo(this.map)
-    }
+        .setLngLat([ marker.lng, marker.lat ])
+        .setPopup(popup) // Adds info window
+        .addTo(this.map);
+    })
+  }
 }
 // this.markerValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))

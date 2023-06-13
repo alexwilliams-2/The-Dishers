@@ -9,16 +9,19 @@ class BusinessesController < ApplicationController
       # query: here is what would usually be ? in sql. We have simply named the placeholder
       @businesses = Business.where(sql_subquery, query: "%#{params[:query]}%")
     end
+
+    @markers = @businesses.geocoded.map do |business|
+      {
+        lat: business.latitude,
+        lng: business.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {business: business})
+      }
+    end
   end
 
   def show
     @business = Business.find(params[:id])
     @review = Review.new # @favourite = UserFavourite.new
-
-    @marker = {
-      lat: @business.latitude,
-      lng: @business.longitude
-    }
   end
 
   private

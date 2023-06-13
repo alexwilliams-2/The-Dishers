@@ -11,19 +11,53 @@ require "open-uri"
 # Create businesses
 Business.destroy_all
 User.destroy_all
-london_postcodes = [
-  "E1 7AA", "E1 7AB", "E1 7AD", "E1 7AE", "E1 7AF", "E1 7AG", "E1 7AH", "E1 7AJ", "E1 7AL", "E1 7AN",
-  "E1 7AP", "E1 7AQ", "E1 7AR", "E1 7AS", "E1 7AT", "E1 7AU", "E1 7AW", "E1 7AX", "E1 7AY", "E1 7AZ",
-  "E1 7BA", "E1 7BB", "E1 7BD", "E1 7BE", "E1 7BF", "E1 7BG", "E1 7BH", "E1 7BJ", "E1 7BL", "E1 7BN",
-  "E1 7BP", "E1 7BQ", "E1 7BS", "E1 7BT", "E1 7BU", "E1 7BW", "E1 7BX", "E1 7BY", "E1 7BZ", "E1 7DA",
-  "E1 7DB", "E1 7DD", "E1 7DE", "E1 7DF", "E1 7DG", "E1 7DH", "E1 7DJ", "E1 7DL", "E1 7DN"
+london_address = [
+  "119 Kensington Church Street, London, W8 7LN",
+  "Spaniards Road, Hampstead, London, NW3 7JJ",
+  "117 Rotherhithe Street, London, SE16 4NF",
+  "Walham Grove, Fulham, London, SW6 1QP",
+  "145 Fleet Street, London, EC4A 2BU",
+  "10 Downing Street, Westminster, London, SW1A 2AA",
+  "Westminster Bridge Road, London, SE1 7PB",
+  "Bermondsey Street, London, SE1 3TQ",
+  "Dean Street, Soho, London, W1D 3SG",
+  "38 Kingsway, Holborn, London, WC2B 6EY",
+  "30 St Mary Axe, London, EC3A 8EP",
+  "31-32 Maiden Lane, Covent Garden, London, WC2E 7JS",
+  "5 Stable Street, King's Cross, London, N1C 4AB",
+  "56 Commercial Street, Spitalfields, London, E1 6LT",
+  "16 Albemarle Street, Mayfair, London, W1S 4HW",
+  "35 Great Queen Street, Covent Garden, London, WC2B 5AA",
+  "10 New Burlington Street, Mayfair, London, W1S 3BE",
+  "45 Park Lane, Mayfair, London, W1K 1PN",
+  "52 Holborn Viaduct, Holborn, London, EC1A 2FD",
+  "20 Fenchurch Street, London, EC3M 3BY",
+  "24 Brewer Street, Soho, London, W1F 0SB",
+  "29 Maddox Street, Mayfair, London, W1S 2PA",
+  "3 Henrietta Street, Covent Garden, London, WC2E 8LU",
+  "18 Thayer Street, Marylebone, London, W1U 3JY",
+  "45-47 Villiers Street, Charing Cross, London, WC2N 6NE",
+  "31 Duke Street, Marylebone, London, W1U 1LG",
+  "47 Beak Street, Soho, London, W1F 9SE",
+  "9 Conduit Street, Mayfair, London, W1S 2XG",
+  "25 Newman Street, Fitzrovia, London, W1T 1PN",
+  "89-91 Old Street, Shoreditch, London, EC1V 9HW",
+  "24 Cornhill, City of London, London, EC3V 3ND",
+  "18-22 Craven Road, Paddington, London, W2 3PX",
+  "28-30 St. John Street, Clerkenwell, London, EC1M 4DN",
+  "16 Great Chapel Street, Soho, London, W1F 8FL",
+  "2 Ganton Street, Soho, London, W1F 7QL",
+  "41-43 Brushfield Street, Spitalfields, London, E1 6AA",
+  "38-42 Duke Street, Mayfair, London, W1U 1EU",
+  "17 Kingly Street, Soho, London, W1B 5PW",
+  "30 Lisle Street, Leicester Square, London, WC2H 7BA"
 ]
 
 10.times do |i|
   puts "creating..."
   business = Business.new(
     name: Faker::Company.unique.name,
-    address: london_postcodes.sample,
+    address: london_address.sample,
     email: Faker::Internet.unique.email,
     phone_number: Faker::PhoneNumber.unique.phone_number,
     category: ['Hotel', 'Restaurant', 'Cafe', 'Bar', 'Resort'].sample,
