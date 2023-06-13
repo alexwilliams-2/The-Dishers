@@ -11,13 +11,13 @@
   border: 1px solid $gray;
   padding: 8px 24px;
   border-radius: 50px;
-  font-weight: lighter;
-  opacity: 0.6;
+  font-weight: bold;
   transition: opacity 0.3s ease;
 }
 
 .btn-ghost:hover {
-  opacity: 1;
+  opacity: 0.75;
+  background: $light-gray;
 }
 
 .btn-flat {
