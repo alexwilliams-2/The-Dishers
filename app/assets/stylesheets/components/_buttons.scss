@@ -8,9 +8,9 @@
 
 .btn-ghost {
   color: $gray;
-  border: 1px solid $gray;
   padding: 8px 24px;
   border-radius: 50px;
+  border: none;
   font-weight: bold;
   transition: opacity 0.3s ease;
 }
@@ -27,6 +27,7 @@
   background: $blue;
   transition: background 0.3s ease;
   border: none;
+  font-weight: bold;
 }
 
 .btn-flat:hover {
