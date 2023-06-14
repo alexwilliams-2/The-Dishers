@@ -1,6 +1,8 @@
 class BusinessesController < ApplicationController
   # need to add logic for second location search bar
   def index
+    @ratings = []
+    @recommended_array = []
     @businesses = Business.all
     # created a sql query variable for readabilty
     sql_subquery = "name ILIKE :query OR category ILIKE :query"
