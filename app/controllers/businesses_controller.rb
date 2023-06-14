@@ -3,6 +3,7 @@ class BusinessesController < ApplicationController
   def index
     @ratings = []
     @recommended_array = []
+    @wages = []
     @businesses = Business.all
     # created a sql query variable for readabilty
     sql_subquery = "name ILIKE :query OR category ILIKE :query"
