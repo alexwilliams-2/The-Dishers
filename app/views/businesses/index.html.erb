@@ -36,7 +36,7 @@
                       <% @recommended_array.push(review) %>
                     <% end %>
                   <% end %>
-                  <p> <%= "#{pluralize (recommended_array.length), "Disher"} recommends working here" %> </p>
+                  <p> <%= "#{pluralize (@recommended_array.length), "Disher"} recommends working here" %> </p>
                 </div>
               </div>
               <% end %>
