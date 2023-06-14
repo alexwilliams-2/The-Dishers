@@ -11,7 +11,7 @@
                   class: "form-control",
                   placeholder: "Type a keyword"
               %>
-            <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+            <%= submit_tag "Search", name: "", class: "btn-flat btn-flat:hover" %>
             <% end %>
         </div>
 
@@ -31,3 +31,8 @@
     </div>
   </div>
 </div>
+
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
