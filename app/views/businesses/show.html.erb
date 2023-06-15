@@ -8,19 +8,18 @@
     <h3> Be the first to review <%= @business.name %> </h3>
 
   <% else @business.reviews.each do |review| %>
-    <div class="review-card">
-      <div class="review-card-username">
-        <% @business.reviews.each do |review| %>
-        <%# where does user choose their username??? %>
-          <h3> <%= review.user.username %> <h3>
-        <% end %>
+    <div class="review-card m-2 mt-5 col-sm-6">
+      <div class="review-card-user-info">
+        <h4> <%= review.user.email %> says ... </h4>
+        <p> <strong> Position: </strong> <%= review.job_title %> </p>
+        <p> <strong> Wage: </strong> <%= number_to_currency(review.wage, unit: "£") %> per hour </p>
       </div>
       <div class="review-card-content">
-        <p> <%= "#{("⭐" * review.rating)}" %> <p>
+        <p> <%= "#{("⭐" * review.rating)}" %> </p>
         <p> <%= review.content %> <p>
       </div>
-    <% end %>
     </div>
+  <% end %>
   <% end %>
 
   <%= render :partial => "businesses/review" %>
