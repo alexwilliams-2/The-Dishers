@@ -1,13 +1,13 @@
 <div class="container">
 
-  <h2><%= @business.name %></h2>
-  <%= cl_image_tag @business.photo.key, height: 300%>
+  <h2><%= @business.first.name %></h2>
+  <%= cl_image_tag @business.first.photo.key, height: 300%>
   <p> <strong> <%= pluralize @business.reviews.size, "Review" %> </strong></p>
 
-  <% if @business.reviews.blank? %>
+  <% if @business.first.reviews.blank? %>
     <h3> Be the first to review <%= @business.name %> </h3>
 
-  <% else @business.reviews.each do |review| %>
+  <% else @business.first.reviews.each do |review| %>
     <div class="review-card m-2 mt-5 col-sm-6">
       <div class="review-card-user-info">
         <h4> <%= review.user.email %> says ... </h4>
