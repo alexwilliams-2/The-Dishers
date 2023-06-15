@@ -1,25 +1,24 @@
-
-<div class="modal fade" id="new_review_modal" tabindex="-1" role="dialog">
+<div class="modal" id="new_review_modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add your honest review of <%= @business.name %> here:</h5>
+        <h5 class="modal-title">Share your thoughts about <%= @business.first.name %> 👇</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
         </button>
       </div>
 
-      <%= simple_form_for [@business, @review] do |f| %>
+      <%= simple_form_for [@business.first, @review] do |f| %>
         <div class="modal-body">
-        <%= f.input :title %>
-        <%= f.input :job_title %>
-        <%= f.input :content %>
-        <%= f.input :rating %>
-        <%= f.input :recommended %>
-        <%= f.input :wage %>
+        <%= f.input :title, label: 'Summarise your review in 5 words or less'%>
+         <%= f.input :content, label: 'Your review' %>
+        <%= f.input :job_title, label: 'Your job title' %>
+        <%= f.input :rating, label: 'Rate your experience working here (1-5)'%>
+        <%= f.input :recommended, label: 'Do you recommend working here?'%>
+        <%= f.input :wage, label: "What was your hourly pay" %>
         </div>
         <div class="modal-footer">
           <%= f.submit "Submit review", class: "button btn-flat btn-flat:hover" %>
-          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Back</button>
+          <button type="button" class="btn-flat btn-cancel" data-bs-dismiss="modal">Back</button>
         </div>
       <% end %>
     </div>
