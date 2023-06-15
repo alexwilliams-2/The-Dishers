@@ -2,7 +2,7 @@
 <h1>New review</h1>
   <div class = "form-group row">
     <div class ="col-sm-6">
-<%= simple_form_for [@business, @review] do |f| %>
+<%= simple_form_for [@business.first, @review] do |f| %>
   <%= f.input :title %>
    <%= f.input :job_title %>
   <%= f.input :content %>
