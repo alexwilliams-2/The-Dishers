@@ -10,7 +10,7 @@
   <% else @business.first.reviews.each do |review| %>
     <div class="review-card">
       <div class="review-card-username">
-        <% @business.reviews.each do |review| %>
+        <% @business.first.reviews.each do |review| %>
         <%# where does user choose their username??? %>
           <h3> <%= review.user.username %> <h3>
         <% end %>
