@@ -1,17 +1,15 @@
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100px;
-  margin-top: 15px;
-  margin-inline: auto;
-  padding-top: 20px;
-  padding-bottom: 14px;
-  text-decoration: none;
-  background-color: $light-gray;
-  color: $light-gray;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 
 }
-.footer-links a:hover {
-  opacity: 1;
+
+footer{
+  background: $blue;
+  height: auto;
+  width: 100vw;
+  padding-top: 40px;
+
+
 }
