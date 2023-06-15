@@ -1,6 +1,9 @@
 class BusinessesController < ApplicationController
   # need to add logic for second location search bar
   def index
+    @ratings = []
+    @recommended_array = []
+    @wages = []
     @businesses = Business.all
     # created a sql query variable for readabilty
     sql_subquery = "name ILIKE :query OR category ILIKE :query"
@@ -20,8 +23,16 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business = Business.find(params[:id])
+    @business = Business.where(id: params[:id]) #.find(params[:id]) was changed to .where(id: params[:id]). To use .geocoded.map, we need to iterate over an array, so business had to be wrapped to create the array.
     @review = Review.new # @favourite = UserFavourite.new
+
+    @markers = @business.geocoded.map do |business|
+      {
+        lat: business.latitude,
+        lng: business.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {business: business})
+      }
+    end
   end
 
   private
