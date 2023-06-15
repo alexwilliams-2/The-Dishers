@@ -14,12 +14,14 @@
     <% end %>
   </ul>
 
-  <%= render :partial => "businesses/review" %>
-
+ <button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#new_review_modal">
+        add a review
+      </button>
   <%= button_to 'Add to Favourites', business_user_favourites_path(@business), class: "btn-ghost" %>
 <%# <%= simple_form_for @favourite do |f| %>
 <%#= f.input :business, as: :hidden, input_html: { value:  @business.id } %>
 <%#= f.button :submit  %>
 <%# end %>
 
+<%= render "businesses/modal", business: @business, review: @review %>
 </div>

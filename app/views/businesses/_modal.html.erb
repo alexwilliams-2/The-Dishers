@@ -1,0 +1,27 @@
+
+<div class="modal fade" id="new_review_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add your honest review of <%= @business.name %> here:</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+
+      <%= simple_form_for [@business, @review] do |f| %>
+        <div class="modal-body">
+        <%= f.input :title %>
+        <%= f.input :job_title %>
+        <%= f.input :content %>
+        <%= f.input :rating %>
+        <%= f.input :recommended %>
+        <%= f.input :wage %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "Submit review", class: "button btn-flat btn-flat:hover" %>
+          <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Back</button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
