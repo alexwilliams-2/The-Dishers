@@ -1,27 +1,42 @@
 <div class="container">
 
-  <h2><%= @business.name %></h2>
-  <%= cl_image_tag @business.photo.key, height: 300%>
-  <p> <strong> <%= pluralize @business.reviews.size, "Review" %> </strong></p>
+  <h2><%= @business.first.name %></h2>
+  <%= cl_image_tag @business.first.photo.key, height: 300%> <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
+  <p> <strong> <%= pluralize @business.first.reviews.size, "Review" %> </strong></p>
 
-  <% if @business.reviews.blank? %>
+  <% if @business.first.reviews.blank? %>
     <h3> Be the first to review <%= @business.name %> </h3>
-    <ul class="list-group">
-      <% else @business.reviews.each do |review| %>
-      <li class="list-group-item"><%= "#{("⭐" * review.rating)}" %></li>
-        <li class="list-group-item"><%= review.content %></li>
-      <% end %>
+
+  <% else @business.first.reviews.each do |review| %>
+    <div class="review-card">
+      <div class="review-card-username">
+        <% @business.reviews.each do |review| %>
+        <%# where does user choose their username??? %>
+          <h3> <%= review.user.username %> <h3>
+        <% end %>
+      </div>
+      <div class="review-card-content">
+        <p> <%= "#{("⭐" * review.rating)}" %> <p>
+        <p> <%= review.content %> <p>
+      </div>
     <% end %>
-  </ul>
+    </div>
+  <% end %>
 
  <button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#new_review_modal">
         add a review
       </button>
-  <%= button_to 'Add to Favourites', business_user_favourites_path(@business), class: "btn-ghost" %>
-<%# <%= simple_form_for @favourite do |f| %>
-<%#= f.input :business, as: :hidden, input_html: { value:  @business.id } %>
-<%#= f.button :submit  %>
-<%# end %>
+
+  <%= button_to 'Add to Favourites', business_user_favourites_path(@business.first), class: "btn-ghost" %>
+  <%# <%= simple_form_for @favourite do |f| %>
+  <%#= f.input :business, as: :hidden, input_html: { value:  @business.first.id } %>
+  <%#= f.button :submit  %>
+  <%# end %>
 
 <%= render "businesses/modal", business: @business, review: @review %>
 </div>
+
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
