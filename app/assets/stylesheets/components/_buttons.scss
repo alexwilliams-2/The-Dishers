@@ -1,35 +1,38 @@
-// .btn {
-//   border-radius: 50px;
-//   font-weight: lighter;
-//   color: $gray;
-//   background-color: $blue;
-// }
+.button {
+  border-radius: 50px;
+  font-weight: lighter;
+  color: white;
+  background-color: $blue;
+  border-radius: 50px;
+}
 
 .btn-ghost {
   color: $gray;
-  border: 1px solid $gray;
   padding: 8px 24px;
   border-radius: 50px;
-  font-weight: lighter;
-  opacity: 0.6;
+  border: none;
+  font-weight: bold;
   transition: opacity 0.3s ease;
 }
 
 .btn-ghost:hover {
-  opacity: 1;
+  opacity: 0.75;
+  background: $light-gray;
 }
 
 .btn-flat {
-  color: $gray;
+  color: white;
   padding: 8px 24px;
   border-radius: 50px;
   background: $blue;
   transition: background 0.3s ease;
+  border: none;
+  font-weight: bold;
 }
 
 .btn-flat:hover {
-  background: blue;
-  color: $gray;
+  background: rgb(53, 88, 213);
+  color: white;
   opacity: 0.75;
 }
 
