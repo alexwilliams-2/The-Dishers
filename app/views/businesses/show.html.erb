@@ -6,20 +6,29 @@
 
   <% if @business.reviews.blank? %>
     <h3> Be the first to review <%= @business.name %> </h3>
-    <ul class="list-group">
-      <% else @business.reviews.each do |review| %>
-      <li class="list-group-item"><%= "#{("⭐" * review.rating)}" %></li>
-        <li class="list-group-item"><%= review.content %></li>
-      <% end %>
+
+  <% else @business.reviews.each do |review| %>
+    <div class="review-card">
+      <div class="review-card-username">
+        <% @business.reviews.each do |review| %>
+        <%# where does user choose their username??? %>
+          <h3> <%= review.user.username %> <h3>
+        <% end %>
+      </div>
+      <div class="review-card-content">
+        <p> <%= "#{("⭐" * review.rating)}" %> <p>
+        <p> <%= review.content %> <p>
+      </div>
     <% end %>
-  </ul>
+    </div>
+  <% end %>
 
   <%= render :partial => "businesses/review" %>
 
   <%= button_to 'Add to Favourites', business_user_favourites_path(@business), class: "btn-ghost" %>
-<%# <%= simple_form_for @favourite do |f| %>
-<%#= f.input :business, as: :hidden, input_html: { value:  @business.id } %>
-<%#= f.button :submit  %>
-<%# end %>
+  <%# <%= simple_form_for @favourite do |f| %>
+  <%#= f.input :business, as: :hidden, input_html: { value:  @business.id } %>
+  <%#= f.button :submit  %>
+  <%# end %>
 
 </div>
