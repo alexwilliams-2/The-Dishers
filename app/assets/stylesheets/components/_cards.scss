@@ -52,7 +52,9 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
-.card-product {
+
+//  Business cards
+.business-card {
   overflow: hidden;
   height: 175px;
   background: white;
@@ -61,36 +63,61 @@
   align-items: center;
   border-radius: 20px;
 }
-.card-product img {
+.business-card img {
   height: 100%;
   width: 175px;
   object-fit: cover;
 }
-.card-product h2 {
+.business-card h2 {
   font-size: 20px;
   font-weight: bold;
   margin: 0;
 }
-.card-product p {
+.business-card p {
   font-size: 12px;
   line-height: 1.4;
   opacity: .7;
   margin-bottom: 0;
   margin-top: 8px;
 }
-.card-product .card-product-infos {
+.business-card .business-card-infos {
   padding: 24px;
 }
+
+// Review cards
+.review-card {
+  overflow: hidden;
+  height: 175px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  padding-left: 12px;
+  border: 0px solid $blue;
+}
+
+.review-card .review-card-content {
+  padding-left: 48px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .card-trip {
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
-.card-trip > img {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-}
+
 .card-trip h2 {
   font-size: 16px;
   font-weight: bold;
