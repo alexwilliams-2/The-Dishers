@@ -1,42 +1,42 @@
-<%= image_tag @user.photo, height: 300%>
+<%#= image_tag @user.photo, height: 300%>
 
-<h1> My reviews </h1>
+<%# <h1> My reviews </h1>
 <% @user.reviews.each do |review| %>
-  <div class="review">
-    <h3><%= review.title %></h3>
-    <p><%= review.content %></p>
-    <p>Rating: <%= review.rating %></p>
-    <%= cl_image_tag review.business.photo.key, height: 100 %>
-  </div>
+  <%# <div class="review">
+    <h3><%= review.title</h3>
+    <%# <p><%= review.content</p> %>
+    <%# <p>Rating: <%= review.rating</p> %>
+    <%# <%= cl_image_tag review.business.photo.key, height: 100 %>
+  <%# </div>
 <% end %>
 
 <%# <% raise %>
 
-<div class="container">
+<%# <div class="container">
   <div id="myCarousel" class="carousel slide w-50" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+    </ol> %>
 
     <!-- Wrapper for slides -->
 
-    <div class="carousel-inner">
+    <%# <div class="carousel-inner">
       <% @favourites.each_with_index do |favourite, index| %>
-      <div class="item <%= index ==  0 ? 'active' : '' %>">
-        <%= cl_image_tag favourite.business.photo.key, class: "d-block w-100"%>
-        <div class="carousel-caption">
-          <h3><%= favourite.business.name %></h3>
-          <p><%= favourite.business.address %></p>
-        </div>
+      <%# <div class="item <%= index ==  0 ? 'active' : '' %>
+        <%# <%= cl_image_tag favourite.business.photo.key, class: "d-block w-100"%>
+        <%# <div class="carousel-caption">
+          <h3><%= favourite.business.name</h3>
+          <p><%= favourite.business.address</p>
+        <%# </div>
       </div>
       <% end %>
-    </div>
+    <%# </div>     %>
 
     <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <%# <a class="left carousel-control" href="#myCarousel" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left"></span>
       <span class="sr-only">Previous</span>
     </a>
@@ -45,13 +45,13 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-</div>
+</div> %>
 
-<div class="header-wrapper">
-  <header></header>
-  <div class="cols__container">
-    <div class="left__col">
-      <div class="img__container">
-        <%= image_tag @user.photo %>
-        </div>
-        <h2><%= user.bio %></h2>
+<div class="card" style="width: 18rem;">
+  <%= image_tag(@user.photo, class: "card-img-top", alt: "...") %>
+  <div class="card-body">
+    <h3 class="card-title"><%= @user.username %></h3>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+
+</div>
