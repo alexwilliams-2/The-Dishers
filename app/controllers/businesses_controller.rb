@@ -33,6 +33,7 @@ class BusinessesController < ApplicationController
         info_window_html: render_to_string(partial: "info_window", locals: {business: business})
       }
     end
+  
   end
 
   private
