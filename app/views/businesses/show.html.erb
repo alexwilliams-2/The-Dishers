@@ -5,7 +5,6 @@
   <%= cl_image_tag @business.first.photo.key, height: 300%> <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
   <p> <strong> <%= pluralize @business.first.reviews.size, "Review" %> </strong></p>
 
-
   <% if @business.first.reviews.blank? %>
     <h3> Be the first to review <%= @business.name %> </h3>
 
