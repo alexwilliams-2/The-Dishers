@@ -15,73 +15,70 @@
   </div>
 </div>
 
-<div class="container d-flex justify-content-between mt-3">
-  <div class="row col-sm-4 m-4 p-3 mission-card">
-    <h4> Bringing transparency to hospitality </h4>
-    <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
+<div class="container">
+  <div class="container d-flex justify-content-between mt-3">
+    <div class="row col-sm-4 m-4 p-3 mission-card">
+      <h4> Bringing transparency to hospitality </h4>
+      <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
+    </div>
+    <div class="row col-sm-4 m-4 p-3 mission-card">
+      <h4> Bringing transparency to hospitality </h4>
+      <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
+    </div>
+    <div class="row col-sm-4 m-4 p-3 mission-card">
+      <h4> Bringing transparency to hospitality </h4>
+      <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
+    </div>
   </div>
-  <div class="row col-sm-4 m-4 p-3 mission-card">
-    <h4> Bringing transparency to hospitality </h4>
-    <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
-  </div>
-  <div class="row col-sm-4 m-4 p-3 mission-card">
-    <h4> Bringing transparency to hospitality </h4>
-    <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
-  </div>
+
+  <div class="container my-5">
+    <h3> Top Rated </h3>
 </div>
 
-<h2> Top rated </h2>
-<div container>
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col">
-      <div class="card">
-        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top"
-          alt="Hollywood Sign on The Hill" />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            This is a longer card with supporting text below as a natural lead-in to
-            additional content. This content is a little bit longer.
-          </p>
-        </div>
+  <div id="businesses">
+    <% if @businesses.any? %>
+      <div class="row">
+        <% @businesses.sort_by { |business| business.reviews.average(:rating) }.reverse.first(4).each_slice(2) do |businesses_row| %>
+          <div class="container d-flex justify-content-between">
+            <% businesses_row.each do |business| %>
+              <% @wages = [] %>
+              <% @recommended_array = [] %>
+              <% @ratings = [] %>
+              <%= link_to business, style: 'text-decoration: none; color: #000000' do %>
+                <div class="business-card mt-5">
+                  <%= cl_image_tag business.photo.key, height: 300 %>
+                  <div class="business-card-infos">
+                    <div class="d-flex justify-content-between">
+                      <h2> <%= business.name %> </h2>
+                      <% business.reviews.each do |review| %>
+                        <% @wages.push(review.wage) %>
+                      <% end %>
+                      <% unless business.reviews.empty? %>
+                        <p> <%= "Average wage: #{number_to_currency((@wages.sum / business.reviews.length), options = {unit: "£"}) }"%> </p>
+                      <% end %>
+                    </div>
+                    <% business.reviews.each do |review| %>
+                      <% @ratings.push(review.rating) %>
+                    <% end %>
+                    <% unless business.reviews.empty? %>
+                      <%= "Average rating " "#{pluralize (@ratings.sum / business.reviews.length).ceil, "star"}" %>
+                    <% end %>
+                    <p> <%= business.description[0..100] %> </p>
+                    <% business.reviews.each do |review| %>
+                      <% if review.recommended = true %>
+                        <% @recommended_array.push(review) %>
+                      <% end %>
+                    <% end %>
+                    <p> <%= "#{pluralize (@recommended_array.length), "Disher"} recommends working here" %> </p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top"
-          alt="Palm Springs Road" />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            This is a longer card with supporting text below as a natural lead-in to
-            additional content. This content is a little bit longer.
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img-top"
-          alt="Los Angeles Skyscrapers" />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-            additional content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card">
-        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" class="card-img-top"
-          alt="Skyscrapers" />
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">
-            This is a longer card with supporting text below as a natural lead-in to
-            additional content. This content is a little bit longer.
-          </p>
-        </div>
-      </div>
-    </div>
+    <% else %>
+      <em> Sorry, no businesses found. </em>
+    <% end %>
   </div>
 </div>
