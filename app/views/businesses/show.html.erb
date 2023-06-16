@@ -1,9 +1,8 @@
 <% public_id = Cloudinary::Utils.cloudinary_url(@business.first.photo.key, type: :asset)[/[^\/]+(?=\.[^.]+\z)/] %>
 
 <div class="business-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path(@business.first.photo.key) %>');">
-   <div class="banner-content">
-  <h2 ><%= @business.first.name %></h2>
-    <div class="container-md">
+  <div class="banner-content">
+    <div class="container-md col p-3">
       <div class="like-button" style="transform: scale(0.50)">
         <% if current_user.user_favourites.where(business_id: @business.first.id).any? %>
           <%= button_to business_user_favourites_path(@business.first.id), class: "btn-ghost like-wrapper ripple" do %>
@@ -18,10 +17,41 @@
             </svg>
           <% end %>
         <% end %>
+        </div>
       </div>
-      </div>
+    </div>
+   <div >
+    <h2 class="col"> <%= @business.first.name %> </h2>
+    <div class="container col">
+  <% @business.first.reviews.each do |review| %>
+                <% @wages = [] %>
+                <% @recommended_array = [] %>
+                <% @ratings = [] %>
+                      <% @wages.push(review.wage) %>
+                      <% end %>
+                    <% unless @business.first.reviews.empty? %>
+                      <p > <%= "Average wage: #{number_to_currency((@wages.sum / @business.first.reviews.length), options = {unit: "£"}) }"%> </p>
+                    <% end %>
+
+                  <% @business.first.reviews.each do |review| %>
+                    <% @ratings.push(review.rating) %>
+                  <% end %>
+                  <% unless @business.first.reviews.empty? %>
+                    <p> <%= "Average rating: " "#{pluralize (@ratings.sum / @business.first.reviews.length).ceil, "star"}" %> </p>
+                  <% end %>
+                  <% @business.first.reviews.each do |review| %> </p>
+                    <% if review.recommended = true %>
+                      <% @recommended_array.push(review) %>
+                    <% end %>
+                  <% end %>
+                  <p > <%= "#{pluralize (@recommended_array.length), "Disher"} recommends working here" %> </p>
+                  </div>
+                </div>
+
   </div>
 </div>
+
+
 
 
 
@@ -54,7 +84,7 @@
     Add a review
   </button>
 
-  <%= button_to 'Add to Favourites', business_user_favourites_path(@business.first), class: "btn-ghost" %>
+
   <%# <%= simple_form_for @favourite do |f| %>
   <%#= f.input :business, as: :hidden, input_html: { value:  @business.first.id } %>
   <%#= f.button :submit  %>
