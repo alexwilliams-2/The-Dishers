@@ -26,6 +26,7 @@ class BusinessesController < ApplicationController
   def show
     @business = Business.where(id: params[:id]) #.find(params[:id]) was changed to .where(id: params[:id]). To use .geocoded.map, we need to iterate over an array, so business had to be wrapped to create the array.
     @review = Review.new # @favourite = UserFavourite.new
+    @wages = []
 
     @markers = @business.geocoded.map do |business|
       {

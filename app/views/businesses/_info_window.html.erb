@@ -14,10 +14,3 @@
     <% end %>
   </div>
 </div>
-
-<% business.reviews.each do |review| %>
-      <% @wages.push(review.wage) %>
-      <% end %>
-    <% unless business.reviews.empty? %>
-        <p> <%= "Average wage: #{number_to_currency((@wages.sum / @wages.count  ), options = {unit: "£"}) }"%> </p>
-    <% end %>
