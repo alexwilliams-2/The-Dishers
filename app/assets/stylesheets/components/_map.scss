@@ -1,8 +1,75 @@
+// .mapboxgl-popup {
+//   max-width: 200px;
+//   background: $blue;
+//   border-radius: 15px;
+//   margin-top: -10px;
+// }
+
+// .mapboxgl-popup-content {
+//   text-align: center;
+//   font-family: "Open Sans", sans-serif;
+//   border: 1px solid #929292;
+//   box-shadow: 0px 2px 4px 2px rgba(0,0,0,.1)
+// }
+
+// .mapboxgl-popup-content:before {
+//   position: absolute;
+//   /* I've found 9px looks better than 10px */
+//   top: -webkit-calc(100% - 9px);
+//   top: calc(100% - 9px);
+//   left: calc(50% - 10px);
+//   height: 20px;
+//   width: 20px;
+//   background: white;
+//   transform: rotate(45deg);
+//   border-bottom: inherit;
+//   border-right: inherit;
+//   /* The shadow is translated down a bit so it doesn't show inside the pop-up */
+//   box-shadow: 4px 4px 4px -1px rgba(0, 0, 0, 0.1);
+//   z-index: 4;
+// }
+
+// .mapboxgl-popup-content .photo {
+//   width: 10%;
+//   margin-bottom: 10px;
+//   border-radius: 10px;
+// }
+
 .mapboxgl-popup {
-  max-width: 200px;
+  max-width: 100px;
+  background: $blue;
+  border-radius: 15px;
+  // margin-top: -10px;
 }
 
-.mapboxgl-popup-content {
-  text-align: center;
-  font-family: "Open Sans", sans-serif;
+
+.mapboxgl-popup .card {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.mapboxgl-popup h2{
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.mapboxgl-popup p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+.mapboxgl-popup .card-infos {
+  padding: px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.mapboxgl-popup .photo {
+  height: 100px;
+  width: 50%;
+  object-fit: cover;
 }

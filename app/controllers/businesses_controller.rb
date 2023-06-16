@@ -17,7 +17,8 @@ class BusinessesController < ApplicationController
       {
         lat: business.latitude,
         lng: business.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {business: business})
+        info_window_html: render_to_string(partial: "info_window", locals: {business: business}),
+        marker_html: render_to_string(partial: "marker")
       }
     end
   end
@@ -25,12 +26,14 @@ class BusinessesController < ApplicationController
   def show
     @business = Business.where(id: params[:id]) #.find(params[:id]) was changed to .where(id: params[:id]). To use .geocoded.map, we need to iterate over an array, so business had to be wrapped to create the array.
     @review = Review.new # @favourite = UserFavourite.new
+    @wages = []
 
     @markers = @business.geocoded.map do |business|
       {
         lat: business.latitude,
         lng: business.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {business: business})
+        info_window_html: render_to_string(partial: "info_window", locals: {business: business}),
+        marker_html: render_to_string(partial: "marker")
       }
     end
   end

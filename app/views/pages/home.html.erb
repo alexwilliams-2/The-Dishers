@@ -16,16 +16,74 @@
 </div>
 
 <div class="container d-flex justify-content-between mt-3">
-  <div class="row col-sm-4 m-4 p-3 mission-card">
-    <h4> Bringing transparency to hospitality </h4>
-    <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
+
+  <div class="row col-sm-3 m-4 p-3 mission-card">
+    <%= image_tag ('chef-prepping.jpg') %>
+    <h3> Bringing transparency to hospitality </h3>
+    <p> By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
   </div>
-  <div class="row col-sm-4 m-4 p-3 mission-card">
-    <h4> Bringing transparency to hospitality </h4>
-    <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
+  <div class="row col-sm-3 m-4 p-3 mission-card">
+   <div class="mission-card-image">
+     <%= image_tag ('staff-talking.jpg') %>
+    </div>
+    <h3> Life's too short </h3>
+    <p> Don't waste your time in another dead-end job. Utilise the shared knowledge of hospitality workers in your area to find a better opportunity. </p>
   </div>
-  <div class="row col-sm-4 m-4 p-3 mission-card">
-    <h4> Bringing transparency to hospitality </h4>
-    <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
+  <div class="row col-sm-3 m-4 p-3 mission-card">
+    <div class="mission-card-image">
+     <%= image_tag ('waitress.jpg') %>
+    </div>
+    <h3> Answers to the real questions  </h3>
+    <p> Interview didn't give you all the answers? Learn about good colleagues, poor managers and customers from other Dishers. Find out what a job is really like before you apply. </p>
   </div>
 </div>
+
+  <div class="container my-5">
+    <h3> Top Rated </h3>
+  </div>
+
+  <div id="businesses">
+    <% if @businesses.any? %>
+      <div class="row">
+        <% @businesses.sort_by { |business| business.reviews.average(:rating) }.reverse.first(4).each_slice(2) do |businesses_row| %>
+          <div class="container d-flex justify-content-between">
+            <% businesses_row.each do |business| %>
+              <% @wages = [] %>
+              <% @recommended_array = [] %>
+              <% @ratings = [] %>
+              <%= link_to business, style: 'text-decoration: none; color: #000000' do %>
+                <div class="business-card mt-5">
+                  <%= cl_image_tag business.photo.key, height: 300 %>
+                  <div class="business-card-infos">
+                    <div class="d-flex justify-content-between">
+                      <h2> <%= business.name %> </h2>
+                      <% business.reviews.each do |review| %>
+                        <% @wages.push(review.wage) %>
+                      <% end %>
+                      <% unless business.reviews.empty? %>
+                        <p> <%= "Average wage: #{number_to_currency((@wages.sum / business.reviews.length), options = {unit: "£"}) }"%> </p>
+                      <% end %>
+                    </div>
+                    <% business.reviews.each do |review| %>
+                      <% @ratings.push(review.rating) %>
+                    <% end %>
+                    <% unless business.reviews.empty? %>
+                      <%= "Average rating " "#{pluralize (@ratings.sum / business.reviews.length).ceil, "star"}" %>
+                    <% end %>
+                    <p> <%= business.description[0..100] %> </p>
+                    <% business.reviews.each do |review| %>
+                      <% if review.recommended = true %>
+                        <% @recommended_array.push(review) %>
+                      <% end %>
+                    <% end %>
+                    <p> <%= "#{pluralize (@recommended_array.length), "Disher"} recommends working here" %> </p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <em> Sorry, no businesses found. </em>
+    <% end %>

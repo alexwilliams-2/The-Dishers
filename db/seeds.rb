@@ -11,6 +11,7 @@ require "open-uri"
 # Create businesses
 Business.destroy_all
 User.destroy_all
+Review.destroy_all
 london_address = [
   "119 Kensington Church Street, London, W8 7LN",
   "Spaniards Road, Hampstead, London, NW3 7JJ",
@@ -70,7 +71,9 @@ london_address = [
   business.save
   puts "#{business.id} has been created"
 end
+
   puts "creating 10 users"
+
   user_1 = User.create!( #As a User model is held by Devise, bio and location need to be added separately.
     username: "Joseph",
     email: Faker::Internet.unique.email,
@@ -83,6 +86,7 @@ end
     bio: "Master of all things events and hospitality! I'll take your special occasions to the next level, crafting unforgettable moments that will have guests talking about them for years to come.",
     location: "London"
   )
+puts "user created"
 
   user_2 = User.create!(
     username: "Maram",
@@ -96,6 +100,7 @@ end
     bio: "Friendly front desk ninja with a talent for making everyone feel instantly at ease. From check-ins to check-outs, I'm here to make your stay as smooth and enjoyable as possible!",
     location: "London"
   )
+  puts "user created"
 
   user_3 = User.create!(
     username: "Alex",
@@ -109,6 +114,7 @@ end
     bio: "People-pleaser extraordinaire and hospitality aficionado. I'll go above and beyond to ensure every guest feels like a VIP, with personalized service and a touch of genuine warmth.",
     location: "London"
   )
+  puts "user created"
 
   user_4 = User.create!(
     username: "Eli",
@@ -122,6 +128,7 @@ end
     bio: "Seasoned hotel guru who knows the ins and outs of creating a great guest experience. I've got the skills to juggle any challenge and keep the vibes high, all while rocking a big smile!",
     location: "London"
   )
+  puts "user created"
 
   user_5 = User.create!(
     username: "Brett",
@@ -135,6 +142,7 @@ end
     bio: "Passionate hospitality rockstar with a flair for making magic happen. From surprise upgrades to secret local recommendations, I'm here to sprinkle some extra sparkle into your stay!",
     location: "London"
   )
+  puts "user created"
 
   user_6 = User.create!(
     username: "Wojciech",
@@ -148,6 +156,7 @@ end
     bio: "Experienced hospitality pro who thrives on making people smile. Whether it's serving up delicious drinks or helping guests find hidden gems in the city, I'm all about creating unforgettable moments.",
     location: "London"
   )
+  puts "user created"
 
   user_7 = User.create!(
     username: "Tom",
@@ -161,6 +170,7 @@ end
     bio: "Hospitality fanatic always on the lookout for opportunities to create awesome experiences. Love making guests feel right at home and going the extra mile to ensure they have a blast!",
     location: "London"
   )
+  puts "user created"
 
   user_8 = User.create!(
     username: "Luca",
@@ -174,6 +184,7 @@ end
     bio: "Adventure-seeking hospitality enthusiast always ready to sprinkle a dash of excitement into your stay. Whether it's arranging epic activities or sharing local hidden gems, I'm your go-to person for unforgettable experiences!",
     location: "London"
   )
+  puts "user created"
 
   user_9 = User.create!(
     username: "Omesh",
@@ -187,6 +198,7 @@ end
     bio: "Hospitality superhero with a passion for creating positive vibes. From crafting the coziest rooms to whipping up delicious breakfasts, I'm here to make sure your stay is filled with happy memories and belly laughs.",
     location: "London"
   )
+  puts "user created"
 
   user_10 = User.create!(
     username: "Oli",
@@ -200,6 +212,7 @@ end
     bio: "Adventure-seeking hospitality enthusiast always ready to sprinkle a dash of excitement into your stay. Whether it's arranging epic activities or sharing local hidden gems, I'm your go-to person for unforgettable experiences!",
     location: "London"
   )
+  puts "10 users created created"
 
   puts "creating 30 reviews"
 
@@ -220,7 +233,8 @@ end
     recommended: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? false : true,
     job_title: ["Manager", "Bartender", "Waitstaff", "Chef"].sample,
     rating: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? rand(1..3) : rand(4..5),
-    wage: rand(10.0..50.0),
+    wage: rand(7.0..15.0),
     votes: rand(0..10),
   )
+  puts "review created"
   end
