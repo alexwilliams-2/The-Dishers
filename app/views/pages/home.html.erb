@@ -15,25 +15,32 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="container d-flex justify-content-between mt-3">
-    <div class="row col-sm-4 m-4 p-3 mission-card">
-      <h4> Bringing transparency to hospitality </h4>
-      <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
-    </div>
-    <div class="row col-sm-4 m-4 p-3 mission-card">
-      <h4> Bringing transparency to hospitality </h4>
-      <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
-    </div>
-    <div class="row col-sm-4 m-4 p-3 mission-card">
-      <h4> Bringing transparency to hospitality </h4>
-      <p> Too many businesses take advantage of their employees’ hard-work and dedication. By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
-    </div>
+<div class="container d-flex justify-content-between mt-3">
+
+  <div class="row col-sm-3 m-4 p-3 mission-card">
+    <%= image_tag ('chef-prepping.jpg') %>
+    <h3> Bringing transparency to hospitality </h3>
+    <p> By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
   </div>
+  <div class="row col-sm-3 m-4 p-3 mission-card">
+   <div class="mission-card-image">
+     <%= image_tag ('staff-talking.jpg') %>
+    </div>
+    <h3> Life's too short </h3>
+    <p> Don't waste your time in another dead-end job. Utilise the shared knowledge of hospitality workers in your area to find a better opportunity. </p>
+  </div>
+  <div class="row col-sm-3 m-4 p-3 mission-card">
+    <div class="mission-card-image">
+     <%= image_tag ('waitress.jpg') %>
+    </div>
+    <h3> Answers to the real questions  </h3>
+    <p> Interview didn't give you all the answers? Learn about good colleagues, poor managers and customers from other Dishers. Find out what a job is really like before you apply. </p>
+  </div>
+</div>
 
   <div class="container my-5">
     <h3> Top Rated </h3>
-</div>
+  </div>
 
   <div id="businesses">
     <% if @businesses.any? %>
@@ -80,5 +87,3 @@
     <% else %>
       <em> Sorry, no businesses found. </em>
     <% end %>
-  </div>
-</div>
