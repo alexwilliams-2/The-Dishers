@@ -32,14 +32,13 @@
   <%= cl_image_tag @business.first.photo.key, height: 300%> <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
   <p> <strong> <%= pluralize @business.first.reviews.size, "Review" %> </strong></p>
 
-
   <% if @business.first.reviews.blank? %>
     <h3> Be the first to review <%= @business.name %> </h3>
 
   <% else @business.first.reviews.each do |review| %>
     <div class="review-card m-2 mt-5 col-sm-6">
       <div class="review-card-user-info">
-        <h4> <%= review.user.email %> says ... </h4>
+        <h4> <%= review.user.username %> says ... </h4>
         <p> <strong> Position: </strong> <%= review.job_title %> </p>
         <p> <strong> Wage: </strong> <%= number_to_currency(review.wage, unit: "£") %> per hour </p>
       </div>
