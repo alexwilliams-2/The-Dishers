@@ -12,7 +12,7 @@
   <% else @business.first.reviews.each do |review| %>
     <div class="review-card m-2 mt-5 col-sm-6">
       <div class="review-card-user-info">
-        <h4> <%= review.user.email %> says ... </h4>
+        <h4> <%= review.user.username %> says ... </h4>
         <p> <strong> Position: </strong> <%= review.job_title %> </p>
         <p> <strong> Wage: </strong> <%= number_to_currency(review.wage, unit: "£") %> per hour </p>
       </div>
