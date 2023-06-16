@@ -24,6 +24,11 @@ class ReviewsController < ApplicationController
     redirect_to business_path(@business), status: :see_other
   end
 
+  def set_avg_wage
+    @wages = []
+    @review.wage
+  end
+
   private
 
   def set_business
