@@ -11,6 +11,7 @@ require "open-uri"
 # Create businesses
 Business.destroy_all
 User.destroy_all
+Review.destroy_all
 london_address = [
   "119 Kensington Church Street, London, W8 7LN",
   "Spaniards Road, Hampstead, London, NW3 7JJ",
@@ -232,7 +233,7 @@ puts "user created"
     recommended: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? false : true,
     job_title: ["Manager", "Bartender", "Waitstaff", "Chef"].sample,
     rating: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? rand(1..3) : rand(4..5),
-    wage: rand(10.0..50.0),
+    wage: rand(7.0..15.0),
     votes: rand(0..10),
   )
   puts "review created"
