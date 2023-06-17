@@ -1,0 +1,21 @@
+.main-container { //For the sticky map
+  display: flex;
+}
+
+#map { //For the sticky map
+  height: 100vh;
+  width: 30%;
+  position: sticky;
+  top: 0;
+}
+
+.businesses-for-map {
+  flex-grow: 1;
+}
+
+#map-for-show { //For the sticky map
+  height: 50vh;
+  width: 60%;
+  position: sticky;
+  top: 0;
+}
