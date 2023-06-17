@@ -1,8 +1,8 @@
 <% public_id = Cloudinary::Utils.cloudinary_url(@business.first.photo.key, type: :asset)[/[^\/]+(?=\.[^.]+\z)/] %>
 
 <div class="banner-business" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519624133901-3420156d01b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80');">
-  <div class="business-banner-content row align-items-center">
-    <div class="col-sm-4">
+  <div class="business-banner-content row w-100 align-items-center">
+    <div class="col-sm-3">
        <div class="like-button" style="transform: scale(0.50)">
         <% if current_user.user_favourites.where(business_id: @business.first.id).any? %>
           <%= button_to business_user_favourites_path(@business.first.id), class: "btn-ghost like-wrapper ripple like-filled", method: :post, remote: true do %>
@@ -19,7 +19,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <%# <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#new_review_modal">
           Add a review
@@ -51,32 +51,40 @@
 
 
 <div class="container-xl">
-  <div class="business-card-show p-10">
-    <%= cl_image_tag @business.first.photo.key %> <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
-    <div class="business-card-show-body">
+  <div class="business-card-show w-100">
+   <div class="business-card-show-image col-sm-3">
+    <%= cl_image_tag @business.first.photo.key %>
+    </div> <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
+    <div class="business-card-show-body col-sm-6">
       <h5 class="business-card-title-show"><%= @business.first.name %></h5>
       <p class="business-card-text-show"><%= @business.first.description %></p>
     </div>
-      <ul class="list-group list-group-flush">
+      <ul class="list-group list-group-flush mb-0 col-sm-3">
         <li class="list-group-item"> <strong> Address: </strong> <%= @business.first.address %></li>
         <li class="list-group-item"> <strong> Email: </strong> <%= @business.first.email %></li>
         <li class="list-group-item"> <strong> Phone Number: </strong> <%= @business.first.phone_number %></li>
         <li class="list-group-item"> <strong> Category: </strong> <%= @business.first.category %></li>
-        <li class="list-group-item"> <strong> Size: </strong> <%= @business.first.size %> employees</li>
+        <li class="list-group-item"> <strong> Size: </strong> <%= pluralize @business.first.size, 'employee'%></li>
         <li class="list-group-item"> <strong> Business Hours: </strong> <%= @business.first.business_hours %></li>
+        <li class="list-group-item"> <strong> Average wage: </strong> <% @business.first.reviews.each do |review| %>
+        <% @wages = [] %>
+        <% @wages.push(review.wage) %>
+      <% end %>
+      <% unless @business.first.reviews.empty? %>
+         <%= number_to_currency((@wages.sum / @business.first.reviews.length), options = {unit: "£"}) %> </p>
+      <% end %> </li>
       </ul>
       </div>
 
 
-  <div class="main-container mt-5">
-    <div class="container m-0">
-     <div class="businesses-for-map ">
+  <div class="main-container mt-5 w-100">
+    <%# <div class="container m-0"> %>
+     <div class="businesses-for-map col-sm-9">
         <h2> <strong> <%= pluralize @business.first.reviews.size, "Review" %> </strong></h2>
           <% if @business.first.reviews.blank? %>
             <h3> Be the first to review <%= @business.name %> </h3>
-
           <% else @business.first.reviews.each do |review| %>
-              <div class="review-card">
+              <div class="review-card col col-sm-10">
                 <div class="col-sm-3">
                   <div>
                     <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %> says...</h4>
@@ -107,10 +115,10 @@
 
 
 
-  </div>
+  <%# </div> %>
 </div>
 
-  <div id="map-for-show" style="width: 50%; height: 50vh;"
+  <div id="map-for-show" style="width: 60%; height: 100vh;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
