@@ -1,57 +1,45 @@
 <% public_id = Cloudinary::Utils.cloudinary_url(@business.first.photo.key, type: :asset)[/[^\/]+(?=\.[^.]+\z)/] %>
 
-<div class="business-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path(@business.first.photo.key) %>');">
-  <div class="banner-content">
-    <div class="container-md col p-3">
+<div class="banner-business" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519624133901-3420156d01b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80');">
+  <div class="business-banner-content row align-items-center">
+    <div class="col-sm-4">
       <div class="like-button" style="transform: scale(0.50)">
         <% if current_user.user_favourites.where(business_id: @business.first.id).any? %>
-          <%= button_to business_user_favourites_path(@business.first.id), class: "btn-ghost like-wrapper ripple" do %>
+          <%= button_to business_user_favourites_path(@business.first.id), class: "btn-ghost like-wrapper ripple like-filled", method: :post, remote: true do %>
             <svg class="heart-filled" width="1" height="1" viewBox="0 0 24 24">
               <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
             </svg>
           <% end %>
         <% else %>
-          <%= button_to business_user_favourites_path(@business.first), class: "btn-ghost like-wrapper ripple" do %>
+          <%= button_to business_user_favourites_path(@business.first), class: "btn-ghost like-wrapper ripple", method: :post, remote: true do %>
             <svg class="heart" width="1" height="1" viewBox="0 0 24 24">
               <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
             </svg>
           <% end %>
         <% end %>
-        </div>
       </div>
     </div>
-   <div >
-    <h2 class="col"> <%= @business.first.name %> </h2>
-    <div class="container col">
-  <% @business.first.reviews.each do |review| %>
-                <% @wages = [] %>
-                <% @recommended_array = [] %>
-                <% @ratings = [] %>
-                      <% @wages.push(review.wage) %>
-                      <% end %>
-                    <% unless @business.first.reviews.empty? %>
-                      <p > <%= "Average wage: #{number_to_currency((@wages.sum / @business.first.reviews.length), options = {unit: "£"}) }"%> </p>
-                    <% end %>
-
-                  <% @business.first.reviews.each do |review| %>
-                    <% @ratings.push(review.rating) %>
-                  <% end %>
-                  <% unless @business.first.reviews.empty? %>
-                    <p> <%= "Average rating: " "#{pluralize (@ratings.sum / @business.first.reviews.length).ceil, "star"}" %> </p>
-                  <% end %>
-                  <% @business.first.reviews.each do |review| %> </p>
-                    <% if review.recommended = true %>
-                      <% @recommended_array.push(review) %>
-                    <% end %>
-                  <% end %>
-                  <p > <%= "#{pluralize (@recommended_array.length), "Disher"} recommends working here" %> </p>
-                  </div>
-                </div>
-
+    <div class="col-sm-8">
+      <h2 class="business-banner-heading"><%= @business.first.name %></h2>
+      <div class="business-rating">
+        <% @business.first.reviews.each do |review| %>
+          <% @ratings = [] %>
+          <% @ratings.push(review.rating) %>
+        <% end %>
+        <% unless @business.first.reviews.empty? %>
+          <% @rating = (@ratings.sum / @business.first.reviews.length).ceil %>
+          <div class="rating-stars">
+            <% @rating.to_i.times do %>
+              <i class="fa-solid fa-star" style="color: #009eff;"></i>
+            <% end %>
+          </div>
+        <% end %>
+        <% @recommended_array = @business.first.reviews.select { |review| review.recommended } %>
+        <p class="business-info"><%= pluralize(@recommended_array.length, "Disher") %> recommends working here</p>
+      </div>
+    </div>
   </div>
 </div>
-
-
 
 
 
@@ -79,6 +67,8 @@
     </div>
     <% end %>
   <% end %>
+
+
 
   <button type="button" class="btn-ghost" data-bs-toggle="modal" data-bs-target="#new_review_modal">
     Add a review

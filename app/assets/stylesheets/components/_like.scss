@@ -5,14 +5,15 @@
   border: none;
   border-radius: 50%;
   background: white;
-  width: 1em;
-  height: 1em;
+  width: 2em;
+  height: 2em;
   padding: 0;
   margin: 0;
   outline: none;
   z-index: 2;
   cursor: pointer;
-  margin-top: 10px;
+  // margin-top: 60px;
+  display: inline-block;
 }
 
 .like-wrapper {
@@ -26,25 +27,25 @@
 
 .heart {
   fill: white;
-  width: .5em;
-  height: .5em;
-  stroke: #EA442B;
+  width: 1em;
+  height: 1em;
+  stroke: $blue;
   display: block;
 
 }
 
 .heart-filled {
-  fill: #EA442B;
-  width: .5em;
-  height: .5em;
-  stroke: #EA442B;
+  fill: $blue;
+  width: 1em;
+  height: 1em;
+  stroke: $blue;
   display: block;
 
 }
 
 .ripple {
-  height: 1em;
-  width: 1em;
+  height: 2em;
+  width: 2em;
   border-radius: 50%;
   overflow: hidden;
   z-index: 1;
