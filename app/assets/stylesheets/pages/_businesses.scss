@@ -1,0 +1,14 @@
+.main-container { //For the sticky map
+  display: flex;
+}
+
+#map { //For the sticky map
+  height: 100vh;
+  width: 30%;
+  position: sticky;
+  top: 0;
+}
+
+.businesses {
+  flex-grow: 1;
+}
