@@ -33,7 +33,7 @@
 
 <div class="container">
   <div class="card" style="width: 20rem;">
-    <%= image_tag(@user.photo, class: "card-img-top", alt: "...") %>
+    <%= image_tag(@user.photo, class: "card-img-top avatar", alt: "...") %>
     <div class="card-body">
       <h5 class="card-title"><%= @user.username %></h5>
       <p class="card-text"><%= @user.bio %></p>
@@ -47,8 +47,8 @@
 
 
 <div class="container">
-  <div class="container-half">
-   <h1>My reviews</h1>
+  <div class="col col-sm-6">
+   <h1>My Reviews</h1>
   <% @user.reviews.each do |review| %>
     <div class="review-card review-card-profile">
       <h3><%= review.title %></h3>
@@ -58,10 +58,8 @@
     </div>
   <% end %>
   </div>
-</div>
 
-<div class="container">
-  <div class="container-right half">
+  <div class="col col-sm-6">
    <h1>My Favourites</h1>
   <% @favourites.each do |favourite| %>
     <div class="review-card review-card-profile">
