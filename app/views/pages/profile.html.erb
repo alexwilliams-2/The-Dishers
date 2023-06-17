@@ -31,9 +31,9 @@
   </div>
   </div>
 
-<div class="container">
-  <div class="card" style="width: 20rem;">
-    <%= image_tag(@user.photo, class: "card-img-top avatar", alt: "...") %>
+<div class="container container-profile">
+  <div class="card" style="width: 100rem; ">
+    <%= image_tag(@user.photo, class: "card-img-top avatar mx-auto", alt: "...", width: 350) %>
     <div class="card-body">
       <h5 class="card-title"><%= @user.username %></h5>
       <p class="card-text"><%= @user.bio %></p>
@@ -49,14 +49,17 @@
 <div class="container">
   <div class="col col-sm-6">
    <h1>My Reviews</h1>
-  <% @user.reviews.each do |review| %>
-    <div class="review-card review-card-profile">
-      <h3><%= review.title %></h3>
-      <p><%= review.content %></p>
-      <p>Rating: <%= review.rating %></p>
-      <%= cl_image_tag review.business.photo.key, height: 100 %>
-    </div>
-  <% end %>
+    <% @user.reviews.each do |review| %>
+      <div class="review-card review-card-profile">
+        <div class="div">
+          <h3><%= review.title %></h3>
+          <p><%= review.content %></p>
+          <p>Rating: <%= review.rating %></p>
+        </div>
+
+        <%= cl_image_tag review.business.photo.key, class: "avatar" %>
+      </div>
+    <% end %>
   </div>
 
   <div class="col col-sm-6">
@@ -65,7 +68,7 @@
     <div class="review-card review-card-profile">
       <h3><%= favourite.business.name %></h3>
       <p><%= favourite.business.address %></p>
-      <%= cl_image_tag favourite.business.photo.key, height: 100 %>
+      <%= cl_image_tag favourite.business.photo.key, class: "avatar" %>
     </div>
   <% end %>
   </div>
