@@ -36,6 +36,7 @@ class BusinessesController < ApplicationController
         marker_html: render_to_string(partial: "marker")
       }
     end
+
   end
 
   private
