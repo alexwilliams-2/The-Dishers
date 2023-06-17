@@ -1,29 +1,43 @@
 <div class="sticky-top p-0 m-0">
   <div class="navbar py-3 mb-0 navbar-expand-sm navbar-light navbar-lewagon" data-controller="navbar"
   data-action="scroll@window->navbar#updateNavbar">
-  <div class="container-fluid w-100 justify-content-between align-items-center" >
-    <%= link_to "/", class: "navbar-brand col-sm-10 m-0 p-0" do %>
+  <div class="d-flex w-100 justify-content-between align-items-center" >
+    <%= link_to "/", class: "navbar-brand col-sm-2 ml-4 p-0 " do %>
       <%= image_tag "dishers-logo.png" %>
       <% end %>
+
+    <div class="col-sm-6">
+      <%= form_with url: businesses_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+          params[:query],
+            class: "form-control",
+            placeholder: "Cocktail bar, Thai restaurant, Café"
+        %>
+        <%= submit_tag "Search", name: "", class: "btn-flat" %>
+      <% end %>
+    </div>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"> </span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse col-sm-4" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto ">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "/", class: "nav-link", style:"color: white" %>
-          </li>
-         <li class="nav-item">
-            <%= link_to "My Profile", profile_path, class: "nav-link", style:"color: white"  %>
-          </li>
+            <li class="nav-item active ">
+              <%= link_to "Home", "/", class: "nav-link", style:"color: white" %>
+            </li>
+          <li class="nav-item">
+              <%= link_to "My Profile", profile_path, class: "nav-link", style:"color: white"  %>
+            </li>
+
+
           <li class="nav-item dropdown">
             <%= image_tag current_user.photo, class: "avatar dropdown-toggle m-0 p-0", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Action", "#", class: "dropdown-item" %>
               <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", "#", class: "dropdown-item", data: {turbo_method: :delete} %>
+              <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
           </li>
         <% else %>
