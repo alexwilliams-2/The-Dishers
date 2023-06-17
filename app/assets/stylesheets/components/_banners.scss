@@ -27,3 +27,51 @@
   line-height: 2;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
+.banner-business {
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.business-banner-content {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: $light-gray;
+}
+
+.business-banner-heading {
+  // margin-left: 35px;
+  margin-top: 20px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  text-align: left;
+}
+
+.business-rating {
+  margin-top: 8px;
+  text-align: left;
+}
+
+.rating-stars {
+  display: inline-block;
+  font-size: 40px;
+  color: #009eff;
+
+}
+
+.business-info {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+}

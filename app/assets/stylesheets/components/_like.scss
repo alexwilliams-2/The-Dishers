@@ -1,0 +1,57 @@
+
+
+.like-button {
+  font-size: 15vmin;
+  border: none;
+  border-radius: 50%;
+  background: white;
+  width: 2em;
+  height: 2em;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  z-index: 2;
+  cursor: pointer;
+  // margin-top: 60px;
+  display: inline-block;
+}
+
+.like-wrapper {
+  display: grid;
+  z-index: 1;
+}
+.like-wrapper > * {
+  margin: auto;
+  grid-area: 1 / 1;
+}
+
+.heart {
+  fill: white;
+  width: 1em;
+  height: 1em;
+  stroke: $blue;
+  display: block;
+
+}
+
+.heart-filled {
+  fill: $blue;
+  width: 1em;
+  height: 1em;
+  stroke: $blue;
+  display: block;
+
+}
+
+.ripple {
+  height: 2em;
+  width: 2em;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.like-button body {
+  display: flex;
+  background-color: #EA442B;
+}
