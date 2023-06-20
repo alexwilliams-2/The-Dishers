@@ -97,23 +97,23 @@
   align-items: center;
   // position: relative;
 }
-.business-card-show img {
-  height: 100%;
-  // width: 175px;
+.business-card-show-image {
+  // height: 100%;
+  width: 100%;
   object-fit: cover;
 
 }
 
 .business-card-show-body{
   height: 100%;
-  margin: 1rem 4rem;
+  margin: 1rem 3rem;
 }
 .business-card-title-show {
   font-size: 24px;
   font-weight: bold;
-  margin-top: 1rem;
-  margin-bottom: 5rem;
-  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  // width: 100%;
 }
 .business-card-text-show {
   font-size: 16px;
@@ -123,8 +123,18 @@
   margin-top: 8px;
 }
 .business-card-show .business-card-infos-show {
-  padding: 24px;
+  padding: 16px;
 }
+
+// .business-card-show ul{
+//   padding-top: 1rem;
+// }
+
+
+// .wage {
+//   margin-top: 17rem;
+
+// }
 
 // Review card styling
 
@@ -149,7 +159,6 @@
   display: flex;
   align-items: center;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 5px;
   background-color: #fff;
   margin-top: 10px;
   margin-bottom: 5px;
