@@ -72,7 +72,7 @@
 </div>
 
 <div class="container my-5">
-  <h3> Don’t waste your time. </h3>
+  <h3> Don't waste your time. </h3>
   <h3> Make informed decisions about your next employer
     through our community of dedicated hospitality professionals. </h3>
   <h3> Share your experiences. Learn from others. </h3>
@@ -116,7 +116,7 @@
   <div id="businesses">
     <% if @businesses.any? %>
       <div class="row">
-        <% @businesses.sort_by { |business| business.reviews.average(:rating) }.reverse.first(4).each_slice(2) do |businesses_row| %>
+        <% @businesses.where.not(reviews: { rating: nil }).joins(:reviews).group(:id).order('AVG(reviews.rating) DESC').limit(4).each_slice(2) do |businesses_row| %> <%# We need to filter all businesses without reviews as otherwise the code breaking if raiting is nil.
           <div class="container d-flex justify-content-between">
             <% businesses_row.each do |business| %>
               <% @wages = [] %>
