@@ -1,10 +1,74 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1462539405390-d0bdb635c7d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1520&q=80);">
-  <div class="container">
-    <h1> Welcome to The Dishers </h1>
-    <h4> <strong> A community </strong> </h4>
-    <p> For hospitality professionals </p>
-    <%= link_to 'Find your new business', businesses_path, style: 'text-decoration: none; color: white', class: "btn-flat btn-flat:hover" %>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <li data-target="#myCarousel" data-slide-to="4"></li>
+      <li data-target="#myCarousel" data-slide-to="5"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <%= image_tag('chef-tickets.jpg', class: 'd-block w-100') %>
+        <div class="carousel-caption pb-100">
+          <h1> Welcome to The Dishers </h1>
+          <h2> A community </h2>
+          <h4> For hospitality professionals </h4>
+          <%= link_to 'Find your new business', businesses_path, style: 'text-decoration: none; color: white', class: "btn-flat btn-flat:hover" %>
+        </div>
+      </div>
+      <div class="item ">
+        <%= image_tag('chef-talking-to-customer.jpg', class: 'd-block w-100') %>
+        <div class="carousel-caption pb-100">
+          <h1> Welcome to The Dishers </h1>
+          <h2> A community </h2>
+          <h4> For hospitality professionals </h4>
+          <%= link_to 'Find your new business', businesses_path, style: 'text-decoration: none; color: white', class: "btn-flat btn-flat:hover" %>
+        </div>
+      </div>
+      <div class="item">
+        <%= image_tag('bartender-free-pouring.jpg', class: 'd-block w-100') %>
+        <div class="carousel-caption pb-100">
+          <h1> Welcome to The Dishers </h1>
+          <h2> A community </h2>
+          <h4> For hospitality professionals </h4>
+          <%= link_to 'Find your new business', businesses_path, style: 'text-decoration: none; color: white', class: "btn-flat btn-flat:hover" %>
+        </div>
+      </div>
+      <div class="item">
+        <%= image_tag('barista.jpg', class: 'd-block w-100') %>
+        <div class="carousel-caption pb-100">
+          <h1> Welcome to The Dishers </h1>
+          <h2> A community </h2>
+          <h4> For hospitality professionals </h4>
+          <%= link_to 'Find your new business', businesses_path, style: 'text-decoration: none; color: white', class: "btn-flat btn-flat:hover" %>
+        </div>
+      </div>
+      <div class="item">
+        <%= image_tag('bar-crew.jpg', class: 'd-block w-100') %>
+        <div class="carousel-caption pb-100">
+          <h1> Welcome to The Dishers </h1>
+          <h2> A community </h2>
+          <h4> For hospitality professionals </h4>
+          <%= link_to 'Find your new business', businesses_path, style: 'text-decoration: none; color: white', class: "btn-flat btn-flat:hover" %>
+        </div>
+      </div>
+    </div>
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
+</div>
+
 </div>
 
 <div class="container my-5">
