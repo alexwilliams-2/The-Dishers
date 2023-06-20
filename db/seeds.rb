@@ -329,84 +329,160 @@ Review.destroy_all
     description: "We are a small, independently-owned, dog friendly spot, with homely & welcoming service. Our menu & interiors are loosely Mediterranean, making you feel as though you have been transported somewhere much sunnier. Open for brunch, lunch, dinner & cocktails all day everyday."
   )
 
-  business_20.photo.attach(io: File.open(Rails.root.join("app/assets/images/Megan.jpg")), filename: "Megan.jpg", content_type: 'image/jpg')
+  business_20.photo.attach(io: File.open(Rails.root.join("app/assets/images/Megan.jpg")), filename: "Megan.jpg", content_type:'image/jpg')
 
   puts "business created"
 
-  # business_21 = Business.create!(
-  #   name: "Well & Bucket",
-  #   address: "143 Bethnal Grn Rd, London E2 7DG",
-  #   email: "info@wellandbucket.com",
-  #   phone_number: "0203 664 6454",
-  #   category: "Pub",
-  #   size: "11-50 employees",
-  #   business_hours: "12 pm–12 am",
-  #   description: "Dripping in cool and sophistication, we are the standing definition of what was old, always becomes new again. Situated in the heart of Shoreditch and serving delicious food with a host of classic lagers, craft beers, premium wines & spirits. Our shabby-chic exterior has everything you need for a memorable time once you step inside."
-  # )
+  business_21 = Business.create!(
+    name: "Photobookcafe",
+    address: "4 Leonard Circus, London EC2A 4DQ",
+    email: "INFO@PHOTOBOOKCAFE.CO.UK",
+    phone_number: "Email us",
+    category: "Cafe",
+    size: "1-10 employees",
+    business_hours: "10am - 9pm",
+    description: "We are a Community Cafe & Bar, Gallery & PhotoBook Library based on Leonard Circus in Shoreditch, London. Established in 2019 by Rapid Eye Darkroom, PBC was built on a passion for photo books, exhibitions and photography, as well as a love of food and drink."
+  )
 
-  # business_21.photo.attach(io: File.open(Rails.root.join("app/assets/images/Well&Bucket.jpg")), filename: "Well&Bucket.jpg", content_type: 'image/jpg')
+  business_21.photo.attach(io: File.open(Rails.root.join("app/assets/images/Photocaf.jpg")), filename: "Photocaf.jpg", content_type: 'image/jpg')
 
-  # puts "business created"
+  puts "business created"
 
-  # business_22 = Business.create!(
-  #   name: "Well & Bucket",
-  #   address: "143 Bethnal Grn Rd, London E2 7DG",
-  #   email: "info@wellandbucket.com",
-  #   phone_number: "0203 664 6454",
-  #   category: "Pub",
-  #   size: "11-50 employees",
-  #   business_hours: "12 pm–12 am",
-  #   description: "Dripping in cool and sophistication, we are the standing definition of what was old, always becomes new again. Situated in the heart of Shoreditch and serving delicious food with a host of classic lagers, craft beers, premium wines & spirits. Our shabby-chic exterior has everything you need for a memorable time once you step inside."
-  # )
+  business_22 = Business.create!(
+    name: "Catalyst",
+    address: "48 Grays Inn Rd, Chancery Ln, London WC1X 8LT",
+    email: "contact@catalyst.cafe",
+    phone_number: "02072428777",
+    category: "Cafe",
+    size: "1-10 employees",
+    business_hours: "8am - 5pm",
+    description: "A menu focused on classic coffee shop beverages with cocktails & cafe fare in a contemporary space."
+  )
 
-  # business_22.photo.attach(io: File.open(Rails.root.join("app/assets/images/Well&Bucket.jpg")), filename: "Well&Bucket.jpg", content_type: 'image/jpg')
+  business_22.photo.attach(io: File.open(Rails.root.join("app/assets/images/Catalyst.jpg")), filename: "Catalyst.jpg", content_type: 'image/jpg')
 
-  # puts "business created"
+  puts "business created"
 
-  # business_23 = Business.create!(
-  #   name: "Well & Bucket",
-  #   address: "143 Bethnal Grn Rd, London E2 7DG",
-  #   email: "info@wellandbucket.com",
-  #   phone_number: "0203 664 6454",
-  #   category: "Pub",
-  #   size: "11-50 employees",
-  #   business_hours: "12 pm–12 am",
-  #   description: "Dripping in cool and sophistication, we are the standing definition of what was old, always becomes new again. Situated in the heart of Shoreditch and serving delicious food with a host of classic lagers, craft beers, premium wines & spirits. Our shabby-chic exterior has everything you need for a memorable time once you step inside."
-  # )
+  business_23 = Business.create!(
+    name: "Lantana",
+    address: "44-46 Southwark St, London SE1 1UN",
+    email: "site.londonbridge@lantanagroup.co.uk",
+    phone_number: "02074032633",
+    category: "Cafe",
+    size: "1-10 employees",
+    business_hours: "8am - 9pm",
+    description: "Lantana London Bridge is our newest café south of the river on the doorstep of our favourite foodie hub, Borough Market. We have lovingly restored many of the 19th century features to create a large, open dining room set over two floors where diners can enjoy our signature dishes as well as some new additions as well as our famous brunch."
+  )
 
-  # business_23.photo.attach(io: File.open(Rails.root.join("app/assets/images/Well&Bucket.jpg")), filename: "Well&Bucket.jpg", content_type: 'image/jpg')
+  business_23.photo.attach(io: File.open(Rails.root.join("app/assets/images/Lantana.jpg")), filename: "Lantana.jpg", content_type: 'image/jpg')
 
-  # puts "business created"
+  puts "business created"
 
-  # business_24 = Business.create!(
-  #   name: "Well & Bucket",
-  #   address: "143 Bethnal Grn Rd, London E2 7DG",
-  #   email: "info@wellandbucket.com",
-  #   phone_number: "0203 664 6454",
-  #   category: "Pub",
-  #   size: "11-50 employees",
-  #   business_hours: "12 pm–12 am",
-  #   description: "Dripping in cool and sophistication, we are the standing definition of what was old, always becomes new again. Situated in the heart of Shoreditch and serving delicious food with a host of classic lagers, craft beers, premium wines & spirits. Our shabby-chic exterior has everything you need for a memorable time once you step inside."
-  # )
+  business_24 = Business.create!(
+    name: "Terry's Cafe London",
+    address: "158 Great Suffolk St, London SE1 0DT",
+    email: "info@terryscafe.co.uk",
+    phone_number: "02074079358",
+    category: "Cafe",
+    size: "1-10 employees",
+    business_hours: "7:30am - 4:30pm",
+    description: "All our food is cooked on the premises to our family’s recipes. It’s a thoroughly British affair. If you’re after a traditional English cafe serving honest, unpretentious, good-value food combined with friendly service, then look no further."
+  )
 
-  # business_24.photo.attach(io: File.open(Rails.root.join("app/assets/images/Well&Bucket.jpg")), filename: "Well&Bucket.jpg", content_type: 'image/jpg')
+  business_24.photo.attach(io: File.open(Rails.root.join("app/assets/images/Terry.jpg")), filename: "Terry.jpg", content_type: 'image/jpg')
 
-  # puts "business created"
+  puts "business created"
 
-  # business_25 = Business.create!(
-  #   name: "Well & Bucket",
-  #   address: "143 Bethnal Grn Rd, London E2 7DG",
-  #   email: "info@wellandbucket.com",
-  #   phone_number: "0203 664 6454",
-  #   category: "Pub",
-  #   size: "11-50 employees",
-  #   business_hours: "12 pm–12 am",
-  #   description: "Dripping in cool and sophistication, we are the standing definition of what was old, always becomes new again. Situated in the heart of Shoreditch and serving delicious food with a host of classic lagers, craft beers, premium wines & spirits. Our shabby-chic exterior has everything you need for a memorable time once you step inside."
-  # )
+  business_25 = Business.create!(
+    name: "Briki",
+    address: "67 Exmouth Market, London EC1R 4QL",
+    email: "briki@ya2.co.uk",
+    phone_number: "02072788745",
+    category: "Cafe",
+    size: "1-10 employees",
+    business_hours: "7:30am - 8pm",
+    description: "Briki is a deli and coffee brewery offering new, alternative choices with traditional recipes and quality coffee. Briki is housed in a brand new building, with glazed frontage on both sides of the building, overlooking the market and a bustling London intersection."
+  )
 
-  # business_25.photo.attach(io: File.open(Rails.root.join("app/assets/images/Well&Bucket.jpg")), filename: "Well&Bucket.jpg", content_type: 'image/jpg')
+  business_25.photo.attach(io: File.open(Rails.root.join("app/assets/images/Briki.jpg")), filename: "Briki.jpg", content_type: 'image/jpg')
 
-  # puts "business created"
+  puts "business created"
+
+  business_26 = Business.create!(
+    name: "England's Lane",
+    address: "2 England's Ln, Belsize Park, London NW3 4TG",
+    email: "hello@englandslanecafe.com",
+    phone_number: "02074831410",
+    category: "Cafe",
+    size: "1-10 employees",
+    business_hours: "7:30am - 5:30pm",
+    description: "North London’s finest café & restaurant, serving the best Antipodean-inspired food in a beautiful corner location on England’s Lane, Belsize Park."
+  )
+
+  business_26.photo.attach(io: File.open(Rails.root.join("app/assets/images/EnglandsLane.jpg")), filename: "EnglandsLane.jpg", content_type: 'image/jpg')
+
+  puts "business created"
+
+  business_27 = Business.create!(
+    name: "The Pavilion Cafe",
+    address: "Charlton Way, London SE10 8QY",
+    email: "greenwichpark@benugo.com",
+    phone_number: "02083052896",
+    category: "Cafe",
+    size: "1-10 employees",
+    business_hours: "8:30am - 5pm",
+    description: "You'll find the recently refurbished Pavilion Café at the top of the hill by the Royal Observatory. Built in 1906 this octagonal building is topped by a dove-cot with a weather vane showing Nelson looking through his telescope. In fine weather make the most of the large garden at the front and rear."
+  )
+
+  business_27.photo.attach(io: File.open(Rails.root.join("app/assets/images/Pavillion.jpg")), filename: "Pavillion.jpg", content_type: 'image/jpg')
+
+  puts "business created"
+
+  business_28 = Business.create!(
+    name: "Crumpets",
+    address: "82 Buckingham Gate, London SW1E 6PD",
+    email: "coffee@crumpetscafe.com",
+    phone_number: "07825107489",
+    category: "Cafe",
+    size: "1-10 employees",
+    business_hours: "7am - 3pm",
+    description: "Street food specials from a different part of the world each day. Specialist in Sri Lankan Food | Sri Lankan Cookery Classes & Private Dining. Ask about Office Lunches and our Hospitality Catering Supply."
+  )
+
+  business_28.photo.attach(io: File.open(Rails.root.join("app/assets/images/Crumpets.jpg")), filename: "Crumpets.jpg", content_type: 'image/jpg')
+
+  puts "business created"
+
+  business_29 = Business.create!(
+    name: "Boxcar Baker & Deli",
+    address: "7A Wyndham Pl, London W1H 1PN",
+    email: "info@boxcar.co.uk",
+    phone_number: "02030067000",
+    category: "Cafe",
+    size: "1-10 employees",
+    business_hours: "8am - 5pm",
+    description: "Welcome to Boxcar, two local Marylebone favourites. We're delighted to let you know that our new Bar & Grill is now open. Our venues are dog friendly."
+  )
+
+  business_29.photo.attach(io: File.open(Rails.root.join("app/assets/images/Boxcar.jpg")), filename: "Boxcar.jpg", content_type: 'image/jpg')
+
+  puts "business created"
+
+  business_30 = Business.create!(
+    name: "Java Whiskers Cat Café Marylebone",
+    address: "105 Great Portland St, London W1W 6QF",
+    email: "info@javawhiskers.co.uk",
+    phone_number: "Email us",
+    category: "Cafe",
+    size: "1-10 employees",
+    business_hours: "10am - 8pm",
+    description: "Do you love cats? And do you love coffee too? At our café, you can enjoy both! A unique experience enhancing both the cats’ and guests’ well-being. Together with the public and our partners, we wish to find forever homes for homeless cats, while being a relaxing haven for our guests to ‘paws’ and enjoy in an otherwise busy world."
+  )
+
+  business_30.photo.attach(io: File.open(Rails.root.join("app/assets/images/Java.jpg")), filename: "Java.jpg", content_type: 'image/jpg')
+
+  puts "business created"
+
 
   puts "creating 10 users"
 

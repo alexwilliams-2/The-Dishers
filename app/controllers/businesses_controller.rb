@@ -1,5 +1,6 @@
 class BusinessesController < ApplicationController
   # need to add logic for second location search bar
+  # need to add logic for second location search bar
   def index
     @ratings = []
     @recommended_array = []
