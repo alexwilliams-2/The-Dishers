@@ -28,7 +28,6 @@
       <h2 class="business-banner-heading"><%= @business.first.name %></h2>
       <div class="business-rating">
         <% @business.first.reviews.each do |review| %>
-          <% @ratings = [] %>
           <% @ratings.push(review.rating) %>
         <% end %>
         <% unless @business.first.reviews.empty? %>
@@ -49,6 +48,7 @@
   </div>
 </div>
 
+<%= console %>
 
 <div class="container-xl">
   <div class="business-card-show w-100">
