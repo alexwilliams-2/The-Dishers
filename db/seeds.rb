@@ -472,7 +472,7 @@ Review.destroy_all
     name: "Java Whiskers Cat Café Marylebone",
     address: "105 Great Portland St, London W1W 6QF",
     email: "info@javawhiskers.co.uk",
-    phone_number: "Email us",
+    phone_number: "Contact us via email",
     category: "Cafe",
     size: "1-10 employees",
     business_hours: "10am - 8pm",
