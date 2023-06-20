@@ -55,17 +55,17 @@
    <div class="business-card-show-image col-sm-3">
     <%= cl_image_tag @business.first.photo.key %>
     </div> <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
-    <div class="business-card-show-body col-sm-6">
+    <div class="business-card-show-body col-sm-5">
       <h5 class="business-card-title-show"><%= @business.first.name %></h5>
       <p class="business-card-text-show"><%= @business.first.description %></p>
     </div>
-      <ul class="list-group list-group-flush mb-0 col-sm-3">
+      <ul class="list-group list-group-flush mb-0 col-sm-4">
         <li class="list-group-item"> <strong> Address: </strong> <%= @business.first.address %></li>
-        <li class="list-group-item"> <strong> Email: </strong> <%= @business.first.email %></li>
-        <li class="list-group-item"> <strong> Phone Number: </strong> <%= @business.first.phone_number %></li>
         <li class="list-group-item"> <strong> Category: </strong> <%= @business.first.category %></li>
         <li class="list-group-item"> <strong> Size: </strong> <%= pluralize @business.first.size, 'employee'%></li>
         <li class="list-group-item"> <strong> Business Hours: </strong> <%= @business.first.business_hours %></li>
+         <li class="list-group-item"> <strong> Email: </strong> <%= @business.first.email %></li>
+        <li class="list-group-item"> <strong> Phone Number: </strong> <%= @business.first.phone_number %></li>
         <li class="list-group-item"> <strong> Average wage: </strong> <% @business.first.reviews.each do |review| %>
         <% @wages = [] %>
         <% @wages.push(review.wage) %>
