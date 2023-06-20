@@ -112,11 +112,11 @@
   <div class="container my-5">
     <h3> Top Rated </h3>
   </div>
-
+<%# # We need to filter all businesses without reviews as otherwise the code breaking if raiting is nil. %>
   <div id="businesses">
     <% if @businesses.any? %>
       <div class="row">
-        <% @businesses.where.not(reviews: { rating: nil }).joins(:reviews).group(:id).order('AVG(reviews.rating) DESC').limit(4).each_slice(2) do |businesses_row| %> <%# We need to filter all businesses without reviews as otherwise the code breaking if raiting is nil.
+        <% @businesses.where.not(reviews: { rating: nil }).joins(:reviews).group(:id).order('AVG(reviews.rating) DESC').limit(4).each_slice(2) do |businesses_row| %>
           <div class="container d-flex justify-content-between">
             <% businesses_row.each do |business| %>
               <% @wages = [] %>
