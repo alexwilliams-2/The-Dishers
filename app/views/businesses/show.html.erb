@@ -39,7 +39,7 @@
           </div>
         <% end %>
         <% @recommended_array = @business.first.reviews.select { |review| review.recommended } %>
-        <p class="business-info"><%= pluralize(@recommended_array.length, "Disher") %> recommend working here</p>
+         <p class="business-info"><%= pluralize(@recommended_array.length, "Disher") %> recommend working here </p>
          <button type="button" class="btn btn-flat mt-3" data-bs-toggle="modal" data-bs-target="#new_review_modal">
           Add a review
         </button>
