@@ -1,0 +1,39 @@
+.card-profile {
+  // margin-bottom: 20px;
+  // margin-top: 20px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  background-color: #fff;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  height: 320px;
+
+}
+
+
+.container-profile{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+
+.img-banner{
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+  object-position: bottom;
+  width: 100%;
+  max-height: 70%;
+}
+
+.card-profile-container {
+height: 180px;
+object-fit: fill;
+}
+
+.border{
+  border-radius: 10px;
+  margin-top: 10px;
+}
