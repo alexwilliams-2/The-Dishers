@@ -687,15 +687,12 @@ puts "user created"
         business: business,
         user: user,
         title: title,
-        content: user_content.sample.gsub('{business.name}', "#{business.name}")
-
+        content: user_content.sample.gsub('{business.name}', "#{business.name}"),
         job_title: ["Manager", "Bartender", "Waitstaff", "Chef", "Bar-back", "Supervisor", "Kitchen Porter", "Head Bartender", "Floor staff", "Head Chef", "Waut"].sample,
-        rating: (title.include?("hated") || title.include?("don't") || title.include?("never")) || title.include?("wouldn't") ? rand(1..3) : rand(4..5),
-        wage: rand(7.0..15.0),
+        rating: (title.include?("toxic") || title.include?("nightmare") || title.include?("rude")) || title.include?("bad") || title.include?("shame") || title.include?("strict") ? rand(1..3) : rand(4..5),
+        wage: rand(7.0..14.5),
         votes: rand(0..10),
       )
       puts "review created"
     end
   end
-
-
