@@ -625,28 +625,83 @@ puts "user created"
     location: "London"
   )
   puts "10 users created created"
-
-  puts "creating 30 reviews"
+# CREATE REVIEWS
+# VARIABLES FIRST
+  puts "creating reviews"
 
   businesses = Business.all
   users = User.all
-  titles = ["Great Work Environment", "Excellent Team","I hated every second there", "Flexible Schedule", "Don't work there", "They never pay on time", "They don't pay fair", "Good money", "Free lunches and good management"].sample
-  user_content = titles
 
-  30.times do
-    business = businesses.sample
+
+  user_content = ["I loved working at {business.name}! The hourly wage was competitive, and the management team treated us with respect and fairness. The customers were friendly, and the team culture was collaborative and supportive.",
+    "Working at {business.name} was a great experience. The hourly wage was excellent, and the management team always listened to our concerns. The customers were diverse, and the team culture was vibrant and inclusive.",
+    "{business.name} was a dream workplace. The hourly wage was generous, and the management team truly cared about our well-being. The customers were polite, and the team culture fostered a strong sense of unity and cooperation.",
+    "I enjoyed my time at {business.name} due to the competitive hourly wage and the supportive management. The customers were understanding and appreciative, and the team culture was professional yet friendly.",
+    "At {business.name}, the hourly wage exceeded my expectations, and the management team provided excellent guidance and support. The customers were a pleasure to serve, and the team culture promoted open communication and collaboration.",
+    "Working at {business.name} was an absolute delight! The management team was exceptional, always supportive and encouraging. They made me feel valued and appreciated. The team culture was fantastic, and I made lifelong friends during my time there. The hourly wage was competitive, and I couldn't have asked for a better workplace.",
+    "{business.name} had such a toxic work environment. The management team was disorganized and often unresponsive to employee concerns. It was frustrating to work there with such poor leadership. The customers were equally difficult, often rude and demanding. I wouldn't recommend this place to anyone.",
+    "I can't say enough good things about the team at {business.name}. We had such a blast working together! The camaraderie was amazing, and I genuinely looked forward to going to work every day. We bonded over shared interests and created countless memories. The hourly wage was decent, but the friendships I made were priceless.",
+    "{business.name} was a nightmare when it came to pay. The hourly wage was laughably low, barely enough to make ends meet. It was disheartening to work so hard and not be fairly compensated. The management team turned a blind eye to our concerns, making it even worse. Avoid this place if you value fair pay.",
+    "Working at {business.name} was like being part of a big, dysfunctional family. The management team had no clue what they were doing. It was chaos and mismanagement at every turn. The customers weren't any better. They were rude, entitled, and often downright disrespectful. I wouldn't wish this workplace on my worst enemy.",
+    "{business.name} had such an awesome team! We had a blast working together. We shared jokes, went out for team outings, and genuinely enjoyed each other's company. The management team fostered a fun and positive atmosphere. The hourly wage was fair, but the memories and friendships I made there were priceless.",
+    "The pay at {business.name} was unbelievably good! I couldn't believe my luck. The hourly wage was way above industry standards, and it made a huge difference in my life. I felt valued and appreciated for my hard work. If you're looking for a place that pays well, this is it!",
+    "{business.name} had some of the worst customers I've ever dealt with. They were entitled, rude, and disrespectful. It made the job incredibly difficult and draining. The management team didn't provide much support in handling difficult customers either. It was a constant battle.",
+    "I can't say enough good things about the management at {business.name}. They were incredible! They provided guidance, support, and recognized our hard work. The team culture they fostered was one of respect and collaboration. It made all the difference in creating a positive work environment.",
+    "I don't know how {business.name} managed to hire such terrible managers. They were out of touch, unapproachable, and had no clue how to motivate the team. It was a frustrating experience, and it reflected in the overall atmosphere of the workplace. It's a shame when bad management ruins a potentially great job.",
+    "{business.name} was notorious for its terrible pay. It was insulting how little they offered for the amount of work we had to do. I constantly felt undervalued and underappreciated. It's a shame that they didn't see the importance of fair compensation.",
+    "Dealing with difficult customers was a daily struggle at {business.name}. They were demanding, entitled, and treated the staff poorly. It made the job incredibly challenging and emotionally draining. It's a shame that some customers can ruin the experience for everyone.",
+    "{business.name} had some of the most understanding and appreciative customers I've encountered. They were polite, patient, and made the job enjoyable. It made all the difference in creating a positive customer service experience. I miss interacting with those wonderful customers.",
+    "Working at {business.name} had the added bonus of an amazing location. The store was situated in the heart of downtown, surrounded by vibrant shops and restaurants. During breaks, I would explore the area and discover new hidden gems. Plus, the staff discount was a fantastic perk that allowed me to enjoy the local offerings even more!",
+    "{business.name} knew how to spoil its employees with incredible perks. Not only did we receive a competitive hourly wage, but we also enjoyed exclusive staff discounts at partner establishments. It was fantastic to be able to experience local attractions, dining, and entertainment at a discounted price. I truly felt valued and appreciated.",
+    "Working at {business.name} offered excellent pay, which was a major plus. However, the management had extremely high standards and often placed unrealistic demands on the team. It made for a stressful work environment where work-life balance was a constant struggle. Additionally, the poor transport links made the daily commute challenging, especially during late shifts.",
+    "The pay at {business.name} was above average, and that was a definite highlight. However, the management had extremely strict standards and often exhibited micromanagement tendencies. This created a stressful work environment where every move was monitored closely. Moreover, the lack of convenient transport links meant that commuting after late shifts was a constant struggle.",
+    "At {business.name}, the pay was one of the best aspects of the job. However, the management had exceedingly high expectations, which could be overwhelming at times. Their strict standards sometimes made it challenging to meet their demands. Additionally, the location had poor transport links, making the commute inconvenient and time-consuming.",
+    "{business.name} paid its employees well, which was a definite advantage. The team environment was also fantastic, with friendly colleagues who made work enjoyable. However, the customers could be incredibly difficult and demanding. Dealing with their constant complaints and entitled attitudes made it challenging to maintain a positive experience."
+  ]
+
+  # 30.times do
+  #   business = businesses.sample
+  #   user = users.sample
+
+  # # Review.create!(
+  # #   business: business,
+  # #   user: user,
+  # #   title: titles,
+  # #   content: user_content.sample,
+  # #   recommended: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? false : true,
+  # #   job_title: ["Manager", "Bartender", "Waitstaff", "Chef", "Bar-back", "Supervisor", "Kitchen Porter", "Head Bartender", "Floor staff", "Head Chef"].sample,
+  # #   rating: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? rand(1..3) : rand(4..5),
+  # #   wage: rand(7.0..15.0),
+  # #   votes: rand(0..10),
+  # # )
+  # # puts "review created"
+  # # end
+
+  # LOGIC AND ITERATION
+  10.times do
     user = users.sample
 
-  Review.create!(
-    business: business,
-    user: user,
-    title: titles,
-    content: user_content,
-    recommended: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? false : true,
-    job_title: ["Manager", "Bartender", "Waitstaff", "Chef"].sample,
-    rating: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? rand(1..3) : rand(4..5),
-    wage: rand(7.0..15.0),
-    votes: rand(0..10),
-  )
-  puts "review created"
+    positive_title = ["Great Work Environment", "Excellent Team", "Flexible schedule - great for casual work", "Good money", "Free lunches and good management"]
+    negative_title = ["I hated every second there", "Don't work there", "They never pay on time", "They don't pay fair", "Terrible management"]
+# ITERATE OVER EACH BUSINESS
+    businesses.each do |business|
+
+      content = user_content.sample.gsub('{business.name}', "#{business.name}")
+      title = content.include?("toxic") || content.include?("nightmare") || content.include?("rude") || content.include?("bad") || content.include?("shame") || content.include?("strict") ? negative_title.sample : positive_title.sample
+      rating = negative_title.include?(title) ? rand(1..3) : rand(4..5)
+      recommended = rating < 4 ? false : true
+
+      Review.create!(
+        business: business,
+        user: user,
+        content: content,
+        title: title,
+        job_title: ["Manager", "Bartender", "Waiter", "Chef", "Bar-back", "Supervisor", "Kitchen Porter", "Head Bartender", "Floor staff", "Head Chef"].sample,
+        rating: rating,
+        recommended: recommended,
+        wage: rand(7.0..14.5),
+        votes: rand(0..10),
+      )
+      puts "review created"
+    end
   end
