@@ -20,15 +20,19 @@
 
 <div class="container">
   <div class="col col-sm-6">
-    <h1>My Reviews</h1>
+    <div class="border">
+      <div class="text-center">
+    <h1>MY REVIEWS</h1>
+    </div>
+    </div>
     <% @user.reviews.each do |review| %>
       <div class="card-profile">
         <div class="card-profile-container">
           <%= cl_image_tag review.business.photo.key, class: "img-banner" %>
         </div>
-        <div class="div">
+        <div class="text-center">
           <h3><%= review.title %></h3>
-          <p><%= review.content %></p>
+          <p><%= review.content.truncate(50) %></p>
           <p>Rating: <%= review.rating %></p>
         </div>
       </div>
@@ -36,14 +40,20 @@
   </div>
 
   <div class="col col-sm-6">
-    <h1>My Favorites</h1>
+    <div class="border">
+      <div class="text-center">
+    <h1>MY FAVOURITES</h1>
+    </div>
+    </div>
     <% @favourites.each do |favourite| %>
       <div class="card-profile">
         <div class="card-profile-container">
           <%= cl_image_tag favourite.business.photo.key, class: "img-banner" %>
         </div>
+        <div class="text-center">
         <h3><%= favourite.business.name %></h3>
         <p><%= favourite.business.address %></p>
+        </div>
       </div>
     <% end %>
   </div>
