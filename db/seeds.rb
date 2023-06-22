@@ -625,13 +625,13 @@ puts "user created"
     location: "London"
   )
   puts "10 users created created"
-
+# CREATE REVIEWS
+# VARIABLES FIRST
   puts "creating reviews"
 
   businesses = Business.all
   users = User.all
 
-  titles = ["Great Work Environment", "Excellent Team","I hated every second there", "Flexible schedule - great for casual work", "Don't work there", "They never pay on time", "They don't pay fair", "Good money", "Free lunches and good management"]
 
   user_content = ["I loved working at {business.name}! The hourly wage was competitive, and the management team treated us with respect and fairness. The customers were friendly, and the team culture was collaborative and supportive.",
     "Working at {business.name} was a great experience. The hourly wage was excellent, and the management team always listened to our concerns. The customers were diverse, and the team culture was vibrant and inclusive.",
@@ -677,19 +677,28 @@ puts "user created"
   # # puts "review created"
   # # end
 
+  # LOGIC AND ITERATION
   10.times do
     user = users.sample
 
-    title = ["Great Work Environment", "Excellent Team","I hated every second there", "Flexible schedule - great for casual work", "Don't work there", "They never pay on time", "They don't pay fair", "Good money", "Free lunches and good management"].sample
-
+    positive_title = ["Great Work Environment", "Excellent Team", "Flexible schedule - great for casual work", "Good money", "Free lunches and good management"]
+    negative_title = ["I hated every second there", "Don't work there", "They never pay on time", "They don't pay fair", "Terrible management"]
+# ITERATE OVER EACH BUSINESS
     businesses.each do |business|
+
+      content = user_content.sample.gsub('{business.name}', "#{business.name}")
+      title = content.include?("toxic") || content.include?("nightmare") || content.include?("rude") || content.include?("bad") || content.include?("shame") || content.include?("strict") ? negative_title.sample : positive_title.sample
+      rating = negative_title.include?(title) ? rand(1..3) : rand(4..5)
+      recommended = rating < 4 ? false : true
+
       Review.create!(
         business: business,
         user: user,
+        content: content,
         title: title,
-        content: user_content.sample.gsub('{business.name}', "#{business.name}"),
-        job_title: ["Manager", "Bartender", "Waitstaff", "Chef", "Bar-back", "Supervisor", "Kitchen Porter", "Head Bartender", "Floor staff", "Head Chef", "Waut"].sample,
-        rating: (title.include?("toxic") || title.include?("nightmare") || title.include?("rude")) || title.include?("bad") || title.include?("shame") || title.include?("strict") ? rand(1..3) : rand(4..5),
+        job_title: ["Manager", "Bartender", "Waiter", "Chef", "Bar-back", "Supervisor", "Kitchen Porter", "Head Bartender", "Floor staff", "Head Chef"].sample,
+        rating: rating,
+        recommended: recommended,
         wage: rand(7.0..14.5),
         votes: rand(0..10),
       )
