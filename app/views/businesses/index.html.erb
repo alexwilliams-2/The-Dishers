@@ -40,9 +40,12 @@
                         </div>
                         <% business.reviews.each do |review| %>
                           <% @ratings.push(review.rating) %>
+                          <% @rating = (@ratings.sum / business.reviews.length).ceil %>
                         <% end %>
                         <% unless business.reviews.empty? %>
-                          <%= "Average rating " "#{pluralize (@ratings.sum / business.reviews.length).ceil, "star"}" %>
+                          <% @rating.to_i.times do %>
+                            <i class="fa-solid fa-star" style="color: #009eff;"></i>
+                          <% end %>
                         <% end %>
                         <p> <%= business.description[0..100] %> </p>
                         <% business.reviews.each do |review| %> </p>

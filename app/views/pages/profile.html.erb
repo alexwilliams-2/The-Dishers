@@ -1,48 +1,60 @@
-<%= image_tag @user.photo, height: 300%>
-
-<h1> My reviews </h1>
-<% @user.reviews.each do |review| %>
-  <div class="review">
-    <h3><%= review.title %></h3>
-    <p><%= review.content %></p>
-    <p>Rating: <%= review.rating %></p>
-    <%= cl_image_tag review.business.photo.key, height: 100 %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2062&q=80); height: 300px;">
+  <div class="container d-flex align-items-center justify-content-center">
+    <h1>Profile</h1>
   </div>
-<% end %>
+  </div>
 
-<%# <% raise %>
+<div class="container container-profile">
+  <div class="card" style="width: 100rem;">
+    <%= image_tag(@user.photo, class: "card-img-top avatar mx-auto", alt: "...", width: 350) %>
+    <div class="card-body">
+      <h5 class="card-title"><%= @user.username %></h5>
+      <p class="card-text"><%= @user.bio %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><%= @user.location %></li>
+      <li class="list-group-item"><%= @user.email %></li>
+    </ul>
+  </div>
+</div>
 
 <div class="container">
-  <div id="myCarousel" class="carousel slide w-50" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-
-    <div class="carousel-inner">
-      <% @favourites.each_with_index do |favourite, index| %>
-      <div class="item <%= index ==  0 ? 'active' : '' %>">
-        <%= cl_image_tag favourite.business.photo.key, class: "d-block w-100"%>
-        <div class="carousel-caption">
-          <h3><%= favourite.business.name %></h3>
-          <p><%= favourite.business.address %></p>
+  <div class="col col-sm-6">
+    <div class="border">
+      <div class="text-center">
+    <h1>MY REVIEWS</h1>
+    </div>
+    </div>
+    <% @user.reviews.each do |review| %>
+      <div class="card-profile">
+        <div class="card-profile-container">
+          <%= cl_image_tag review.business.photo.key, class: "img-banner" %>
+        </div>
+        <div class="text-center">
+          <h3><%= review.title %></h3>
+          <p><%= review.content.truncate(50) %></p>
+          <p>Rating: <%= review.rating %></p>
         </div>
       </div>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
 
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
+  <div class="col col-sm-6">
+    <div class="border">
+      <div class="text-center">
+    <h1>MY FAVOURITES</h1>
+    </div>
+    </div>
+    <% @favourites.each do |favourite| %>
+      <div class="card-profile">
+        <div class="card-profile-container">
+          <%= cl_image_tag favourite.business.photo.key, class: "img-banner" %>
+        </div>
+        <div class="text-center">
+        <h3><%= favourite.business.name %></h3>
+        <p><%= favourite.business.address %></p>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
