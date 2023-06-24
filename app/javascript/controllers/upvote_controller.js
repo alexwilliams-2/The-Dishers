@@ -9,7 +9,7 @@ export default class extends Controller {
   }
 
   upvote(event) {
-    console.dir()
+    this.element.
 
   }
 }
