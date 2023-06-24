@@ -7,14 +7,21 @@ class BusinessesController < ApplicationController
     @wages = []
     @businesses = Business.all
 
-    # @average_rating = (@businesses.reviews.sum(:rating) / @businesses.reviews.length).ceil.to_i
-
     @businesses = @businesses.where(category: params[:category]) if params[:category].present?
     # @businesses = @businesses.where(reviews: { rating: params[:rating] }) if params[:rating].present? business.reviews.each do |review|
     #   "#{pluralize (@ratings.sum / business.reviews.length).ceil}"
     # end
+    #@businesses = @businesses.where(reviews: { rating: params[:rating] }) if params[:raiting].present?
 
-    @businesses = @businesses.where(reviews: { rating: params[:rating] }) if params[:raiting].present?
+    if params[:rating].present?
+      result = []
+      @businesses.each do |business|
+        if (business.reviews.sum(:rating) / business.reviews.count).ceil == params[:rating].to_i
+          result.push(business.id)
+        end
+      end
+      @businesses = Business.where(id: result)
+    end
 
     # created a sql query variable for readabilty
     sql_subquery = "name ILIKE :query OR category ILIKE :query"
@@ -44,7 +51,7 @@ class BusinessesController < ApplicationController
     @review = Review.new # @favourite = UserFavourite.new
     @wages = []
     @ratings = []
-    
+
     @markers = @business.geocoded.map do |business|
       {
         lat: business.latitude,

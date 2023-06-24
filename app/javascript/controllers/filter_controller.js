@@ -8,14 +8,20 @@ export default class extends Controller {
   filter(event) {
     event.preventDefault()
     const button = event.currentTarget
-    const type = button.dataset.type
+    const category = button.dataset.category
+    const rating = button.dataset.rating
     this.buttonsTargets.forEach((btn) => {
       btn.classList.toggle('active', btn === button)
     })
-    if (type) {
+    if (category || rating) {
       const url = new URL(button.getAttribute('href'))
       const params = new URLSearchParams(url.search)
-      params.set('type', type)
+      if (category) {
+        params.set('category', category)
+      }
+      if (rating) {
+        params.set('rating', rating)
+      }
       Turbolinks.visit(`${url.pathname}?${params.toString()}`)
     }
   }
