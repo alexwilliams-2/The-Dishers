@@ -12,26 +12,13 @@ class MessagesController < ApplicationController
       # authorize @message
       @message.user = current_user
 
-      if @message.save
+      @message.save
         ChatChannel.broadcast_to(
-          @chat, render_to_string(partial: "message", locals: {message: @message})
+          @chat, render_to_string(partial: "messages/message", locals: {message: @message})
         )
         head :ok
-      else
-        redirect_to chat_path(@chat), alert: 'Failed to send message'
       end
-    else
-      redirect_to businesses_path, alert: 'error'
-    end
 
-    @message = Message.new(message_params)
-    @message.chat = @chat
-    @message.user = current_user
-    if @message.save
-      redirect_to chat_path(@chat)
-    else
-      render "chat/show", status: :unprocessable_entity
-    end
   end
 
   private
