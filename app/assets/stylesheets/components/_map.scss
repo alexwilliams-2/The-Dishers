@@ -5,12 +5,12 @@
 //   margin-top: -10px;
 // }
 
-// .mapboxgl-popup-content {
-//   text-align: center;
-//   font-family: "Open Sans", sans-serif;
-//   border: 1px solid #929292;
-//   box-shadow: 0px 2px 4px 2px rgba(0,0,0,.1)
-// }
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  border: 1px solid #929292;
+  box-shadow: 0px 2px 4px 2px rgba(0,0,0,.1)
+}
 
 // .mapboxgl-popup-content:before {
 //   position: absolute;
@@ -72,4 +72,13 @@
   height: 100px;
   width: 50%;
   object-fit: cover;
+}
+
+.mapboxgl-popup-close-button {
+  position: absolute;
+  right: 2px;
+  top: -17px;
+  height: 25px;
+  width: 25px;
+  font-size: 25px;
 }
