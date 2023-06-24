@@ -117,7 +117,7 @@
     <% if @businesses.any? %>
       <div class="row">
         <% @businesses.where.not(reviews: { rating: nil }).joins(:reviews).group(:id).order('AVG(reviews.rating) DESC').limit(4).each_slice(2) do |businesses_row| %>
-          <div class="container d-flex justify-content-between">
+          <div class="d-flex justify-content-evenly">
             <% businesses_row.each do |business| %>
               <% @wages = [] %>
               <% @recommended_array = [] %>
