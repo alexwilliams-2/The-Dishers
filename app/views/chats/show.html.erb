@@ -1,22 +1,54 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-<div class="container chat">
+<div class="container w-100 p-0">
 
-  <div class="messages" data-chat-subscription-target="messages" data-controller='chat-subscription' data-chat-subscription-chat-id-value="<%= @chat.id %>">
-  <% @chat.messages.each do |message| %>
-    <%= render "messages/message", message: message %>
-  <% end %>
-  </div>
+<div class="adiv justify-content-center"> <h2> YOUR MESSAGES </h2> </div>
+<div class="chat-card chat-app col-md-3">
+    <div id="plist" class="people-list">
+        <ul class="list-unstyled chat-list">
+                <% @chats.each do |chat| %>
+
+                  <% other_user_email = chat.other_user_email(current_user) %>
+                  <% other_user = User.find_by(email: other_user_email) %>
+                  <li class="clearfix">
+                   <div class="about">
+                  <li class="list-group-item">
+                  <%= link_to chat_path(chat) do %>
+                  <div class="name">
+                  @<%= other_user.username %>
+                  </div>
+                <% end %>
+              </li>
+
+          <% end %>
+    </div>
+</div>
 
 
- <!-- Input form -->
 
-    <%= simple_form_for [@chat, Message.new],  html: { data: { action: "turbo:submit-end->chat-subscription#resetForm" }, class: "d-flex" } do |f| %>
-    <%= f.input :content,
-      label: false,
-      placeholder: "Message",
-      wrapper_html: {class: "flex-grow-1"}
-    %>
-    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-  <% end %>
+<div class="col-md-9 chatroom m-0">
+    <div class="messages" data-chat-subscription-target="messages" data-controller='chat-subscription' data-chat-subscription-chat-id-value="<%= @chat.id %>"
+      data-chat-subscription-current-user-id-value="<%= current_user.id %>">
+    <% @chat.messages.each do |message| %>
+    <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+      <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+      <%= render "messages/message", message: message %>
+      </div>
+    </div>
+    <% end %>
+    </div>
 
+
+  <!-- Input form -->
+
+      <%= simple_form_for [@chat, Message.new],
+      html: { data: { controller: 'chat-subscription', action: "turbo:submit-end->chat-subscription#resetForm" }, class: "d-flex" } do |f| %>
+      <%= f.input :content,
+        label: false,
+        placeholder: "Message",
+        wrapper_html: {class: "flex-grow-1"}
+      %>
+      <%= f.submit "Send", class: "btn btn-flat mb-3" %>
+    <% end %>
+</div>
 </div>

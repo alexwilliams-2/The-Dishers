@@ -1,0 +1,115 @@
+.chatroom {
+  background: white;
+  margin-top: 9px;
+  height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  border-left: 1px solid black;
+
+  h1 {
+    margin-bottom: 0;
+    padding: 1rem;
+  }
+
+  .messages {
+    height: 100%;
+    overflow: scroll;
+    padding: 1rem;
+
+    .form-group {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.message-row {
+  margin-bottom: 5px;
+  padding: 8px;
+}
+
+// To style the message itself
+.sender-style, .receiver-style {
+  width: 70%;
+  max-width: 400px;
+  border-radius: 4px;
+  padding: 8px;
+  min-height: 80px;
+}
+
+.sender-style {
+  background-color: $light-gray;
+}
+
+.receiver-style {
+  background-color:$light-blue;
+}
+
+
+
+
+
+// chat bar
+
+
+.chat-card {
+  background: #fff;
+  transition: .5s;
+  border: 0;
+  margin-bottom: 30px;
+  border-radius: .55rem;
+  position: relative;
+  width: 100%;
+}
+.chat-app .people-list {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  z-index: 7
+}
+
+// .chat-app {
+//   margin-left: 280px;
+//   border-left: 1px solid #eaeaea
+// }
+
+.people-list {
+  -moz-transition: .5s;
+  -o-transition: .5s;
+  -webkit-transition: .5s;
+  transition: .5s
+}
+
+.people-list .chat-list li {
+  padding: 10px 15px;
+  list-style: none;
+
+}
+
+.people-list .chat-list li:hover {
+  background: #efefef;
+  list-style: none;
+  cursor: pointer;
+}
+
+
+.people-list .chat-list li .name {
+  list-style: none;
+  font-size: 15px;
+  color: $blue;
+}
+
+.adiv{
+  color: $blue;
+  align-items: center;
+  text-align: center;
+	background: $light-gray;
+	border-radius: 15px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+	font-size: 12px;
+	height: 60px;
+}
