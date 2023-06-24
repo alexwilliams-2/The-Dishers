@@ -80,7 +80,7 @@
 
 <div class="container d-flex justify-content-between mt-3">
 
-  <div class="row col-sm-3 m-4 p-0 mission-card">
+  <div class="row col-sm-3 m-4 p-0 mission-card box-shadow">
     <div class="mission-card-image p-0">
       <%= image_tag ('chef-v2.jpg') %>
     </div>
@@ -89,7 +89,7 @@
       <p> By drawing on the personal experience of dedicated professionals, we shine a light on poor practices and celebrate businesses who do things right.  </p>
     </div>
   </div>
-  <div class="row col-sm-3 m-4 p-0 mission-card">
+  <div class="row col-sm-3 m-4 p-0 mission-card box-shadow">
    <div class="mission-card-image p-0">
      <%= image_tag ('staff-talking.jpg') %>
   </div>
@@ -98,7 +98,7 @@
       <p> Don't waste your time in another dead-end job. Utilise the shared knowledge of hospitality workers in your area to find a better opportunity. </p>
     </div>
   </div>
-  <div class="row col-sm-3 m-4 p-0 mission-card">
+  <div class="row col-sm-3 m-4 p-0 mission-card box-shadow">
     <div class="mission-card-image p-0">
      <%= image_tag ('fancy-bartender.jpg') %>
     </div>
@@ -117,7 +117,7 @@
     <% if @businesses.any? %>
       <div class="row">
         <% @businesses.where.not(reviews: { rating: nil }).joins(:reviews).group(:id).order('AVG(reviews.rating) DESC').limit(4).each_slice(2) do |businesses_row| %>
-          <div class="container d-flex justify-content-between">
+          <div class="d-flex justify-content-evenly">
             <% businesses_row.each do |business| %>
               <% @wages = [] %>
               <% @recommended_array = [] %>
