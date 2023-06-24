@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_10_110923) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_22_204419) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_110923) do
     t.float "longitude"
   end
 
+  create_table "chat_users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "chat_id", null: false
+    t.index ["chat_id"], name: "index_chat_users_on_chat_id"
+    t.index ["user_id"], name: "index_chat_users_on_user_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "chat_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.bigint "business_id", null: false
     t.bigint "user_id", null: false
@@ -99,6 +124,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_10_110923) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chat_users", "chats"
+  add_foreign_key "chat_users", "users"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "messages", "users"
   add_foreign_key "reviews", "businesses"
   add_foreign_key "reviews", "users"
   add_foreign_key "user_favourites", "businesses"

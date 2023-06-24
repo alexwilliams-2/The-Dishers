@@ -12,4 +12,16 @@ class Business < ApplicationRecord
   validates :address, presence: true
   validates :phone_number, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
+
+  # def average_rating
+  #   @ratings = []
+  #   @businesses = Business.all
+  #   @businesses.each do |business|
+  #     business.reviews.each do |review|
+  #       @ratings.push(review.rating)
+  #       # average_rating = (total_rating / review.length).ceil
+  #       @rating = (@ratings.sum / business.reviews.length).ceil
+  #     end
+  #   end
+  # end
 end

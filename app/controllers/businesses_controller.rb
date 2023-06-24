@@ -6,6 +6,23 @@ class BusinessesController < ApplicationController
     @recommended_array = []
     @wages = []
     @businesses = Business.all
+
+    @businesses = @businesses.where(category: params[:category]) if params[:category].present?
+    # @businesses = @businesses.where(reviews: { rating: params[:rating] }) if params[:rating].present? business.reviews.each do |review|
+    #   "#{pluralize (@ratings.sum / business.reviews.length).ceil}"
+    # end
+    #@businesses = @businesses.where(reviews: { rating: params[:rating] }) if params[:raiting].present?
+
+    if params[:rating].present?
+      result = []
+      @businesses.each do |business|
+        if (business.reviews.sum(:rating) / business.reviews.count).ceil == params[:rating].to_i
+          result.push(business.id)
+        end
+      end
+      @businesses = Business.where(id: result)
+    end
+
     # created a sql query variable for readabilty
     sql_subquery = "name ILIKE :query OR category ILIKE :query"
     # conditional - so we do not run query if no instances exist
@@ -22,6 +39,11 @@ class BusinessesController < ApplicationController
         marker_html: render_to_string(partial: "marker")
       }
     end
+
+    # respond_to do |format| #for the filters
+    #   format.html
+    #   format.js
+    # end
   end
 
   def show
@@ -29,7 +51,7 @@ class BusinessesController < ApplicationController
     @review = Review.new # @favourite = UserFavourite.new
     @wages = []
     @ratings = []
-    
+
     @markers = @business.geocoded.map do |business|
       {
         lat: business.latitude,
@@ -38,7 +60,6 @@ class BusinessesController < ApplicationController
         marker_html: render_to_string(partial: "marker")
       }
     end
-
   end
 
   private
