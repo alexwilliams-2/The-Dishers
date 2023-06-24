@@ -3,6 +3,17 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-4"> <%#This column should be used for filters%>
+        <div id="filter-buttons" data-controller="filter">
+          <%= button_to "All", businesses_path, method: :get, params: { category: nil }, class: 'filter-button', remote: true, data: { category: nil } %>
+          <%= button_to "Pub", businesses_path, method: :get, params: { category: 'Pub' }, class: 'filter-button', remote: true, data: { category: 'Pub' } %>
+          <%= button_to "Cafe", businesses_path, method: :get, params: { category: 'Cafe' }, class: 'filter-button', remote: true, data: { category: 'Cafe' } %>
+          <%= button_to "Restaurant", businesses_path, method: :get, params: { category: 'Restaurant' }, class: 'filter-button', remote: true, data: { category: 'Restaurant' } %>
+          <%= button_to "1 Star", businesses_path, method: :get, params: { rating: 1 }, class: 'filter-button', remote: true, data: { rating: 1 } %>
+          <%= button_to "2 Stars", businesses_path, method: :get, params: { rating: 2 }, class: 'filter-button', remote: true, data: { rating: 2 } %>
+          <%= button_to "3 Stars", businesses_path, method: :get, params: { rating: 3 }, class: 'filter-button', remote: true, data: { rating: 3 } %>
+          <%= button_to "4 Stars", businesses_path, method: :get, params: { rating: 4 }, class: 'filter-button', remote: true, data: { rating: 4 } %>
+          <%= button_to "5 Stars", businesses_path, method: :get, params: { rating: 5 }, class: 'filter-button', remote: true, data: { rating: 5 } %>
+         </div>
       </div>
         <div class="col-12 col-lg-8">
           <div class="row justify-content-center">
