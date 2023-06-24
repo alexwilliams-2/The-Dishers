@@ -23,6 +23,17 @@ class BusinessesController < ApplicationController
       @businesses = Business.where(id: result)
     end
 
+    if params[:wage].present?
+      result = []
+      @businesses.each do |business|
+        average_wage = (business.reviews.sum(:wage) / business.reviews.count).to_f
+        if average_wage >= params[:wage].to_f && average_wage <= params[:wage].to_f + 1
+          result.push(business.id)
+        end
+      end
+      @businesses = Business.where(id: result)
+    end
+
     # created a sql query variable for readabilty
     sql_subquery = "name ILIKE :query OR category ILIKE :query"
     # conditional - so we do not run query if no instances exist
