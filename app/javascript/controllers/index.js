@@ -4,8 +4,8 @@
 
 import { application } from "./application"
 
-import FilterController from "./filter_controller"
-application.register("filter", FilterController)
+import ChatSubscriptionController from "./chat_subscription_controller"
+application.register("chat-subscription", ChatSubscriptionController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
@@ -18,3 +18,5 @@ application.register("navbar", NavbarController)
 
 import FilterController from "./filter_controller"
 application.register("filter", FilterController)
+// import NavbarController from "./navbar_controller"
+// application.register("navbar", NavbarController)
