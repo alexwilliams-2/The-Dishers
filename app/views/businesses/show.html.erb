@@ -28,6 +28,7 @@
       <h2 class="business-banner-heading"><%= @business.first.name %></h2>
       <div class="business-rating">
         <% @business.first.reviews.each do |review| %>
+        <% @ratings =[] %>
           <% @ratings.push(review.rating) %>
         <% end %>
         <% unless @business.first.reviews.empty? %>
@@ -39,7 +40,7 @@
           </div>
         <% end %>
         <% @recommended_array = @business.first.reviews.select { |review| review.recommended } %>
-        <p class="business-info"><%= pluralize(@recommended_array.length, "Disher") %> recommend working here</p>
+         <p class="business-info"><%= pluralize(@recommended_array.length, "Disher") %> recommend working here </p>
          <button type="button" class="btn btn-flat mt-3" data-bs-toggle="modal" data-bs-target="#new_review_modal">
           Add a review
         </button>
@@ -93,6 +94,9 @@
                 <div class="col-sm-6">
                   <h4 class="blue-text mt-3">"<%= review.title %>"</h4>
                   <p class="review-content">"<%= review.content %>"</p>
+                   <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
+                      <i class="fa-solid fa-message mx-2"></i>
+                      <% end %>
                 </div>
                 <div class="col-sm-3">
                   <div class="like mr-3 vote">
@@ -124,8 +128,3 @@
 </div>
 
 <%= render "modal" %>
-
-      <%# <%= simple_form_for @favourite do |f| %>
-      <%#= f.input :business, as: :hidden, input_html: { value:  @business.first.id } %>
-      <%#= f.button :submit  %>
-      <%# end %>
