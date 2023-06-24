@@ -7,8 +7,14 @@ import { application } from "./application"
 import ChatSubscriptionController from "./chat_subscription_controller"
 application.register("chat-subscription", ChatSubscriptionController)
 
+import FilterController from "./filter_controller"
+application.register("filter", FilterController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import LikeButtonController from "./like_button_controller"
+application.register("like-button", LikeButtonController)
 
 import MapController from "./map_controller"
 application.register("map", MapController)
@@ -18,8 +24,3 @@ application.register("navbar", NavbarController)
 
 import UpvoteController from "./upvote_controller"
 application.register("upvote", UpvoteController)
-
-import FilterController from "./filter_controller"
-application.register("filter", FilterController)
-// import NavbarController from "./navbar_controller"
-// application.register("navbar", NavbarController)

@@ -4,9 +4,9 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["upVoteNumber", "downVoteNumber"]
 
-  connect() {
-    console.log("working")
-  }
+  // connect() {
+  //   console.log("working")
+  // }
 
   upvote(event) {
     // console.dir(this.upVoteNumberTarget)
