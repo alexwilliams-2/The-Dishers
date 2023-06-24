@@ -4,16 +4,25 @@
     <%= cl_image_tag business.photo.key%>
     <div class="card-infos">
       <div class="text-center">
-        <h2><%= business.name %></h2>
-        <p><%= business.address %></p>
+        <h2 ><%= business.name %> </h2>
       </div>
+      <% @wages = [] %>
+      <% @recommended_array = [] %>
+      <% @ratings = [] %>
+
       <div class="text-center">
       <% business.reviews.each do |review| %>
         <% @wages.push(review.wage) %>
         <% end %>
-      <% unless business.reviews.empty? %>
-          <p> <%= "Average wage: #{number_to_currency((@wages.sum / @wages.count  ), options = {unit: "£"}) }"%> </p>
-      <% end %>
+        <% business.reviews.each do |review| %>
+          <% @ratings.push(review.rating) %>
+          <% @rating = (@ratings.sum / business.reviews.length).ceil %>
+        <% end %>
+        <% unless business.reviews.empty? %>
+          <% @rating.to_i.times do %>
+          <i class="fa-solid fa-star" style="color: #009eff;"></i>
+         <% end %>
+        <% end %>
     </div>
   </div>
   </div>
