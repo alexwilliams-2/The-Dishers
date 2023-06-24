@@ -38,7 +38,7 @@
                         <% end %>
                         <p> <%= business.description[0..100] %> </p>
                         <% business.reviews.each do |review| %> </p>
-                          <% if review.recommended = true %>
+                          <% if review.recommended == true %>
                             <% @recommended_array.push(review) %>
                           <% end %>
                         <% end %>
