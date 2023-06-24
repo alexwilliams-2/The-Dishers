@@ -36,6 +36,7 @@
   }
 }
 
+
 // copy pasted styling from brew-vein - may not be relevent to us.
 
 .card-category {
@@ -63,6 +64,7 @@
   display: flex;
   align-items: center;
   border-radius: 3px;
+  width: 600px;
 }
 .business-card img {
   height: 100%;
@@ -226,19 +228,10 @@
   border-radius: 3px 3px 0px 0px;
 }
 
-
-
-
-
-
-
-
-
-
 .card-trip {
   overflow: hidden;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
 }
 
 .card-trip h2 {
@@ -263,4 +256,8 @@
   right: 16px;
   top: -20px;
   width: 40px;
+}
+
+.box-shadow {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
