@@ -13,11 +13,12 @@
 }
 
 #myCarousel .carousel-caption {
-  padding-bottom: 100px;
+  // padding-bottom: 100px;
   bottom: 70px;
   position: absolute;
   transform: translateY(-75%);
 }
+
 
 #myCarousel .carousel-caption h1 h2 h4 {
   text-shadow: 0.75px 0.75px #000000;
@@ -30,3 +31,15 @@
 // .carousel-control {
 //   opacity: 0;
 // }
+
+.welcome-text {
+  font-size: 72px !important;
+}
+
+h2.welcome-text {
+  font-size: 62px !important;
+}
+
+h4.welcome-text {
+  font-size: 44px !important;
+}
