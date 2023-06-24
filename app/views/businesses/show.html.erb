@@ -94,15 +94,15 @@
           <h4 class="blue-text mt-3">"<%= review.title %>"</h4>
           <p class="review-content">"<%= review.content %>"</p>
         </div>
-        <div class="col-sm-3">
-          <div class="like mr-3 vote" data-controller="upvote">
+        <div class="col-sm-3" data-controller="upvote">
+          <div class="like mr-3 vote">
             <img src="https://i.imgur.com/mHSQOaX.png" data-action="click->upvote#upvote">
-            <span class="blue-text pl-2" data-upvote-target="voteNumber"> <%= rand(1..100) %> </span>
+            <span class="blue-text pl-2" data-upvote-target="upVoteNumber"> <%= rand(1..50) %> </span>
           </div>
-        </div>
-        <div class="unlike vote">
-          <img src="https://i.imgur.com/bFBO3J7.png">
-          <span class="text-muted pl-2"><%= rand(1..100) %></span>
+          <div class="unlike vote">
+            <img src="https://i.imgur.com/bFBO3J7.png" data-action="click->upvote#downvote">
+            <span class="text-muted pl-2" data-upvote-target="downVoteNumber"> <%= rand(1..20) %></span>
+          </div>
         </div>
       </div>
       <% end %>
