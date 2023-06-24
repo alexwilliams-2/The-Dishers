@@ -96,8 +96,9 @@
         </div>
         <div class="col-sm-3" data-controller="upvote">
           <div class="like mr-3 vote">
-            <img src="https://i.imgur.com/mHSQOaX.png" data-action="click->upvote#upvote">
-            <span class="blue-text pl-2" data-upvote-target="upVoteNumber"> <%= rand(1..50) %> </span>
+            <img src="https://i.imgur.com/mHSQOaX.png" data-action="click->upvote#upvote" id="<%=review.id %>">
+            <span class="blue-text pl-2" data-upvote-target="upVoteNumber"> <%= rand(1..50) %>
+            </span>
           </div>
           <div class="unlike vote">
             <img src="https://i.imgur.com/bFBO3J7.png" data-action="click->upvote#downvote">
