@@ -5,12 +5,12 @@ class UserFavouritesController < ApplicationController
 
   def create
     # @strong_params = favourite_params
-    @business = Business.find(params[:id])
+    # @business = Business.find(params[:id])
     @favourite = UserFavourite.new
     @favourite.user = current_user
     @favourite.business = Business.find(params[:business_id])
     @favourite.save
-    redirect_to business_path(@business)
+    # redirect_to business_path(@business)
   end
 
   private

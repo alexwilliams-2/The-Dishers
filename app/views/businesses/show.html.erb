@@ -3,15 +3,18 @@
 <div class="banner-business" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('<%= cl_image_path(@business.first.photo.key) %>');">
   <div class="business-banner-content row w-100 align-items-center">
     <div class="col-sm-3">
-       <div class="like-button" style="transform: scale(0.50">
+       <div class="like-button", style="transform: scale(0.50", data-controller="like-button">
           <%= button_to business_user_favourites_path(@business.first.id), class: "btn-ghost like-wrapper ripple like-filled", method: :post, remote: true,
-          "data-controller" => "like-button", "data-action" => "like-button#fillheart" do %>
-            <svg class="<%= current_user.user_favourites.where(business_id: @business.first.id).any? ?  'heart-filled' : 'heart' %>" width="1" height="1" viewBox="0 0 24 24" data-like-button-target="likeButton">
+           data: { action: "click->like-button#fillheart" } do %>
+            <svg class="<%= current_user.user_favourites.where(business_id: @business.first.id).any? ?  'heart-filled' : 'heart' %>" width="1" height="1" viewBox="0 0 24 24" data-like-button-target="likeButton" >
               <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"></path>
             </svg>
           <% end %>
       </div>
     </div>
+
+<%#  "data-controller" => "like-button", "data-action" => "like-button#fillheart"  %>
+
     <div class="col-sm-9">
       <%# <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#new_review_modal">
