@@ -1,37 +1,38 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <div class="container w-100 p-0">
+  <div class="adiv align-items-center">
+    <h2> YOUR MESSAGES </h2>
+  </div>
+  <div class="chat-card chat-app col-md-2">
+      <div id="plist" class="people-list">
+          <ul class="list-unstyled chat-list">
+                  <% @chats.each do |chat| %>
+                    <% other_user_email = chat.other_user_email(current_user) %>
+                    <% other_user = User.find_by(email: other_user_email) %>
+                    <div class="about" data-chat-subscription-target="user" data-controller="chat-subscription">
+                    <li class="clearfix">
+                    <%= link_to chat_path(chat) do %>
+                    <div class="name">
+                    @<%= other_user.username %>
+                    </div>
+                    </div>
+                  <% end %>
+                </li>
 
-<div class="adiv justify-content-center"> <h2> YOUR MESSAGES </h2> </div>
-<div class="chat-card chat-app col-md-3">
-    <div id="plist" class="people-list">
-        <ul class="list-unstyled chat-list">
-                <% @chats.each do |chat| %>
-
-                  <% other_user_email = chat.other_user_email(current_user) %>
-                  <% other_user = User.find_by(email: other_user_email) %>
-                  <li class="clearfix">
-                   <div class="about">
-                  <li class="list-group-item">
-                  <%= link_to chat_path(chat) do %>
-                  <div class="name">
-                  @<%= other_user.username %>
-                  </div>
-                <% end %>
-              </li>
-
-          <% end %>
-    </div>
+            <% end %>
+      </div>
 </div>
 
 
 
-<div class="col-md-9 chatroom m-0">
+<div class="col-md-10 chatroom m-0">
     <div class="messages" data-chat-subscription-target="messages" data-controller='chat-subscription' data-chat-subscription-chat-id-value="<%= @chat.id %>"
       data-chat-subscription-current-user-id-value="<%= current_user.id %>">
     <% @chat.messages.each do |message| %>
     <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
       <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+
       <%= render "messages/message", message: message %>
       </div>
     </div>
