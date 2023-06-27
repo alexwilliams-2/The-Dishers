@@ -7,6 +7,8 @@ class ChatsController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @chats = @user.chats
     @chat = find_or_create_chat
     # authorize @chat, policy_class: ChatPolicy
     @messages = @chat.messages
