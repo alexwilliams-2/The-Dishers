@@ -15,6 +15,6 @@ export default class extends Controller {
 
   downvote(event) {
     // console.log(this.downVoteNumberTarget.innerText)
-    this.downVoteNumberTarget.innerText = (Number(this.downVoteNumberTarget.innerText) - 1);
+    this.downVoteNumberTarget.innerText = (Number(this.downVoteNumberTarget.innerText) + 1);
   }
 }
