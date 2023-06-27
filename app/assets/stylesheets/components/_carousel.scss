@@ -7,6 +7,10 @@
   min-height: 90vh;
 }
 
+.linear-gradient {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+}
+
 .carousel-inner > .item {
   height: 90vh;
   position: relative;
@@ -20,12 +24,12 @@
 }
 
 
-#myCarousel .carousel-caption h1 h2 h4 {
+#myCarousel .carousel-caption h1 h2 h3 {
   text-shadow: 0.75px 0.75px #000000;
 }
 
-#myCarousel .carousel-caption h4 {
-  margin-bottom: 24px;
+#myCarousel .carousel-caption h3 {
+  margin-bottom: 40px;
 }
 
 // .carousel-control {
@@ -33,13 +37,13 @@
 // }
 
 .welcome-text {
-  font-size: 72px !important;
+  font-size: 64px !important;
 }
 
-h2.welcome-text {
-  font-size: 62px !important;
+h3.welcome-text {
+  font-size: 32px !important;
 }
 
 h4.welcome-text {
-  font-size: 44px !important;
+  font-size: 32px !important;
 }
