@@ -8,10 +8,6 @@ class BusinessesController < ApplicationController
     @businesses = Business.all
 
     @businesses = @businesses.where(category: params[:category]) if params[:category].present?
-    # @businesses = @businesses.where(reviews: { rating: params[:rating] }) if params[:rating].present? business.reviews.each do |review|
-    #   "#{pluralize (@ratings.sum / business.reviews.length).ceil}"
-    # end
-    #@businesses = @businesses.where(reviews: { rating: params[:rating] }) if params[:raiting].present?
 
     if params[:rating].present?
       result = []

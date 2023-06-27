@@ -5,6 +5,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['button']
 
+
   filter(event) {
     event.preventDefault()
     const button = event.currentTarget
