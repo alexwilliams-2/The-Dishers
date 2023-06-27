@@ -8,15 +8,22 @@ class BusinessesController < ApplicationController
     @businesses = Business.all
 
     @businesses = @businesses.where(category: params[:category]) if params[:category].present?
-    # @businesses = @businesses.where(reviews: { rating: params[:rating] }) if params[:rating].present? business.reviews.each do |review|
-    #   "#{pluralize (@ratings.sum / business.reviews.length).ceil}"
-    # end
-    #@businesses = @businesses.where(reviews: { rating: params[:rating] }) if params[:raiting].present?
 
     if params[:rating].present?
       result = []
       @businesses.each do |business|
         if (business.reviews.sum(:rating) / business.reviews.count).ceil == params[:rating].to_i
+          result.push(business.id)
+        end
+      end
+      @businesses = Business.where(id: result)
+    end
+
+    if params[:wage].present?
+      result = []
+      @businesses.each do |business|
+        average_wage = (business.reviews.sum(:wage) / business.reviews.count).to_f
+        if average_wage >= params[:wage].to_f && average_wage <= params[:wage].to_f + 1
           result.push(business.id)
         end
       end
