@@ -10,7 +10,7 @@ footer {
   background: $light-gray;
   height: auto;
   width: 100vw;
-  padding-top: 40px;
+  padding-top: 20px;
   margin-top: 62px;
 }
 
@@ -23,10 +23,15 @@ footer {
 }
 
 .footer-content h3 {
-  font-size: 1.8rem;
+  font-size: 20px;
   font-weight: 400;
   text-transform: capitalize;
   line-height: 3rem;
+  letter-spacing: 4px;
+}
+
+.footer-content {
+  letter-spacing: 4px;
 }
 
 .footer-content p {
@@ -42,6 +47,7 @@ footer {
   align-items: center;
   justify-content: center;
   margin: 1rem 0 3rem 0;
+  padding-right: 19px;
 }
 
 .socials li {
@@ -55,12 +61,12 @@ footer {
 }
 
 .socials a i {
-  font-size: 1.1rem;
+  font-size: 16px;
   transition: color .4s ease;
 }
 
 .socials a:hover i {
-  color: white;
+  color: $light-blue;
 }
 
 .footer-bottom {
