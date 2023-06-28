@@ -6,7 +6,7 @@
       <%= image_tag "dishers-logo.png" %>
       <% end %>
 
-    <div class="col-sm-6">
+    <div class="col-sm-6" id="search-bar">
       <%= form_with url: businesses_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
           params[:query],
@@ -38,7 +38,7 @@
               <%= link_to "Messages", chats_path, class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
-            
+
           </li>
         <% else %>
           <li class="nav-item">
