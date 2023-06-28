@@ -31,7 +31,7 @@
           <%= cl_image_tag review.business.photo.key, class: "img-banner" %>
         </div>
         <div class="text-center">
-          <h3><%= review.title %></h3>
+          <h3> <strong> "<%= review.title %>"" </strong></h3>
           <p><%= review.content.truncate(50) %></p>
           <p>Rating: <%= review.rating %></p>
         </div>
@@ -58,5 +58,3 @@
     <% end %>
   </div>
 </div>
-
-
