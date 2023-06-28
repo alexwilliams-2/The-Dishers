@@ -134,7 +134,10 @@
                       <% @ratings.push(review.rating) %>
                     <% end %>
                     <% unless business.reviews.empty? %>
-                      <%= "Average rating " "#{pluralize (@ratings.sum / business.reviews.length).ceil, "star"}" %>
+                      <% @rating = (@ratings.sum / business.reviews.length).ceil %>
+                        <% @rating.to_i.times do %>
+                          <i class="fa-solid fa-star" style="color: #009eff;"></i>
+                        <% end %>
                     <% end %>
                     <p> <%= business.description[0..100] %> </p>
                     <% business.reviews.each do |review| %>
