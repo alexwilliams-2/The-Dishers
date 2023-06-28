@@ -20,8 +20,8 @@
       </div> %>
       <h2 class="business-banner-heading"><%= @business.first.name %></h2>
       <div class="business-rating">
-        <% @business.first.reviews.each do |review| %>
         <% @ratings =[] %>
+        <% @business.first.reviews.each do |review| %>
           <% @ratings.push(review.rating) %>
         <% end %>
         <% unless @business.first.reviews.empty? %>
@@ -57,8 +57,8 @@
       <li class="list-group-item"> <strong> Email: </strong> <%= @business.first.email %></li>
       <li class="list-group-item"> <strong> Phone Number: </strong> <%= @business.first.phone_number %></li>
       <li class="list-group-item"> <strong> Average wage: </strong>
+        <% @wages = [] %>
         <% @business.first.reviews.each do |review| %>
-          <% @wages = [] %>
           <% @wages.push(review.wage) %>
         <% end %>
         <% unless @business.first.reviews.empty? %>
