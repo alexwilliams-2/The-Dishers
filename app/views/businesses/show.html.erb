@@ -11,11 +11,9 @@
           <% end %>
       </div>
     </div>
-
 <%#  "data-controller" => "like-button", "data-action" => "like-button#fillheart"  %>
 <%# data:{ controller: "like-button", action: "click->like-button#fillheart"} %>
 <%# data-like-button-target="likeButton" %>
-
     <div class="col-sm-9">
       <%# <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#new_review_modal">
@@ -32,7 +30,7 @@
           <% @rating = (@ratings.sum / @business.first.reviews.length).ceil %>
           <div class="rating-stars">
             <% @rating.to_i.times do %>
-              <i class="fa-solid fa-star" style="color: #009eff;"></i>
+              <i class="fa-solid fa-star" style="color: #009EFF;"></i>
             <% end %>
           </div>
         <% end %>
@@ -45,7 +43,6 @@
     </div>
   </div>
 </div>
-
 <div class="container-xl">
   <div class="business-card-show w-100">
     <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
@@ -71,58 +68,52 @@
       </li>
     </ul>
   </div>
-  <div class="main-container">
+  <div class="main-container mt-5 w-100">
     <%# <div class="container m-0"> %>
-    <div class="row">
-      <div class="businesses-for-map .col-md-8">
-        <h2> <strong> <%= pluralize @business.first.reviews.size, "Review" %> </strong></h2>
-        <% if @business.first.reviews.blank? %>
-        <h3> Be the first to review <%= @business.name %> </h3>
-        <% else %>
-        <% @business.first.reviews.each do |review| %>
-        <div class="review-card col col-sm-10">
-          <div class="col-sm-3">
-            <div>
-              <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %> <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
-              <i class="fa-regular fa-message" style="color: #009eff;"></i>
-            <% end %></h4>
-
-              <% review.rating.to_i.times do %>
-              <span class="fa fa-star star-active ml-3"></span>
-              <% end %>
-            </div>
+    <div class="businesses-for-map col-9">
+      <h2> <strong> <%= pluralize @business.first.reviews.size, "Review" %> </strong></h2>
+      <% if @business.first.reviews.blank? %>
+      <h3> Be the first to review <%= @business.name %> </h3>
+      <% else %>
+      <% @business.first.reviews.each do |review| %>
+      <div class="review-card col col-sm-11">
+        <div class="col-sm-3">
+          <div>
+            <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %> <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
+            <i class="fa-regular fa-message" style="color: #009EFF;"></i>
+          <% end %></h4>
+            <% review.rating.to_i.times do %>
+            <span class="fa fa-star star-active ml-3"></span>
+            <% end %>
           </div>
         </div>
         <div class="col-sm-6">
           <h4 class="blue-text mt-3"><b><%= review.title %></b></h4>
           <p class="review-content">"<%= review.content %>"</p>
-
+        </div>
+        <div class="col-sm-3" data-controller="upvote">
+          <div class="like mr-3 vote">
+            <img src="https://i.imgur.com/mHSQOaX.png" data-action="click->upvote#upvote" id="<%=review.id %>">
+            <span class="blue-text pl-2" data-upvote-target="upVoteNumber"> <%= rand(1..50) %>
+            </span>
           </div>
-          <div class="col-sm-3" data-controller="upvote">
-            <div class="like mr-3 vote">
-              <img src="https://i.imgur.com/mHSQOaX.png" data-action="click->upvote#upvote" id="<%=review.id %>">
-              <span class="blue-text pl-2" data-upvote-target="upVoteNumber"> <%= rand(1..50) %>
-              </span>
-            </div>
-            <div class="unlike vote">
-              <img src="https://i.imgur.com/bFBO3J7.png" data-action="click->upvote#downvote">
-              <span class="text-muted pl-2" data-upvote-target="downVoteNumber"> <%= rand(1..20) %></span>
-            </div>
+          <div class="unlike vote">
+            <img src="https://i.imgur.com/bFBO3J7.png" data-action="click->upvote#downvote">
+            <span class="text-muted pl-2" data-upvote-target="downVoteNumber"> <%= rand(1..20) %></span>
           </div>
         </div>
-        <% end %>
-        <% end %>
       </div>
-      <div id="map-for-show" calss=".col-md-2" style="width: 60%; height: 100vh;"
+      <% end %>
+      <% end %>
+    </div>
+    <div class="col-5">
+      <h2> <strong> Location</h2>
+      <div id="map-for-show" style="width: 60%; height: 100vh;"
         data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
-  <div id="map-for-show" style="width: 30%; height: 100vh;"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
 <%= render "modal" %>
