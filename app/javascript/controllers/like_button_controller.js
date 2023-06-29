@@ -9,8 +9,6 @@ export default class extends Controller {
   }
 
   fillheart(e) {
-    e.preventDefault()
-    // const button = e.currentTarget
     this.likeButtonTarget.classList.add("heart-filled")
   }
 }
