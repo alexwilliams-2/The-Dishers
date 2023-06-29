@@ -31,8 +31,9 @@
 }
 
 .btn-flat:hover {
-  background: rgb(53, 88, 213);
+  background: #009dffc7;
   color: white;
+  transition: 0.5s;
   opacity: 0.75;
 }
 
