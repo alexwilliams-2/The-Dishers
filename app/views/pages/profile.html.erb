@@ -37,12 +37,10 @@
 
 
  <div class="container">
-          <div class="text-center">
-    <h1>Your reviews</h1>
-    </div>
+       <div class="col-sm-6"> <h2> Your Reviews </h2>
     <% @user.reviews.each do |review| %>
-        <div class="review-card col col-sm-4">
-          <div class="col-sm-2">
+        <div class="review-card col col-sm-6">
+          <div>
             <div>
             <% review.rating.to_i.times do %>
               <i class="fa fa-star star-active ml-3"></i>
@@ -55,4 +53,5 @@
               </div>
             </div>
             <% end %>
+            </div>
     </div>
