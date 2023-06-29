@@ -53,7 +53,24 @@
 }
 
 
+.chat-card-header {
+  background: $blue;
+	font-size: 12px;
+  margin: 0 12px;
+}
 
+.chat-card-header h3{
+  color: $light-gray;
+}
+
+// .chat-sub-header {
+//   background-color: $light-gray;
+// }
+
+.chat-sub-header p{
+  margin: 0;
+  color: $blue;
+}
 
 
 // chat bar

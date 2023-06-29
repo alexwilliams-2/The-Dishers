@@ -6,7 +6,7 @@
       <%= image_tag "dishers-logo.png" %>
       <% end %>
 
-    <div class="col-sm-6">
+    <div class="col-sm-6" id="search-bar">
       <%= form_with url: businesses_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
           params[:query],
@@ -25,20 +25,23 @@
       <ul class="navbar-nav me-auto ">
         <% if user_signed_in? %>
             <li class="nav-item active ">
-              <%= link_to "Home", "/", class: "nav-link", style:"color: white" %>
+              <%= link_to "Home", "/", class: "nav-link", style:"text-decoration: none; color: white" %>
+            </li>
+            <li class="nav-item active ">
+              <%= link_to "Businesses", businesses_path, class: "nav-link", style:"color: white" %>
             </li>
           <li class="nav-item">
-              <%= link_to "My Profile", profile_path, class: "nav-link", style:"color: white"  %>
+              <%= link_to "My Profile", profile_path, class: "nav-link", style:"text-decoration: none; color: white"  %>
             </li>
 
 
           <li class="nav-item dropdown">
             <%= image_tag current_user.photo, class: "avatar dropdown-toggle m-0 p-0", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Messages", chats_path, class: "dropdown-item" %>
+              <%= link_to "Messages", chat_path(1), class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
-            
+
           </li>
         <% else %>
           <li class="nav-item">
