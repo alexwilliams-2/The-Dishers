@@ -6,7 +6,7 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-<div class="container-xl">
+<div class="container">
           <div class="col-sm-4">
             <div class="user-profile wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
               <div class="user-thumb"> <%= image_tag(@user.photo, alt: "...", width: 350) %>
@@ -24,34 +24,27 @@
             <div class="fave-cards">
                 <% @favourites.each do |favourite| %>
                <%= link_to favourite.business, style: 'text-decoration: none; color: #000000' do  %>
-                  <div class="fave-card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path(favourite.business.photo.key) %>');">
+                  <div class="fave-card text-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path(favourite.business.photo.key) %>');">
                     <h3><%= favourite.business.name %></h3>
                   </div>
                   <% end %>
               <% end %>
             </div>
           </div>
+     <div class="col-sm-12"> <h2> Your Reviews </h2>
+           <% @user.reviews.each do |review| %>
+            <div class="user-reviews">
+                <%= cl_image_tag review.business.photo.key, height: 300 %>
+              <div class="user-review-datails">
+                <h2><%= review.business.name %> - <% review.rating.to_i.times do %>
+                    <i class="fa fa-star star-active ml-3"></i>
+                  <% end %>
+                  </h2>
+                <h4> <strong> <em class="blue-text">"<%= review.title.capitalize %>" </em> </strong></h4>
+                <p > <em>"<%= review.content %>"</em></p>
+              </div>
+            </div>
+          <% end %>
 
+        </div>
 </div>
-
-
-
- <div class="container">
-       <div class="col-sm-6"> <h2> Your Reviews </h2>
-    <% @user.reviews.each do |review| %>
-        <div class="review-card col col-sm-6">
-          <div>
-            <div>
-            <% review.rating.to_i.times do %>
-              <i class="fa fa-star star-active ml-3"></i>
-              <% end %>
-              </div>
-            </div>
-            <div class="col-sm-10">
-             <h4> <strong> <%= review.business.name %> </strong> </h4>
-              <p class="review-content">"<%= review.content %>"</p>
-              </div>
-            </div>
-            <% end %>
-            </div>
-    </div>
