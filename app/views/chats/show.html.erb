@@ -1,9 +1,9 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <div class="container w-100 p-0">
-  <div class="adiv align-items-center">
-    <h2> YOUR MESSAGES </h2>
-  </div>
+   <div class="chat-card-header d-flex justify-content-center align-items-center mt-4 p-3  text-white border-bottom-0">
+            <h3> <strong> Inbox</strong> </h3>
+    </div>
   <div class="chat-card chat-app col-md-2">
       <div id="plist" class="people-list">
           <ul class="list-unstyled chat-list">
@@ -29,6 +29,11 @@
 <div class="col-md-10 chatroom m-0">
     <div class="messages" data-chat-subscription-target="messages" data-controller='chat-subscription' data-chat-subscription-chat-id-value="<%= @chat.id %>"
       data-chat-subscription-current-user-id-value="<%= current_user.id %>">
+      <div class="chat-sub-header d-flex justify-content-end align-items-center p-3  text-white border-bottom-0">
+            <p class="mb-0 fw-bold">You are now chatting with <strong> <%= @chat.name %></strong> </p>
+
+          </div>
+
     <% @chat.messages.each do |message| %>
     <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
       <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
@@ -49,7 +54,7 @@
         placeholder: "Message",
         wrapper_html: {class: "flex-grow-1"}
       %>
-      <%= f.submit "Send", class: "btn btn-flat mb-3" %>
+      <%= f.submit "Send", class: "btn-flat mb-3" %>
     <% end %>
 </div>
 </div>
