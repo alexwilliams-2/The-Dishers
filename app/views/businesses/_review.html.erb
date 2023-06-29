@@ -4,7 +4,7 @@
     <div class ="col-sm-6">
 <%= simple_form_for [@business.first, @review] do |f| %>
   <%= f.input :title %>
-   <%= f.input :job_title %>
+  <%= f.input :job_title, as: :select, collection: ["Bartender", "Waiter", "Manager"], include_blank: false %>
   <%= f.input :content %>
   <%= f.input :rating %>
    <%= f.input :recommended %>
