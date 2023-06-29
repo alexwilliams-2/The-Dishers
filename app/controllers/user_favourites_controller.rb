@@ -13,6 +13,7 @@ class UserFavouritesController < ApplicationController
     # redirect_to business_path(@business)
   end
 
+
   private
 
   def favourite_params

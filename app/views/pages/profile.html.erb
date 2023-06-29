@@ -1,62 +1,50 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2062&q=80); height: 300px;">
+<%# <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2062&q=80); height: 300px;">
   <div class="container d-flex align-items-center justify-content-center">
     <h1>Profile</h1>
   </div>
-  </div>
+  </div> %>
 
-<div class="container container-profile">
-  <div class="card" style="width: 100rem;">
-    <%= image_tag(@user.photo, class: "card-img-top avatar mx-auto", alt: "...", width: 350) %>
-    <div class="card-body">
-      <h5 class="card-title"><%= @user.username %></h5>
-      <p class="card-text"><%= @user.bio %></p>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item"><%= @user.location %></li>
-      <li class="list-group-item"><%= @user.email %></li>
-    </ul>
-  </div>
-</div>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <div class="container">
-  <div class="col col-sm-6">
-    <div class="border">
-      <div class="text-center">
-    <h1>MY REVIEWS</h1>
-    </div>
-    </div>
-    <% @user.reviews.each do |review| %>
-      <div class="card-profile">
-        <div class="card-profile-container">
-          <%= cl_image_tag review.business.photo.key, class: "img-banner" %>
-        </div>
-        <div class="text-center">
-          <h3><%= review.title %></h3>
-          <p><%= review.content.truncate(50) %></p>
-          <p>Rating: <%= review.rating %></p>
-        </div>
-      </div>
-    <% end %>
-  </div>
+          <div class="col-sm-4">
+            <div class="user-profile wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+              <div class="user-thumb"> <%= image_tag(@user.photo, alt: "...", width: 350) %>
+              </div>
+              <!-- Team Details-->
+              <div class="user-info">
+                <h6><strong> @<%= @user.username %></strong> </h6>
+                  <p> <%= @user.email %></p>
+                  <p> "<%= @user.bio %>" </p>
+                <p class="designation"><i class="fa-solid fa-location-dot" style="color: #009eff;"></i><%= @user.location %></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-8"> <h2> Your Favourited Businesses </h2>
+            <div class="fave-cards">
+                <% @favourites.each do |favourite| %>
+               <%= link_to favourite.business, style: 'text-decoration: none; color: #000000' do  %>
+                  <div class="fave-card text-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('<%= cl_image_path(favourite.business.photo.key) %>');">
+                    <h3><%= favourite.business.name %></h3>
+                  </div>
+                  <% end %>
+              <% end %>
+            </div>
+          </div>
+     <div class="col-sm-12"> <h2> Your Reviews </h2>
+           <% @user.reviews.each do |review| %>
+            <div class="user-reviews">
+                <%= cl_image_tag review.business.photo.key, height: 300 %>
+              <div class="user-review-datails">
+                <h2><%= review.business.name %> - <% review.rating.to_i.times do %>
+                    <i class="fa fa-star star-active ml-3"></i>
+                  <% end %>
+                  </h2>
+                <h4> <strong> <em class="blue-text">"<%= review.title.capitalize %>" </em> </strong></h4>
+                <p > <em>"<%= review.content %>"</em></p>
+              </div>
+            </div>
+          <% end %>
 
-  <div class="col col-sm-6">
-    <div class="border">
-      <div class="text-center">
-    <h1>MY FAVOURITES</h1>
-    </div>
-    </div>
-    <% @favourites.each do |favourite| %>
-      <div class="card-profile">
-        <div class="card-profile-container">
-          <%= cl_image_tag favourite.business.photo.key, class: "img-banner" %>
         </div>
-        <div class="text-center">
-        <h3><%= favourite.business.name %></h3>
-        <p><%= favourite.business.address %></p>
-        </div>
-      </div>
-    <% end %>
-  </div>
 </div>
-
-

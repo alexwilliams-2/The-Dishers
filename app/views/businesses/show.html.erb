@@ -92,9 +92,16 @@
               <% end %>
             </div>
           </div>
+<<<<<<< HEAD
           <div class="col-sm-6">
             <h4 class="blue-text mt-3">"<%= review.title %>"</h4>
             <p class="review-content">"<%= review.content %>"</p>
+=======
+        </div>
+        <div class="col-sm-6">
+          <h4 class="blue-text mt-3"><b><%= review.title %></b></h4>
+          <p class="review-content">"<%= review.content %>"</p>
+>>>>>>> main
 
           </div>
           <div class="col-sm-3" data-controller="upvote">
@@ -118,6 +125,13 @@
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
+<<<<<<< HEAD
+=======
+  <div id="map-for-show" style="width: 30%; height: 100vh;"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+>>>>>>> main
   </div>
 </div>
 <%= render "modal" %>
