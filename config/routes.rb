@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :reviews, only: [:destroy]
 
-  resources :chats, only: [:show, :index] do
+  resources :chats, only: [:show] do
     resources :messages, only: [:create], param: :chat_id
   end
 end

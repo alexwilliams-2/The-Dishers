@@ -1,10 +1,10 @@
 class ChatsController < ApplicationController
 
-  def index
-    @user = current_user
-    @chats = @user.chats
-    # @chats = policy_scope(@user.chats).order(created_at: :desc)
-  end
+  # def index
+  #   @user = current_user
+  #   @chats = @user.chats
+  #   # @chats = policy_scope(@user.chats).order(created_at: :desc)
+  # end
 
   def show
     @user = current_user
@@ -27,12 +27,12 @@ class ChatsController < ApplicationController
 
     if @other_user_id
       chat = Chat.joins(:chat_users)
-      .where(chats: { name: generate_chat_name(@user_id, @other_user_id)})
+      .where(chats: { name: generate_chat_name(@other_user.username.capitalize)})
       .where(chat_users: { user_id: [@user_id, @other_user_id]})
       .group('chats.id')
       .having('COUNT(DISTINCT chat_users.user_id) = 2').first
 
-      chat ||= Chat.create(name: generate_chat_name(@user_id, @other_user_id))
+      chat ||= Chat.create(name: generate_chat_name( @other_user.username.capitalize))
       create_chat_user(chat, @user_id)
       create_chat_user(chat, @other_user_id)
     else
@@ -41,8 +41,8 @@ class ChatsController < ApplicationController
     chat
   end
 
-  def generate_chat_name(user_id, other_user_id)
-    [user_id, other_user_id].sort.join('_')
+  def generate_chat_name(other_user)
+    other_user
   end
 
   def create_chat_user(chat, user_id)
