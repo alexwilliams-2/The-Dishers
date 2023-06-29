@@ -13,6 +13,10 @@
   flex-grow: 1;
 }
 
+.businesses-for-map :hover {
+  opacity: 0.8;
+}
+
 #map-for-show { //For the sticky map
   height: 50vh;
   // width: 100%;
