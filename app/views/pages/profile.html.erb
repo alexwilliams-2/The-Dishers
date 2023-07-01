@@ -20,7 +20,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-8"> <h2> Your Favourites </h2>
+          <div class="col-sm-8 mt-3"> <h2> Your Favourites </h2>
             <div class="fave-cards">
                 <% @favourites.each do |favourite| %>
                <%= link_to favourite.business, style: 'text-decoration: none; color: #000000' do  %>
@@ -31,7 +31,7 @@
               <% end %>
             </div>
           </div>
-     <div class="col-sm-12"> <h2> Your Reviews </h2>
+     <div class="col-sm-12 mt-3"> <h2> Your Reviews </h2>
            <% @user.reviews.each do |review| %>
             <div class="user-reviews">
                 <%= cl_image_tag review.business.photo.key, height: 300 %>
