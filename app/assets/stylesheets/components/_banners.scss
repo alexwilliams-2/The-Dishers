@@ -3,32 +3,33 @@
   background-position: center;
   padding: 150px 0;
   height: 100vh;
+
+  h1 {
+    color: $light-gray;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  h4 {
+    color: $light-gray;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: left;
+  }
+
+  p {
+    font-size: 20px;
+    color: $light-gray;
+    line-height: 2;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
 }
 
-.banner h1 {
-  color: $light-gray;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
-  line-height: 1;
-}
-
-.banner h4 {
-  color: $light-gray;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
-  line-height: 1;
-  text-align: left;
-}
-
-.banner p {
-  font-size: 20px;
-  color: $light-gray;
-  line-height: 2;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
-.banner-business {
+.business-banner {
   background-size: cover;
   background-position: center;
   height: 350px;
@@ -49,7 +50,6 @@
 }
 
 .business-banner-heading {
-  // margin-left: 35px;
   margin-top: 20px;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   font-size: 40px;
@@ -58,19 +58,18 @@
   text-align: left;
 }
 
-.business-rating {
+.business-banner-rating {
   margin-top: 8px;
   text-align: left;
 }
 
-.rating-stars {
+.business-banner-stars {
   display: inline-block;
   font-size: 40px;
   color: #009eff;
-
 }
 
-.business-info {
+.business-banner-recommended {
   font-size: 12px;
   line-height: 1.4;
   opacity: .7;
