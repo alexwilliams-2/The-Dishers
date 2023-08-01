@@ -17,24 +17,19 @@
 }
 
 #myCarousel .carousel-caption {
-  // padding-bottom: 100px;
   bottom: 70px;
   position: absolute;
   transform: translateY(-75%);
+
+  h1 h2 {
+    text-shadow: 0.75px 0.75px #000000;
+  }
+
+  h3 {
+    text-shadow: 0.75px 0.75px #000000;
+    margin-bottom: 40px;
+  }
 }
-
-
-#myCarousel .carousel-caption h1 h2 h3 {
-  text-shadow: 0.75px 0.75px #000000;
-}
-
-#myCarousel .carousel-caption h3 {
-  margin-bottom: 40px;
-}
-
-// .carousel-control {
-//   opacity: 0;
-// }
 
 .welcome-text {
   font-size: 64px !important;
