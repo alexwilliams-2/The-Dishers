@@ -39,8 +39,8 @@
   <div class="business-card-show w-100">
     <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
     <div class="business-card-show-body col-sm-6">
-      <h5 class="business-card-title-show"><%= @business.first.name %></h5>
-      <p class="business-card-text-show"><%= @business.first.description %></p>
+      <h5 class="business-card-show-title"><%= @business.first.name %></h5>
+      <p class="business-card-show-text"><%= @business.first.description %></p>
     </div>
     <ul class="list-group list-group-flush mb-0 col-sm-6">
       <li class="list-group-item"> <strong> Address: </strong> <%= @business.first.address %></li>
