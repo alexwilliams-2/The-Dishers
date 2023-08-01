@@ -11,15 +11,7 @@
           <% end %>
       </div>
     </div>
-<%#  "data-controller" => "like-button", "data-action" => "like-button#fillheart"  %>
-<%# data:{ controller: "like-button", action: "click->like-button#fillheart"} %>
-<%# data-like-button-target="likeButton" %>
     <div class="col-sm-9">
-      <%# <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#new_review_modal">
-          Add a review
-        </button>
-      </div> %>
       <h2 class="business-banner-heading"><%= @business.first.name %></h2>
       <div class="business-banner-rating">
         <% @ratings =[] %>
