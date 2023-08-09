@@ -69,6 +69,16 @@ class BusinessesController < ApplicationController
     end
   end
 
+  def average_wage
+    @business = Business.find(id: params[:id])
+    @average_wage = @business.calculate_average_wage
+  end
+
+  def average_rating
+    @business = Business.find(id: params[:id])
+    @average_rating = @business.calculate_average_raiting
+  end
+
   private
 
   # name, adress rating = boilerplate. To be changed later?
