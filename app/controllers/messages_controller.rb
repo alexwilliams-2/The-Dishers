@@ -1,8 +1,4 @@
 class MessagesController < ApplicationController
-  # def show
-  #   @chat = Chat.find(params[:id])
-  # end
-
   def create
     @chat = Chat.find(params[:chat_id])
 

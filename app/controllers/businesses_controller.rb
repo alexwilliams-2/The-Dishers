@@ -47,10 +47,7 @@ class BusinessesController < ApplicationController
       }
     end
 
-    # respond_to do |format| #for the filters
-    #   format.html
-    #   format.js
-    # end
+
   end
 
   def show

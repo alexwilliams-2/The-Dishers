@@ -4,8 +4,6 @@ class UserFavouritesController < ApplicationController
   end
 
   def create
-    # @strong_params = favourite_params
-    # @business = Business.find(params[:id])
     @favourite = UserFavourite.new
     @favourite.user = current_user
     @favourite.business = Business.find(params[:business_id])
