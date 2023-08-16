@@ -79,6 +79,11 @@ class BusinessesController < ApplicationController
     @average_rating = @business.calculate_average_raiting
   end
 
+  def recommended
+    @business = Business.find(id: params[:id])
+    @recommended = @business.calculate_recommended
+  end
+
   private
 
   # name, adress rating = boilerplate. To be changed later?

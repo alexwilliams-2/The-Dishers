@@ -38,19 +38,20 @@ class Business < ApplicationRecord
     end
   end
 
-  def recommended
+  def calculate_recommended
     @recommended_array = []
-    @businesses = Business.all
+    set_business(self.id)
 
-    @businesses.each do |business|
-      business.reviews.each do |review|
-        if review.recommended == true
-          @recommended_array.push(review)
-        end
+    @business.reviews.each do |review|
+      if review.recommended == true
+        @recommended_array.push(review)
       end
-      unless business.reviews.empty?
-        @wage = (@recommended_array .sum / business.reviews.length).ceil
-      end
+    end
+
+    recommended_count = @recommended_array.length
+
+    unless @business.reviews.empty?
+      recommended_count
     end
   end
 
