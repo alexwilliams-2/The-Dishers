@@ -109,10 +109,6 @@
               <div class="businesses-for-map">
                 <% if @businesses.any? %>
                   <% @businesses.each do |business| %>
-                  <% @wages = [] %>
-
-                  <% @recommended_array = [] %>
-                  <% @ratings = [] %>
                   <%# to make sure link is whole card - not just name %>
                   <%= link_to business, style: 'text-decoration: none; color: #000000' do %>
                     <div class="business-card mt-5">
@@ -120,29 +116,13 @@
                       <div class="business-card-infos">
                         <div class="d-flex justify-content-between">
                           <h2> <%= business.name %> </h2>
-                          <% business.reviews.each do |review| %>
-                            <% @wages.push(review.wage) %>
-                            <% end %>
-                          <% unless business.reviews.empty? %>
-                            <p> <%= "Average wage: #{number_to_currency((@wages.sum / business.reviews.length), options = {unit: "£"}) }"%> </p>
-                          <% end %>
+                          <p>Average wage: <%= business.calculate_average_wage %></p>
                         </div>
-                        <% business.reviews.each do |review| %>
-                          <% @ratings.push(review.rating) %>
-                          <% @rating = (@ratings.sum / business.reviews.length).ceil %>
-                        <% end %>
-                        <% unless business.reviews.empty? %>
-                          <% @rating.to_i.times do %>
+                        <% business.calculate_average_rating.to_i.times do %>
                             <i class="fa-solid fa-star" style="color: #009eff;"></i>
-                          <% end %>
                         <% end %>
                         <p> <%= business.description[0..100] %> </p>
-                        <% business.reviews.each do |review| %> </p>
-                          <% if review.recommended == true %>
-                            <% @recommended_array.push(review) %>
-                          <% end %>
-                        <% end %>
-                        <p> <%= "#{pluralize (@recommended_array.length), "Disher"} recommends working here" %> </p>
+                       <p> <%= business.calculate_recommended %> Dishers recommends working here </p>
                       </div>
                     </div>
                     <% end %>
