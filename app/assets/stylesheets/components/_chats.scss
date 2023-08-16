@@ -36,6 +36,7 @@
 }
 
 // To style the message itself
+
 .sender-style, .receiver-style {
   width: 60%;
   max-width: 400px;
@@ -63,17 +64,12 @@
   color: $light-gray;
 }
 
-// .chat-sub-header {
-//   background-color: $light-gray;
-// }
-
 .chat-sub-header p{
   margin: 0;
   color: $blue;
 }
 
-
-// chat bar
+// Chat Bar
 
 
 .chat-card {
