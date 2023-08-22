@@ -60,11 +60,11 @@
   margin: 0 12px;
 }
 
-.chat-card-header h3{
+.chat-card-header h3 {
   color: $light-gray;
 }
 
-.chat-sub-header p{
+.chat-sub-header p {
   margin: 0;
   color: $blue;
 }
@@ -130,7 +130,7 @@
   text-decoration: none;
 }
 
-.adiv{
+.adiv {
   align-items: center;
 	background: $light-gray;
 	font-size: 12px;
@@ -143,6 +143,7 @@
   color: $blue;
   text-align: center;
 }
+
 legend ~ div.form-check:first-of-type {
   clear: left;
 }
