@@ -1,9 +1,16 @@
 /* Styles for the footer */
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+footer {
+  background: $light-gray;
+  height: auto;
+  width: 100vw;
+  padding-top: 20px;
+  margin-top: 62px;
 }
 
 .footer-content {
@@ -40,21 +47,21 @@
   justify-content: center;
   margin: 1rem 0 3rem 0;
   padding-right: 19px;
-}
 
-.socials li {
-  margin: 0 10px;
-  display: inline-block;
-}
+  li {
+    margin: 0 10px;
+    display: inline-block;
+  }
 
-.socials a {
-  text-decoration: none;
-  color: black;
-}
+  a {
+    text-decoration: none;
+    color: black;
 
-.socials a i {
-  font-size: 16px;
-  transition: color .4s ease;
+    i {
+      font-size: 16px;
+      transition: color .4s ease;
+    }
+  }
 }
 
 .socials a:hover i {
@@ -66,10 +73,10 @@
   width: 100vw;
   padding: 20px 0;
   text-align: center;
-}
 
-.footer-bottom p {
-  font-size: 14px;
-  word-spacing: 2px;
-  text-transform: capitalize;
+  p {
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+  }
 }
