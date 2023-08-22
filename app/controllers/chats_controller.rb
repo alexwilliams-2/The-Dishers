@@ -1,11 +1,6 @@
 class ChatsController < ApplicationController
 
-  # def index
-  #   @user = current_user
-  #   @chats = @user.chats
-  #   # @chats = policy_scope(@user.chats).order(created_at: :desc)
-  # end
-
+ 
   def show
     @user = current_user
     @chats = @user.chats

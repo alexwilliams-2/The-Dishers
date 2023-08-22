@@ -11,15 +11,8 @@
           <% end %>
       </div>
     </div>
-<%#  "data-controller" => "like-button", "data-action" => "like-button#fillheart"  %>
-<%# data:{ controller: "like-button", action: "click->like-button#fillheart"} %>
-<%# data-like-button-target="likeButton" %>
+
     <div class="col-sm-9">
-      <%# <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-ghost" data-bs-toggle="modal" data-bs-target="#new_review_modal">
-          Add a review
-        </button>
-      </div> %>
       <h2 class="business-banner-heading"><%= @business.first.name %></h2>
       <div class="business-rating">
         <% @ratings =[] %>
@@ -69,7 +62,6 @@
     </ul>
   </div>
   <div class="main-container mt-5 w-100">
-    <%# <div class="container m-0"> %>
     <div class="businesses-for-map col-9">
       <h2> <strong> <%= pluralize @business.first.reviews.size, "Review" %> </strong></h2>
       <% if @business.first.reviews.blank? %>

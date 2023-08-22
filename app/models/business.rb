@@ -4,7 +4,7 @@ class Business < ApplicationRecord
 
   has_many :reviews, dependent: :destroy
   has_many :user_favourites, dependent: :destroy
-  # favourited user = user_favourites.
+
   has_many :favourited_users, through: :user_favourites, source: :user
   has_one_attached :photo
 

@@ -7,6 +7,7 @@ Chat.destroy_all
 User.destroy_all
 Review.destroy_all
 
+
 puts "creating 30 businesses"
 
   business_1 = Business.create!(
