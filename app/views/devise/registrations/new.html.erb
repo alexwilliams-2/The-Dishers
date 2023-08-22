@@ -1,35 +1,56 @@
-<h2>Sign up</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
-  <%= f.error_notification %>
+<div class="container home-sections d-flex flex-row justify-content-center align-items-center">
+  <div class="login-section pt-3">
+  <div class="card text-center pt-5 mx-auto" style="width: 40rem;">
+      <%= image_tag 'dishers-logo.png', class: "card-img-top align-self-center" %>
+      <p class="w-75 fs-6 fw-bold text-secondary align-self-center mt-3"> Sign up to join The Dishers community. </p>
+         <a href="#" class="d-block mt-4 text-decoration-none fw-bold bg-primary text-white rounded w-75 align-self-center p-1">
+        <%= image_tag("google-logo.webp", class:  "google") %>
+        Sign up with google
+      </a>
+       <div class="d-flex align-items-center mt-4">
+          <div class="line"></div>
+          <h2 class="line-text">OR</h2>
+          <div class="line"></div>
+        </div>
+          <div class="card-body">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
+              <%= f.error_notification %>
+           <div class="mb-3 mt-4">
+            <%= f.text_field :username, class: "form-control", placeholder: "Username" %>
+          </div>
+          <div class="mb-3 mt-4">
+            <%= f.text_field :bio, class: "form-control", placeholder: "Bio" %>
+          </div>
+          <div class="mb-3 mt-4">
+            <%= f.email_field :email, class: "form-control", placeholder: "Phone number or email" %>
+          </div>
 
-  <div class="form-inputs">
-    <%= f.input :username,
-                required: true,
-                input_html: { autocomplete: "username" }%>
-    <%= f.input :bio,
-                required: true,
-                input_html: { autocomplete: "bio" }%>
-    <%= f.input :location,
-                required: true,
-                input_html: { autocomplete: "location" }%>
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :photo, as: :file %>
+          <div class="mb-3">
+            <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+          </div>
+          <div class="mb-3">
+            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation" %>
+          </div>
+           <div class="mb-3">
+            <%= f.input :photo, as: :file, class: "form-control"  %>
+            </div>
+          <%= f.submit "Sign up", class:  "btn btn-flat w-100" %>
+        <% end %>
+         <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% elsif alert%>
+          <p class="alert"><%= alert %></p>
+        <%end%>
+          </div>
+    </div>
+
+    <div class="card text-center py-2 mt-3 mx-auto" style="width: 40rem;">
+      <div class="card-text">
+        have an account?
+        <%= link_to  "Sign in", new_user_session_path, class: " my-4 text-decoration-none" %>
+      </div>
+    </div>
+
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
