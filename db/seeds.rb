@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+
 require 'faker'
 require "open-uri"
 
@@ -13,23 +7,7 @@ Business.destroy_all
 User.destroy_all
 Review.destroy_all
 
-# 10.times do |i|
-#   puts "creating..."
-#   business = Business.new(
-#     name: Faker::Company.unique.name,
-#     address: london_address.sample,
-#     email: Faker::Internet.unique.email,
-#     phone_number: Faker::PhoneNumber.unique.phone_number,
-#     category: ['Hotel', 'Restaurant', 'Cafe', 'Bar', 'Resort'].sample,
-#     size: ["1-10 employees", "11-50 employees", "51-100 employees"].sample,
-#     business_hours: Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :short),
-#     description: Faker::Restaurant.description
-#   )
-#   file = URI.open(Faker::LoremFlickr.image(size: "300x300", search_terms: ['bar']))
-#   business.photo.attach(io: file, filename: "business_#{i}.png", content_type: "image/png")
-#   business.save
-#   puts "#{business.id} has been created"
-# end
+
 
   puts "creating 25 businesses"
 
@@ -659,23 +637,6 @@ puts "user created"
     "{business.name} paid its employees well, which was a definite advantage. The team environment was also fantastic, with friendly colleagues who made work enjoyable. However, the customers could be incredibly difficult and demanding. Dealing with their constant complaints and entitled attitudes made it challenging to maintain a positive experience."
   ]
 
-  # 30.times do
-  #   business = businesses.sample
-  #   user = users.sample
-
-  # # Review.create!(
-  # #   business: business,
-  # #   user: user,
-  # #   title: titles,
-  # #   content: user_content.sample,
-  # #   recommended: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? false : true,
-  # #   job_title: ["Manager", "Bartender", "Waitstaff", "Chef", "Bar-back", "Supervisor", "Kitchen Porter", "Head Bartender", "Floor staff", "Head Chef"].sample,
-  # #   rating: (titles.include?("hated") || titles.include?("don't") || titles.include?("never")) ? rand(1..3) : rand(4..5),
-  # #   wage: rand(7.0..15.0),
-  # #   votes: rand(0..10),
-  # # )
-  # # puts "review created"
-  # # end
 
   # LOGIC AND ITERATION
   10.times do

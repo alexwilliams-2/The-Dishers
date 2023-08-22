@@ -1,6 +1,5 @@
 class BusinessesController < ApplicationController
-  # need to add logic for second location search bar
-  # need to add logic for second location search bar
+
   def index
     @ratings = []
     @recommended_array = []
@@ -30,11 +29,9 @@ class BusinessesController < ApplicationController
       @businesses = Business.where(id: result)
     end
 
-    # created a sql query variable for readabilty
     sql_subquery = "name ILIKE :query OR category ILIKE :query"
-    # conditional - so we do not run query if no instances exist
+
     if params[:query].present?
-      # query: here is what would usually be ? in sql. We have simply named the placeholder
       @businesses = Business.where(sql_subquery, query: "%#{params[:query]}%")
     end
 
@@ -51,8 +48,8 @@ class BusinessesController < ApplicationController
   end
 
   def show
-    @business = Business.where(id: params[:id]) #.find(params[:id]) was changed to .where(id: params[:id]). To use .geocoded.map, we need to iterate over an array, so business had to be wrapped to create the array.
-    @review = Review.new # @favourite = UserFavourite.new
+    @business = Business.where(id: params[:id])
+    @review = Review.new
     @wages = []
     @ratings = []
 
@@ -68,8 +65,6 @@ class BusinessesController < ApplicationController
 
   private
 
-  # name, adress rating = boilerplate. To be changed later?
-  # Do we need strong params if we are going to use a new/create method ?
 
   def business_params
     params.require(:business).permit(:name, :address, :rating, :photo)

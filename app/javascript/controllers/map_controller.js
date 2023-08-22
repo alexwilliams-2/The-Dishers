@@ -38,4 +38,4 @@ export default class extends Controller {
     })
   }
 }
-// this.markerValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+
