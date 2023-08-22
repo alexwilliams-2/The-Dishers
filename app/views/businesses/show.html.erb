@@ -61,7 +61,6 @@
     </ul>
   </div>
   <div class="main-container mt-5 w-100">
-    <%# <div class="container m-0"> %>
     <div class="businesses-for-map col-9">
       <h2> <strong> <%= pluralize @business.first.reviews.size, "Review" %> </strong></h2>
       <% if @business.first.reviews.blank? %>
