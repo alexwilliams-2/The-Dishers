@@ -1,15 +1,14 @@
-
 require 'faker'
-require "open-uri"
+require 'open-uri'
 
-# Create businesses
 Business.destroy_all
+ChatUser.destroy_all
+Chat.destroy_all
 User.destroy_all
 Review.destroy_all
 
 
-
-  puts "creating 25 businesses"
+puts "creating 30 businesses"
 
   business_1 = Business.create!(
     name: "Well & Bucket",
@@ -476,7 +475,7 @@ Review.destroy_all
     bio: "Master of all things events and hospitality! I'll take your special occasions to the next level, crafting unforgettable moments that will have guests talking about them for years to come.",
     location: "London"
   )
-puts "user created"
+  puts "user created"
 
   user_2 = User.create!(
     username: "Maram",
@@ -603,8 +602,6 @@ puts "user created"
     location: "London"
   )
   puts "10 users created created"
-# CREATE REVIEWS
-# VARIABLES FIRST
   puts "creating reviews"
 
   businesses = Business.all
@@ -637,14 +634,11 @@ puts "user created"
     "{business.name} paid its employees well, which was a definite advantage. The team environment was also fantastic, with friendly colleagues who made work enjoyable. However, the customers could be incredibly difficult and demanding. Dealing with their constant complaints and entitled attitudes made it challenging to maintain a positive experience."
   ]
 
-
-  # LOGIC AND ITERATION
   10.times do
     user = users.sample
 
     positive_title = ["Great Work Environment", "Excellent Team", "Flexible schedule - great for casual work", "Good money", "Free lunches and good management"]
     negative_title = ["I hated every second there", "Don't work there", "They never pay on time", "They don't pay fair", "Terrible management"]
-# ITERATE OVER EACH BUSINESS
     businesses.each do |business|
 
       content = user_content.sample.gsub('{business.name}', "#{business.name}")
