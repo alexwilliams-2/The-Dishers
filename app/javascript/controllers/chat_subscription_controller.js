@@ -15,14 +15,6 @@ export default class extends Controller {
     )
 
 
-
-    // this.channel = createConsumer().subscriptions.create({
-    //   channel: "ChatChannel", id: this.chatIdValue
-    // }, { recieved: data => this.#insertMessage(data)})
-
-
-
-
     console.log(`subscribed to chat ${this.chatIdValue}`);
 
   }
