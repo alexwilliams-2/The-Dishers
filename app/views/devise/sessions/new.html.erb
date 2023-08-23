@@ -1,10 +1,10 @@
-
-<div class="container home-sections d-flex flex-row justify-content-center align-items-center">
+<div class="background" style="height:95vh">
+<div class="container home-sections d-flex flex-row pt-5 justify-content-center align-items-center" >
   <div class="images-section pt-3 d-none d-lg-block"></div>
 
   <div class="login-section pt-3">
 
-    <div class="card text-center pt-5" style="width: 45rem; ">
+    <div class="text-center pt-5" style="width: 45rem; ">
       <%= image_tag 'dishers-logo.png', class: "card-img-top" %>
       <div class="card-body">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div class="card text-center py-2 mt-3" style="width: 45rem;">
+    <div class="text-center py-2 mt-3" style="width: 45rem;">
       <div class="card-text">
         Don't have an account?
          <%= link_to  "Sign up", new_user_registration_path, class: " my-4 text-decoration-none" %>
@@ -45,4 +45,5 @@
     </div>
 
   </div>
+</div>
 </div>

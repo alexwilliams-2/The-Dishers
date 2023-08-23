@@ -1,5 +1,5 @@
 .google {
-  max-width: 1rem;
+  max-width: 2rem;
   height: auto;
   margin-right: .5rem
 }
@@ -22,15 +22,14 @@
 }
 
 .background {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url('https://images.unsplash.com/photo-1595475038699-283c9aa41e09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.75)),url('https://images.unsplash.com/photo-1595475038699-283c9aa41e09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
   background-size: cover;
-
 }
 
 
 .login-section {
-  
-  background-color: rgba(255, 255, 255, 0.7);
+
+  background-color: rgba(255, 255, 255, 0.55);
   padding: 20px;
   border-radius: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);

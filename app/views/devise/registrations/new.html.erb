@@ -1,11 +1,12 @@
-<div class="background">
-  <div class="container home-sections d-flex flex-row justify-content-center align-items-center">
-    <div class="login-section pt-3" style="width: 100rem;">
+<div class="background" style="height:95vh">
+  <div class="container home-sections d-flex flex-row justify-content-center pt-5 align-items-center">
+    <div class="login-section pt-3" style="width: 50rem;">
       <div class="text-center pt-5 mx-auto">
         <%= image_tag 'dishers-logo.png', class: "card-img-top align-self-center" %>
-        <p class="w-100 fs-10 fw-bold text-secondary align-self-center mt-3"> Sign up to join The Dishers community. </p>
-        <a href="#" class="d-block mt-4 text-decoration-none btn btn-flat fw-bold  rounded w-100 align-self-center p-3">
-          <%= image_tag("google-logo.webp", class:  "google") %> Sign up with google
+        <p class="w-100 fs-10 fw-bold text-white align-self-center mt-3 pt-4"> Sign up to join The Dishers community. </p>
+        <a href="#" class="d-block mt-4 text-decoration-none fw-bold">
+          <%= image_tag("google-logo.webp", class:  "google") %>
+          Sign up with Google
         </a>
         <div class="d-flex align-items-center mt-4">
           <div class="line"></div>
@@ -22,7 +23,7 @@
               <%= f.text_field :bio, class: "form-control", placeholder: "Bio" %>
             </div>
             <div class="mb-3 mt-4 ">
-              <%= f.email_field :email, class: "form-control", placeholder: "Phone number or email" %>
+              <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
             </div>
             <div class="mb-3 mt-4">
               <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
@@ -44,7 +45,7 @@
       </div>
       <div class="text-center py-2 mt-3 mx-auto" style="width: 40rem;">
         <div class="card-text">
-          have an account?
+          Have an account?
           <%= link_to  "Sign in", new_user_session_path, class: "my-4 text-decoration-none" %>
         </div>
       </div>
