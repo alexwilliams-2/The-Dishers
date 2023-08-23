@@ -13,26 +13,4 @@ html, body {
   overflow-x: hidden;
 }
 
-.google {
-  max-width: 1rem;
-  height: auto;
-  margin-right: .5rem
-}
-.line{
-  flex: 1;
-  height: 1px;
-  background-color: rgb(139, 137, 137);
-}
-
-.line-text{
-  padding: 0 .5rem; /* creates the space */
-  font-size: small;
-  margin: 0;
-}
-
-
-.card-img-top {
-  max-width: 50%;
-  align-self: center;
-}
 
