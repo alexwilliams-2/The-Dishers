@@ -56,6 +56,6 @@ class Business < ApplicationRecord
   end
 
   def set_business(business_id)
-    @business = Business.find(business_id)
+    @business = Business.where(id: business_id).first
   end
 end

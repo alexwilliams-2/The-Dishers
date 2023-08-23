@@ -64,17 +64,17 @@ class BusinessesController < ApplicationController
   end
 
   def average_wage
-    @business = Business.find(id: params[:id])
+    @business = Business.where(id: params[:id]).first
     @average_wage = @business.calculate_average_wage
   end
 
   def average_rating
-    @business = Business.find(id: params[:id])
+    @business = Business.where(id: params[:id]).first
     @average_rating = @business.calculate_average_raiting
   end
 
   def recommended
-    @business = Business.find(id: params[:id])
+    @business = Business.where(id: params[:id]).first
     @recommended = @business.calculate_recommended
   end
 
