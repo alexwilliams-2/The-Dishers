@@ -22,20 +22,12 @@
       </div> %>
       <h2 class="business-banner-heading"><%= @business.first.name %></h2>
       <div class="business-rating">
-        <% @ratings =[] %>
-        <% @business.first.reviews.each do |review| %>
-          <% @ratings.push(review.rating) %>
-        <% end %>
-        <% unless @business.first.reviews.empty? %>
-          <% @rating = (@ratings.sum / @business.first.reviews.length).ceil %>
           <div class="rating-stars">
-            <% @rating.to_i.times do %>
-              <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+            <% @business.first.calculate_average_rating.to_i.times do %>
+              <i class="fa-solid fa-star" style="color: #009eff;"></i>
             <% end %>
           </div>
-        <% end %>
-        <% @recommended_array = @business.first.reviews.select { |review| review.recommended } %>
-         <p class="business-info"><%= pluralize(@recommended_array.length, "Disher") %> recommend working here </p>
+         <p class="business-info"><%= @business.first.calculate_recommended %> recommend working here </p>
          <button type="button" class="btn btn-flat mt-3" data-bs-toggle="modal" data-bs-target="#new_review_modal">
           Add a review
         </button>
@@ -58,13 +50,7 @@
       <li class="list-group-item"> <strong> Email: </strong> <%= @business.first.email %></li>
       <li class="list-group-item"> <strong> Phone Number: </strong> <%= @business.first.phone_number %></li>
       <li class="list-group-item"> <strong> Average wage: </strong>
-        <% @wages = [] %>
-        <% @business.first.reviews.each do |review| %>
-          <% @wages.push(review.wage) %>
-        <% end %>
-        <% unless @business.first.reviews.empty? %>
-          <%= number_to_currency((@wages.sum / @business.first.reviews.length), options = {unit: "£"}) %> </p>
-        <% end %>
+        <%= @business.first.calculate_average_wage %>
       </li>
     </ul>
   </div>
