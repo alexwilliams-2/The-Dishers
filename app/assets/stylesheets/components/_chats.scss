@@ -36,6 +36,7 @@
 }
 
 // To style the message itself
+
 .sender-style, .receiver-style {
   width: 60%;
   max-width: 400px;
@@ -59,19 +60,16 @@
   margin: 0 12px;
 }
 
-.chat-card-header h3{
+.chat-card-header h3 {
   color: $light-gray;
 }
 
-
-
-.chat-sub-header p{
+.chat-sub-header p {
   margin: 0;
   color: $blue;
 }
 
-
-// chat bar
+// Chat Bar
 
 
 .chat-card {
@@ -128,7 +126,7 @@
   text-decoration: none;
 }
 
-.adiv{
+.adiv {
   align-items: center;
 	background: $light-gray;
 	font-size: 12px;
@@ -141,6 +139,7 @@
   color: $blue;
   text-align: center;
 }
+
 legend ~ div.form-check:first-of-type {
   clear: left;
 }

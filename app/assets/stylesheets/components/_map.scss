@@ -1,40 +1,73 @@
-
 .mapboxgl-popup {
   max-width: 400px;
   max-width: 400px;
   background: $blue;
   border-radius: 15px;
   padding: -10px;
+
+  h2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  p {
+    font-size: 12px;
+    opacity: .7;
+    margin: 0;
+  }
+
+  .card {
+    max-width: 250px;
+    max-width: 250px;
+    border-color: white;
+    background-color: white;
+    margin-bottom: 0px;
+  }
+
+  .info {
+    margin-bottom: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+  }
+
+  .card-infos {
+    padding: 10px;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 0px;
+  }
+
 }
 
-.mapboxgl-popup .card {
-  max-width: 250px;
-  max-width: 250px;
-  border-color: white;
-  background-color: white;
-  margin-bottom: 0px;
-}
+// .mapboxgl-popup .card {
+//   max-width: 250px;
+//   max-width: 250px;
+//   border-color: white;
+//   background-color: white;
+//   margin-bottom: 0px;
+// }
 
-.mapboxgl-popup h2{
-  font-size: 14px;
-  font-weight: bold;
-  margin: 0;
-}
-.mapboxgl-popup .info {
-  margin-bottom: 0px;
-  margin-bottom: 0px;
-  text-align: center;
-}
+// .mapboxgl-popup h2 {
+//   font-size: 14px;
+//   font-weight: bold;
+//   margin: 0;
+// }
+// .mapboxgl-popup .info {
+//   margin-bottom: 0px;
+//   margin-bottom: 0px;
+//   text-align: center;
+// }
 
-.mapboxgl-popup p {
-  font-size: 12px;
-  opacity: .7;
-  margin: 0;
-}
+// .mapboxgl-popup p {
+//   font-size: 12px;
+//   opacity: .7;
+//   margin: 0;
+// }
 
-.mapboxgl-popup .card-infos {
-  padding: 10px;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 0px;
-}
+// .mapboxgl-popup .card-infos {
+//   padding: 10px;
+//   justify-content: space-between;
+//   align-items: flex-end;
+//   margin-bottom: 0px;
+// }
