@@ -1,27 +1,26 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <div class="container w-100 p-0">
-   <div class="chat-card-header d-flex justify-content-center align-items-center mt-4 p-3  text-white border-bottom-0">
-            <h3> <strong> Inbox</strong> </h3>
-    </div>
+  <div class="chat-card-header d-flex justify-content-center align-items-center mt-4 p-3  text-white border-bottom-0">
+    <h3> <strong> Inbox</strong> </h3>
+  </div>
   <div class="chat-card chat-app col-md-2">
-      <div id="plist" class="people-list">
-          <ul class="list-unstyled chat-list">
-                  <% @chats.each do |chat| %>
-                    <% other_user_email = chat.other_user_email(current_user) %>
-                    <% other_user = User.find_by(email: other_user_email) %>
-                    <div class="about" data-chat-subscription-target="user" data-controller="chat-subscription">
-                    <li class="clearfix">
-                    <%= link_to chat_path(chat) do %>
-                    <div class="name">
-                    @<%= other_user.username %>
-                    </div>
-                    </div>
-                  <% end %>
-                </li>
-
-            <% end %>
-      </div>
+    <div id="plist" class="people-list">
+      <ul class="list-unstyled chat-list">
+        <% @chats.each do |chat| %>
+          <% other_user_email = chat.other_user_email(current_user) %>
+          <% other_user = User.find_by(email: other_user_email) %>
+          <div class="about" data-chat-subscription-target="user" data-controller="chat-subscription">
+            <li class="clearfix">
+            <%= link_to chat_path(chat) do %>
+              <div class="name">
+                <%= other_user.username %>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+  </div>
 </div>
 
 

@@ -1,6 +1,6 @@
 <% public_id = Cloudinary::Utils.cloudinary_url(@business.first.photo.key, type: :asset)[/[^\/]+(?=\.[^.]+\z)/] %>
 
-<div class="banner-business" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('<%= cl_image_path(@business.first.photo.key) %>');">
+<div class="business-banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('<%= cl_image_path(@business.first.photo.key) %>');">
   <div class="business-banner-content row w-100 align-items-center">
     <div class="col-sm-3">
        <div class="like-button", style="transform: scale(0.50)">
@@ -11,24 +11,23 @@
           <% end %>
       </div>
     </div>
-
     <div class="col-sm-9">
       <h2 class="business-banner-heading"><%= @business.first.name %></h2>
-      <div class="business-rating">
+      <div class="business-banner-rating">
         <% @ratings =[] %>
         <% @business.first.reviews.each do |review| %>
           <% @ratings.push(review.rating) %>
         <% end %>
         <% unless @business.first.reviews.empty? %>
           <% @rating = (@ratings.sum / @business.first.reviews.length).ceil %>
-          <div class="rating-stars">
+          <div class="business-banner-stars">
             <% @rating.to_i.times do %>
               <i class="fa-solid fa-star" style="color: #009EFF;"></i>
             <% end %>
           </div>
         <% end %>
         <% @recommended_array = @business.first.reviews.select { |review| review.recommended } %>
-         <p class="business-info"><%= pluralize(@recommended_array.length, "Disher") %> recommend working here </p>
+         <p class="business-banner-recommended"><%= pluralize(@recommended_array.length, "Disher") %> recommend working here </p>
          <button type="button" class="btn btn-flat mt-3" data-bs-toggle="modal" data-bs-target="#new_review_modal">
           Add a review
         </button>
@@ -40,8 +39,8 @@
   <div class="business-card-show w-100">
     <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
     <div class="business-card-show-body col-sm-6">
-      <h5 class="business-card-title-show"><%= @business.first.name %></h5>
-      <p class="business-card-text-show"><%= @business.first.description %></p>
+      <h5 class="business-card-show-title"><%= @business.first.name %></h5>
+      <p class="business-card-show-text"><%= @business.first.description %></p>
     </div>
     <ul class="list-group list-group-flush mb-0 col-sm-6">
       <li class="list-group-item"> <strong> Address: </strong> <%= @business.first.address %></li>
