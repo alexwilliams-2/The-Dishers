@@ -33,6 +33,9 @@
                            <div class="col-3", id="filter-buttons" data-controller="filter">
                                 <%= button_to "£12-£13", businesses_path, method: :get, params: { wage: 12.00}, class: 'btn', remote: true, data: { wage: 12.00 } %>
                           </div>
+                          <div class="col-3", id="filter-buttons" data-controller="filter">
+                                <%= button_to "£12-£13", businesses_path, method: :get, params: { wage: 12.00}, class: 'btn', remote: true, data: { wage: 12.00 } %>
+                          </div>
                       </div>
                       <div>
                           <ul>
@@ -142,3 +145,5 @@
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
+
+<%= console %>
