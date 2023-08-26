@@ -7,8 +7,7 @@ Chat.destroy_all
 User.destroy_all
 Review.destroy_all
 
-
-puts "creating 30 businesses"
+puts "creating 32 businesses"
 
   business_1 = Business.create!(
     name: "Well & Bucket",
@@ -459,6 +458,33 @@ puts "creating 30 businesses"
   business_30.photo.attach(io: File.open(Rails.root.join("app/assets/images/Java.jpg")), filename: "Java.jpg", content_type: 'image/jpg')
 
   puts "business created"
+
+  business_31 = Business.create!(
+    name: "Temple Bar",
+    address: "KLOVENIERSBURGWAL 2, 1012 CT, AMSTERDAM CENTRUM, DE WALLEN",
+    email: "info@temple-bar.com",
+    phone_number: "+329 8784 9435",
+    category: "Pub",
+    size: "1-12 employees",
+    business_hours: "9am - 2am",
+    description: "Amsterdam's Finest Irish Bar."
+  )
+
+  business_31.photo.attach(io: File.open(Rails.root.join("app/assets/images/temple-bar.jpg")), filename: "temple-bar.jpg", content_type: 'image/jpg')
+
+  business_32 = Business.create!(
+    name: "The Swinging Arm",
+    address: "63 Church Street, Birkenhead, CH41 5EG",
+    email: "info@swingingarm.com",
+    phone_number: "0151 878 9435",
+    category: "Pub",
+    size: "1-12 employees",
+    business_hours: "9am - 12am",
+    description: "Live Music and Real Ale served in the heart of the Birkenhead community."
+  )
+
+  business_32.photo.attach(io: File.open(Rails.root.join("app/assets/images/swinging-arm.jpg")), filename: "swinging-arm.jpg", content_type: 'image/jpg')
+
 
 
   puts "creating 10 users"
