@@ -28,13 +28,15 @@
   overflow: hidden;
   background-color: white;
   padding: 0;
+  border-radius: 4px 0px 0px 4px;
 
   .btn-flat {
   padding: 4px 16px;
+  border-radius: 0px;
   }
 
   &:hover {
-    background: #009dffc7;
+    background: #56afdfc7;
   }
 }
 
@@ -44,7 +46,6 @@
 
 .form-control {
   border: none !important;
-  border-radius: 4px 0px 0px 4px !important;
 }
 
 .right-margin {
@@ -56,3 +57,6 @@
   background-color: #d7d5d5;
 }
 
+#right-search-bar {
+  border-radius: 0px 4px 4px 0px !important;
+}
