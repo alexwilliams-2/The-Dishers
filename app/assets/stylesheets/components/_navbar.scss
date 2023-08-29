@@ -23,15 +23,40 @@
   }
 }
 
-#search-bar .btn-flat {
+#search-bar-container {
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  padding: 0;
+  border-radius: 4px 0px 0px 4px;
+
+  .btn-flat {
   padding: 4px 16px;
+  border-radius: 0px;
+  }
 
   &:hover {
-    background: #009dffc7;
+    background: #56afdfc7;
   }
 }
 
-.nav-link:hover{
+.nav-link:hover {
   opacity: 0.8;
 }
 
+.form-control {
+  border: none !important;
+}
+
+.right-margin {
+  position: absolute;
+  top: 15%;
+  bottom: 15%;
+  left: 315px;
+  width: 2px;
+  background-color: #d7d5d5;
+}
+
+#right-search-bar {
+  border-radius: 0px 4px 4px 0px !important;
+}
