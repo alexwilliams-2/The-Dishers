@@ -1,5 +1,17 @@
+require 'uri'
 require 'faker'
 require 'open-uri'
+require 'json'
+
+url = "https://api.geoapify.com/v2/places?categories=catering.bar&filter=place:5120a11227befefdbf599d89f4d38a3e4a40f00101f9014a7a020000000000c0020692030a4269726d696e6768616d&limit=10&apiKey=e71969038700425b8adbbdd05069b883"
+# Add API to end file then interpolate it into the line above
+brum_businesses_response = URI.open(url).read
+brum_businesses = JSON.parse(brum_businesses_response)
+brum_businesses_data = brum_businesses['features'].first['properties']
+
+puts "#{brum_businesses['features'].first['properties']['name']} is located in #{brum_businesses['features'].first['properties']['town']}, #{brum_businesses['features'].first['properties']['city']}"
+
+puts "Address: #{brum_businesses['features'].first['properties']['formatted']}"
 
 Business.destroy_all
 ChatUser.destroy_all
@@ -7,7 +19,22 @@ Chat.destroy_all
 User.destroy_all
 Review.destroy_all
 
-puts "creating 32 businesses"
+# puts "creating 32 businesses
+
+brum_businesses.each do |business|
+  Business.create!(
+    name: business['features'].first['properties']['name'],
+    address: business['features'].first['properties']['formatted'],
+    email: 'info@business.com',
+    phone_number: business['features'].first['properties']['datasource']['raw']['phone'],
+    category: business['features'].first['properties']['categories'].last,
+    size: "#{rand(0..25)} employees",
+    business_hours: business['features'].first['properties']['datasource']['raw']['opening_hours'],
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+  )
+end
+
+
 
   business_1 = Business.create!(
     name: "Well & Bucket",
@@ -461,7 +488,7 @@ puts "creating 32 businesses"
 
   business_31 = Business.create!(
     name: "Temple Bar",
-    address: "KLOVENIERSBURGWAL 2, 1012 CT, AMSTERDAM CENTRUM, DE WALLEN",
+    address: "Klovenierburgswal 2, Amsterdam, 1012 CT",
     email: "info@temple-bar.com",
     phone_number: "+329 8784 9435",
     category: "Pub",
@@ -484,7 +511,6 @@ puts "creating 32 businesses"
   )
 
   business_32.photo.attach(io: File.open(Rails.root.join("app/assets/images/swinging-arm.jpg")), filename: "swinging-arm.jpg", content_type: 'image/jpg')
-
 
 
   puts "creating 10 users"
@@ -665,6 +691,7 @@ puts "creating 32 businesses"
 
     positive_title = ["Great Work Environment", "Excellent Team", "Flexible schedule - great for casual work", "Good money", "Free lunches and good management"]
     negative_title = ["I hated every second there", "Don't work there", "They never pay on time", "They don't pay fair", "Terrible management"]
+
     businesses.each do |business|
 
       content = user_content.sample.gsub('{business.name}', "#{business.name}")
