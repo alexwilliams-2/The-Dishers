@@ -4,7 +4,7 @@ class BusinessesController < ApplicationController
     @ratings = []
     @recommended_array = []
     @wages = []
-    @businesses = Business.all
+    @pagy, @businesses = pagy(Business.all, items: 5)
 
     @businesses = @businesses.where(category: params[:category]) if params[:category].present?
 
@@ -35,7 +35,7 @@ class BusinessesController < ApplicationController
     if params[:query].present? && params[:region_query].present?
       @businesses = Business.where("#{sql_subquery} AND #{location_sqlquery}",
       query: "%#{params[:query]}%", region_query: "%#{params[:region_query]}%")
-      
+
     elsif params[:query].present? && !params[:region_query].present?
       @businesses = Business.where(sql_subquery, query: "%#{params[:query]}%")
 
