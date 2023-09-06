@@ -134,7 +134,9 @@
                   <em> Sorry, no businesses found. </em>
                 <% end %>
               </div>
-              <%== raw pagy_nav(@pagy) %>
+              <% if @pagy.count > @pagy.items %>
+                <%== raw pagy_nav(@pagy) %>
+              <% end %>
             </div>
           </div>
         </div>
