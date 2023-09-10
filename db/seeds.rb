@@ -9,25 +9,27 @@ Chat.destroy_all
 User.destroy_all
 Review.destroy_all
 
-brum_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.pub,catering.cafe,catering.restaurant&filter=place:5120a11227befefdbf599d89f4d38a3e4a40f00101f9014a7a020000000000c0020692030a4269726d696e6768616d&limit=10&apiKey=e71969038700425b8adbbdd05069b883"
+api_key = ENV['GEOAPIFY_API_KEY']
+
+brum_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.pub,catering.cafe,catering.restaurant&filter=place:5120a11227befefdbf599d89f4d38a3e4a40f00101f9014a7a020000000000c0020692030a4269726d696e6768616d&limit=10&apiKey=#{api_key}"
 # Add API to end file then interpolate it into the line above
 brum_businesses_response = URI.open(brum_url).read
 brum_businesses = JSON.parse(brum_businesses_response)
 
-lpool_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.pub,catering.cafe,catering.restaurant&filter=place:51f6285c8fc2d507c05979909e2287b44a40c00208e2031e77686f736f6e66697273743a6c6f63616c6974793a313031373530353437&lang=en&limit=10&apiKey=e71969038700425b8adbbdd05069b883"
+lpool_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.pub,catering.cafe,catering.restaurant&filter=place:51f6285c8fc2d507c05979909e2287b44a40c00208e2031e77686f736f6e66697273743a6c6f63616c6974793a313031373530353437&lang=en&limit=10&apiKey=#{api_key}"
 # Add API to end file then interpolate it into the line above
 lpool_business_response = URI.open(lpool_url).read
 lpool_businesses = JSON.parse(lpool_business_response)
 
-cov_url = 'https://api.geoapify.com/v2/places?categories=catering.bar,catering.restaurant,catering.cafe&filter=place:512e8c83caf050f8bf59b090a24e5c354a40f00101f901427a020000000000c00206920308436f76656e747279&lang=en&limit=10&apiKey=e71969038700425b8adbbdd05069b883'
+cov_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.restaurant,catering.cafe&filter=place:512e8c83caf050f8bf59b090a24e5c354a40f00101f901427a020000000000c00206920308436f76656e747279&lang=en&limit=10&apiKey=#{api_key}"
 cov_businesses_response = URI.open(cov_url).read
 cov_businesses = JSON.parse(cov_businesses_response)
 
-manc_url = 'https://api.geoapify.com/v2/places?categories=catering.bar,catering.restaurant,catering.cafe&filter=place:51d60053a21bdc01c0591f63b0ddcbb94a40f00101f901e03c020000000000c0020692030a4d616e63686573746572&lang=en&limit=10&apiKey=e71969038700425b8adbbdd05069b883'
+manc_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.restaurant,catering.cafe&filter=place:51d60053a21bdc01c0591f63b0ddcbb94a40f00101f901e03c020000000000c0020692030a4d616e63686573746572&lang=en&limit=10&apiKey=#{api_key}"
 manc_businesses_response = URI.open(manc_url).read
 manc_businesses = JSON.parse(manc_businesses_response)
 
-glasgow_url = 'https://api.geoapify.com/v2/places?categories=catering.bar,catering.restaurant,catering.cafe&filter=place:516cee43392c0011c0593f50b8533aee4b40f00103f9014ecaa90000000000920307476c6173676f77&lang=en&limit=10&apiKey=e71969038700425b8adbbdd05069b883'
+glasgow_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.restaurant,catering.cafe&filter=place:516cee43392c0011c0593f50b8533aee4b40f00103f9014ecaa90000000000920307476c6173676f77&lang=en&limit=10&apiKey=#{api_key}"
 glasgow_business_response = URI.open(glasgow_url).read
 glasgow_businesses = JSON.parse(glasgow_business_response)
 
@@ -69,7 +71,7 @@ manc_businesses['features'].each do |business|
   Business.create!(
     name: business['properties']['name'],
     address: business['properties']['formatted'],
-    email: business['properties']['datasource']['raw'].include?('email') ? business['properties']['datasource']['raw']['email'] : "#{Faker::Name.unique.name}.outlook.com",
+    email: business['properties']['datasource']['raw'].include?('email') ? business['properties']['datasource']['raw']['email'] : "#{business['properties']['name']}.outlook.com",
     phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0161 532 #{rand{0..1000}}",
     size: "#{rand(0..25)} employees",
     business_hours: business['properties']['datasource']['raw']['opening_hours'],
