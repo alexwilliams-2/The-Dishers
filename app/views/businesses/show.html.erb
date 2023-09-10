@@ -52,7 +52,6 @@
       <% if @business.first.reviews.blank? %>
         <h3> Be the first to review <%= @business.name %> </h3>
       <% else %>
-        <% @business.first.reviews.reverse %>
         <% @business.first.reviews.reverse_each do |review| %>
           <div class="review-card col col-sm-11">
             <div class="col-sm-3">
