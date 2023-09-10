@@ -119,7 +119,6 @@
                       <div class="business-card-infos">
                         <div class="d-flex justify-content-between">
                           <h2> <%= business.name %> </h2>
-                          <p> <%= business.address %> </p>
                           <p>Average wage: <%= business.calculate_average_wage %></p>
                         </div>
                         <% business.calculate_average_rating.to_i.times do %>
@@ -148,4 +147,3 @@
 </div>
 
 
-<%= console %>
