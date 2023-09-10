@@ -12,12 +12,10 @@ Review.destroy_all
 api_key = ENV['GEOAPIFY_API_KEY']
 
 brum_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.pub,catering.cafe,catering.restaurant&filter=place:5120a11227befefdbf599d89f4d38a3e4a40f00101f9014a7a020000000000c0020692030a4269726d696e6768616d&limit=10&apiKey=#{api_key}"
-# Add API to end file then interpolate it into the line above
 brum_businesses_response = URI.open(brum_url).read
 brum_businesses = JSON.parse(brum_businesses_response)
 
 lpool_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.pub,catering.cafe,catering.restaurant&filter=place:51f6285c8fc2d507c05979909e2287b44a40c00208e2031e77686f736f6e66697273743a6c6f63616c6974793a313031373530353437&lang=en&limit=10&apiKey=#{api_key}"
-# Add API to end file then interpolate it into the line above
 lpool_business_response = URI.open(lpool_url).read
 lpool_businesses = JSON.parse(lpool_business_response)
 
@@ -62,7 +60,9 @@ glasgow_businesses['features'].each do |business|
                 'Restaurant'
               end
   )
-  Business.all.last.photo.attach(io: File.open(Rails.root.join("app/assets/images/maram.jpeg")), filename: "maram.jpeg", content_type: 'image/jpg')
+  images_url = 'https://source.unsplash.com/random/600x600/?bar,restaurant,cafe'
+  image = URI.open(images_url)
+  Business.all.last.photo.attach(io: image, filename: "#{Time.now.to_i}_unsplash_random.jpg", content_type: 'image/jpg')
   puts "Glesga business created"
 end
 
@@ -94,7 +94,9 @@ manc_businesses['features'].each do |business|
                 'Restaurant'
               end
   )
-  Business.all.last.photo.attach(io: File.open(Rails.root.join("app/assets/images/keti.jpeg")), filename: "keti.jpeg", content_type: 'image/jpeg')
+  images_url = 'https://source.unsplash.com/random/600x600/?bar,restaurant,cafe'
+  image = URI.open(images_url)
+  Business.all.last.photo.attach(io: image, filename: "#{Time.now.to_i}_unsplash_random.jpg", content_type: 'image/jpg')
   puts "Mancunian business created"
 end
 
@@ -126,7 +128,9 @@ cov_businesses['features'].each do |business|
                 'Restaurant'
               end
   )
-  Business.all.last.photo.attach(io: File.open(Rails.root.join("app/assets/images/Well&Bucket.jpg")), filename: "Well&Bucket.jpg", content_type: 'image/jpg')
+  images_url = 'https://source.unsplash.com/random/600x600/?bar,restaurant,cafe'
+  image = URI.open(images_url)
+  Business.all.last.photo.attach(io: image, filename: "#{Time.now.to_i}_unsplash_random.jpg", content_type: 'image/jpg')
   puts "Coventry business created"
 end
 
@@ -160,7 +164,9 @@ brum_businesses['features'].each do |business|
                 'Restaurant'
               end
   )
-  Business.all.last.photo.attach(io: File.open(Rails.root.join("app/assets/images/Well&Bucket.jpg")), filename: "Well&Bucket.jpg", content_type: 'image/jpg')
+  images_url = 'https://source.unsplash.com/random/600x600/?bar,restaurant,cafe'
+  image = URI.open(images_url)
+  Business.all.last.photo.attach(io: image, filename: "#{Time.now.to_i}_unsplash_random.jpg", content_type: 'image/jpg')
   puts "Birmingham business created"
 end
 
@@ -193,7 +199,9 @@ lpool_businesses['features'].each do |business|
                 'Restaurant'
               end
   )
-  Business.all.last.photo.attach(io: File.open(Rails.root.join("app/assets/images/Well&Bucket.jpg")), filename: "Well&Bucket.jpg", content_type: 'image/jpg')
+  images_url = 'https://source.unsplash.com/random/600x600/?bar,restaurant,cafe'
+  image = URI.open(images_url)
+  Business.all.last.photo.attach(io: image, filename: "#{Time.now.to_i}_unsplash_random.jpg", content_type: 'image/jpg')
   puts "Scouse business created"
 end
 
