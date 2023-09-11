@@ -62,9 +62,6 @@ class BusinessesController < ApplicationController
     @review = Review.new
     @wages = []
     @ratings = []
-    @reviews = @business.first.reviews
-
-    @pagy, @paginated_reviews = pagy(@reviews, items: 5, page: params[:page] || 1)
 
     @markers = @business.geocoded.map do |business|
       {
