@@ -4,30 +4,34 @@ class BusinessesController < ApplicationController
     @ratings = []
     @recommended_array = []
     @wages = []
-    @pagy, @businesses = pagy(Business.all, items: 5)
+    all_businesses = Business.all
 
-    @businesses = @businesses.where(category: params[:category]) if params[:category].present?
+    if params[:category].present?
+      all_businesses = all_businesses.where(category: params[:category])
+    end
 
     if params[:rating].present?
       result = []
-      @businesses.each do |business|
+      all_businesses.each do |business|
         if (business.reviews.sum(:rating) / business.reviews.count).ceil == params[:rating].to_i
           result.push(business.id)
         end
       end
-      @businesses = Business.where(id: result)
+      all_businesses = all_businesses.where(id: result)
     end
 
     if params[:wage].present?
       result = []
-      @businesses.each do |business|
+      all_businesses.each do |business|
         average_wage = (business.reviews.sum(:wage) / business.reviews.count).to_f
         if average_wage >= params[:wage].to_f && average_wage <= params[:wage].to_f + 1
           result.push(business.id)
         end
       end
-      @businesses = Business.where(id: result)
+      all_businesses = all_businesses.where(id: result)
     end
+
+    @pagy, @businesses = pagy(all_businesses, items: 5)
 
     sql_subquery = "name ILIKE :query OR category ILIKE :query"
     location_sqlquery = "address ILIKE :region_query"
@@ -58,6 +62,9 @@ class BusinessesController < ApplicationController
     @review = Review.new
     @wages = []
     @ratings = []
+    @reviews = @business.first.reviews
+
+    @pagy, @paginated_reviews = pagy(@reviews, items: 5, page: params[:page] || 1)
 
     @markers = @business.geocoded.map do |business|
       {

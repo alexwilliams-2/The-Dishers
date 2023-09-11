@@ -48,7 +48,7 @@
   </div>
   <div class="main-container mt-5 w-100">
     <div class="businesses-for-map col-9">
-      <h2> <strong> <%= pluralize @business.first.reviews.size, "Review" %> </strong></h2>
+      <h2> <strong> <%= pluralize @business.first.reviews.count, "Review" %> </strong></h2>
       <% if @business.first.reviews.blank? %>
       <h3> Be the first to review <%= @business.name %> </h3>
       <% else %>
@@ -82,6 +82,7 @@
       </div>
       <% end %>
       <% end %>
+       <%== raw pagy_nav(@pagy) %>
     </div>
     <div class="col-5">
       <h2> <strong> Location</h2>
