@@ -33,7 +33,7 @@ class BusinessesController < ApplicationController
 
     @pagy, @businesses = pagy(all_businesses, items: 5)
 
-    sql_subquery = "name ILIKE :query OR category ILIKE :query"
+    sql_subquery = "(category ILIKE :query OR name ILIKE :query)"
     location_sqlquery = "address ILIKE :region_query"
 
     if params[:query].present? && params[:region_query].present?

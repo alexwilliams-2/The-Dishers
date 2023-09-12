@@ -50,37 +50,37 @@
     <div class="businesses-for-map col-9">
       <h2> <strong> <%= pluralize @business.first.reviews.count, "Review" %> </strong></h2>
       <% if @business.first.reviews.blank? %>
-      <h3> Be the first to review <%= @business.name %> </h3>
+        <h3> Be the first to review <%= @business.name %> </h3>
       <% else %>
-      <% @business.first.reviews.each do |review| %>
-      <div class="review-card col col-sm-11">
-        <div class="col-sm-3">
-          <div>
-            <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %> <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
-            <i class="fa-regular fa-message" style="color: #009EFF;"></i>
-          <% end %></h4>
-            <% review.rating.to_i.times do %>
-            <span class="fa fa-star star-active ml-3"></span>
-            <% end %>
+        <% @business.first.reviews.reverse_each do |review| %>
+          <div class="review-card col col-sm-11">
+            <div class="col-sm-3">
+              <div>
+                <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %> <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
+                <i class="fa-regular fa-message" style="color: #009EFF;"></i>
+              <% end %></h4>
+                <% review.rating.to_i.times do %>
+                <span class="fa fa-star star-active ml-3"></span>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <h4 class="blue-text mt-3"><b> "<%= review.title %>" </b></h4>
+              <p class="review-content">"<%= review.content %>"</p>
+            </div>
+            <div class="col-sm-3" data-controller="upvote">
+              <div class="like mr-3 vote">
+                <img src="https://i.imgur.com/mHSQOaX.png" data-action="click->upvote#upvote" id="<%=review.id %>">
+                <span class="blue-text pl-2" data-upvote-target="upVoteNumber"> <%= rand(1..50) %>
+                </span>
+              </div>
+              <div class="unlike vote">
+                <img src="https://i.imgur.com/bFBO3J7.png" data-action="click->upvote#downvote">
+                <span class="text-muted pl-2" data-upvote-target="downVoteNumber"> <%= rand(1..20) %></span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-sm-6">
-          <h4 class="blue-text mt-3"><b> "<%= review.title %>" </b></h4>
-          <p class="review-content">"<%= review.content %>"</p>
-        </div>
-        <div class="col-sm-3" data-controller="upvote">
-          <div class="like mr-3 vote">
-            <img src="https://i.imgur.com/mHSQOaX.png" data-action="click->upvote#upvote" id="<%=review.id %>">
-            <span class="blue-text pl-2" data-upvote-target="upVoteNumber"> <%= rand(1..50) %>
-            </span>
-          </div>
-          <div class="unlike vote">
-            <img src="https://i.imgur.com/bFBO3J7.png" data-action="click->upvote#downvote">
-            <span class="text-muted pl-2" data-upvote-target="downVoteNumber"> <%= rand(1..20) %></span>
-          </div>
-        </div>
-      </div>
-      <% end %>
+        <% end %>
       <% end %>
     </div>
     <div class="col-5">
