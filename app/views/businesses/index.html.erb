@@ -134,6 +134,7 @@
                   <em> Sorry, no businesses found. </em>
                 <% end %>
               </div>
+                <%== raw pagy_nav(@pagy) %>
             </div>
           </div>
         </div>
@@ -145,5 +146,4 @@
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
-
 

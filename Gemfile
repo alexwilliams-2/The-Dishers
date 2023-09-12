@@ -51,6 +51,8 @@ gem "sassc-rails"
 gem "dotenv-rails", groups: [:development, :test]
 gem "cloudinary"
 
+gem 'pagy'
+
 gem "geocoder"
 
 gem "faker"
@@ -81,3 +83,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "tailwindcss-rails", "~> 2.0"
