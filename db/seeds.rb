@@ -1,5 +1,7 @@
+require 'uri'
 require 'faker'
 require 'open-uri'
+require 'json'
 
 Business.destroy_all
 ChatUser.destroy_all
@@ -7,7 +9,204 @@ Chat.destroy_all
 User.destroy_all
 Review.destroy_all
 
-puts "creating 32 businesses"
+api_key = ENV['GEOAPIFY_API_KEY']
+
+brum_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.pub,catering.cafe,catering.restaurant&filter=place:5120a11227befefdbf599d89f4d38a3e4a40f00101f9014a7a020000000000c0020692030a4269726d696e6768616d&limit=10&apiKey=#{api_key}"
+brum_businesses_response = URI.open(brum_url).read
+brum_businesses = JSON.parse(brum_businesses_response)
+
+lpool_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.pub,catering.cafe,catering.restaurant&filter=place:51f6285c8fc2d507c05979909e2287b44a40c00208e2031e77686f736f6e66697273743a6c6f63616c6974793a313031373530353437&lang=en&limit=10&apiKey=#{api_key}"
+lpool_business_response = URI.open(lpool_url).read
+lpool_businesses = JSON.parse(lpool_business_response)
+
+cov_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.restaurant,catering.cafe&filter=place:512e8c83caf050f8bf59b090a24e5c354a40f00101f901427a020000000000c00206920308436f76656e747279&lang=en&limit=10&apiKey=#{api_key}"
+cov_businesses_response = URI.open(cov_url).read
+cov_businesses = JSON.parse(cov_businesses_response)
+
+manc_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.restaurant,catering.cafe&filter=place:51d60053a21bdc01c0591f63b0ddcbb94a40f00101f901e03c020000000000c0020692030a4d616e63686573746572&lang=en&limit=10&apiKey=#{api_key}"
+manc_businesses_response = URI.open(manc_url).read
+manc_businesses = JSON.parse(manc_businesses_response)
+
+glasgow_url = "https://api.geoapify.com/v2/places?categories=catering.bar,catering.restaurant,catering.cafe&filter=place:516cee43392c0011c0593f50b8533aee4b40f00103f9014ecaa90000000000920307476c6173676f77&lang=en&limit=10&apiKey=#{api_key}"
+glasgow_business_response = URI.open(glasgow_url).read
+glasgow_businesses = JSON.parse(glasgow_business_response)
+
+puts "Creating Glesga businesses"
+
+glasgow_businesses['features'].each do |business|
+  Business.create!(
+    name: business['properties']['name'],
+    address: business['properties']['formatted'],
+    email: business['properties']['datasource']['raw'].include?('email') ? business['properties']['datasource']['raw']['email'] : "#{business['properties']['name']}.outlook.com",
+    phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0121 532 #{rand{0..100}}",
+    size: "#{rand(0..25)} employees",
+    business_hours: business['properties']['datasource']['raw']['opening_hours'],
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    category: if business['properties']['categories'].include?('catering.pub')
+                'Pub'
+              elsif business['properties']['categories'].include?('catering.bar')
+                'Bar'
+              elsif business['properties']['categories'].include?('catering.cafe') && business['properties']['categories'].include?('vegan')
+                'Cafe || Vegan Friendly'
+              elsif business['properties']['categories'].include?('catering.cafe') && business['properties']['categories'].include?('vegetarian')
+                'Cafe || Vegatarian Friendly'
+              elsif business['properties']['categories'].include?('catering.cafe')
+                'Cafe'
+              elsif business['properties']['categories'].include?('catering.restaurant') && business['properties']['categories'].include?('vegan')
+                "Restaurant || Vegan Friendly"
+              elsif business['properties']['categories'].include?('catering.restaurant') && business['properties']['categories'].include?('vegetarian')
+                'Restaurant || Vegatarian Friendly'
+              elsif business['properties']['categories'].include?('catering.restaurant')
+                'Restaurant'
+              end
+  )
+  images_url = 'https://source.unsplash.com/random/600x600/?bar,restaurant,cafe'
+  image = URI.open(images_url)
+  Business.all.last.photo.attach(io: image, filename: "#{Time.now.to_i}_unsplash_random.jpg", content_type: 'image/jpg')
+  puts "Glesga business created"
+end
+
+puts "Creating Manchester businesses"
+manc_businesses['features'].each do |business|
+  Business.create!(
+    name: business['properties']['name'],
+    address: business['properties']['formatted'],
+    email: business['properties']['datasource']['raw'].include?('email') ? business['properties']['datasource']['raw']['email'] : "#{business['properties']['name']}.outlook.com",
+    phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0161 532 #{rand{0..1000}}",
+    size: "#{rand(0..25)} employees",
+    business_hours: business['properties']['datasource']['raw']['opening_hours'],
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    category: if business['properties']['categories'].include?('catering.pub')
+                'Pub'
+              elsif business['properties']['categories'].include?('catering.bar')
+                'Bar'
+              elsif business['properties']['categories'].include?('catering.cafe') && business['properties']['categories'].include?('vegan')
+                'Cafe || Vegan Friendly'
+              elsif business['properties']['categories'].include?('catering.cafe') && business['properties']['categories'].include?('vegetarian')
+                'Cafe || Vegatarian Friendly'
+              elsif business['properties']['categories'].include?('catering.cafe')
+                'Cafe'
+              elsif business['properties']['categories'].include?('catering.restaurant') && business['properties']['categories'].include?('vegan')
+                "Restaurant || Vegan Friendly"
+              elsif business['properties']['categories'].include?('catering.restaurant') && business['properties']['categories'].include?('vegetarian')
+                'Restaurant || Vegatarian Friendly'
+              elsif business['properties']['categories'].include?('catering.restaurant')
+                'Restaurant'
+              end
+  )
+  images_url = 'https://source.unsplash.com/random/600x600/?bar,restaurant,cafe'
+  image = URI.open(images_url)
+  Business.all.last.photo.attach(io: image, filename: "#{Time.now.to_i}_unsplash_random.jpg", content_type: 'image/jpg')
+  puts "Mancunian business created"
+end
+
+puts "Creating Coventry businesses"
+cov_businesses['features'].each do |business|
+  Business.create!(
+    name: business['properties']['name'],
+    address: business['properties']['formatted'],
+    email: business['properties']['datasource']['raw'].include?('email') ? business['properties']['datasource']['raw']['email'] : "#{business['properties']['name']}.outlook.com",
+    phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0191 532 #{rand{0..100}}",
+    size: "#{rand(0..25)} employees",
+    business_hours: business['properties']['datasource']['raw']['opening_hours'],
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    category: if business['properties']['categories'].include?('catering.pub')
+                'Pub'
+              elsif business['properties']['categories'].include?('catering.bar')
+                'Bar'
+              elsif business['properties']['categories'].include?('catering.cafe') && business['properties']['categories'].include?('vegan')
+                'Cafe || Vegan Friendly'
+              elsif business['properties']['categories'].include?('catering.cafe') && business['properties']['categories'].include?('vegetarian')
+                'Cafe || Vegatarian Friendly'
+              elsif business['properties']['categories'].include?('catering.cafe')
+                'Cafe'
+              elsif business['properties']['categories'].include?('catering.restaurant') && business['properties']['categories'].include?('vegan')
+                "Restaurant || Vegan Friendly"
+              elsif business['properties']['categories'].include?('catering.restaurant') && business['properties']['categories'].include?('vegetarian')
+                'Restaurant || Vegatarian Friendly'
+              elsif business['properties']['categories'].include?('catering.restaurant')
+                'Restaurant'
+              end
+  )
+  images_url = 'https://source.unsplash.com/random/600x600/?bar,restaurant,cafe'
+  image = URI.open(images_url)
+  Business.all.last.photo.attach(io: image, filename: "#{Time.now.to_i}_unsplash_random.jpg", content_type: 'image/jpg')
+  puts "Coventry business created"
+end
+
+
+puts "creating Birmingham businesses"
+
+brum_businesses['features'].each do |business|
+  Business.create!(
+    name: business['properties']['name'],
+    address: business['properties']['formatted'],
+    email: business['properties']['datasource']['raw'].include?('email') ? business['properties']['datasource']['raw']['email'] : "#{business['properties']['name']}.outlook.com",
+    phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0121 532 #{rand{0..100}}",
+    size: "#{rand(0..25)} employees",
+    business_hours: business['properties']['datasource']['raw']['opening_hours'],
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    category: if business['properties']['categories'].include?('catering.pub')
+                'Pub'
+              elsif business['properties']['categories'].include?('catering.bar')
+                'Bar'
+              elsif business['properties']['categories'].include?('catering.cafe') && business['properties']['categories'].include?('vegan')
+                'Cafe || Vegan Friendly'
+              elsif business['properties']['categories'].include?('catering.cafe') && business['properties']['categories'].include?('vegetarian')
+                'Cafe || Vegatarian Friendly'
+              elsif business['properties']['categories'].include?('catering.cafe')
+                'Cafe'
+              elsif business['properties']['categories'].include?('catering.restaurant') && business['properties']['categories'].include?('vegan')
+                "Restaurant || Vegan Friendly"
+              elsif business['properties']['categories'].include?('catering.restaurant') && business['properties']['categories'].include?('vegetarian')
+                'Restaurant || Vegatarian Friendly'
+              elsif business['properties']['categories'].include?('catering.restaurant')
+                'Restaurant'
+              end
+  )
+  images_url = 'https://source.unsplash.com/random/600x600/?bar,restaurant,cafe'
+  image = URI.open(images_url)
+  Business.all.last.photo.attach(io: image, filename: "#{Time.now.to_i}_unsplash_random.jpg", content_type: 'image/jpg')
+  puts "Birmingham business created"
+end
+
+puts "Creating Liverpool businesses"
+
+lpool_businesses['features'].each do |business|
+  Business.create!(
+    name: business['properties']['name'],
+    address: business['properties']['formatted'],
+    email: business['properties']['datasource']['raw'].include?('email') ? business['properties']['datasource']['raw']['email'] : "#{Faker::Name.unique.name}.outlook.com",
+    phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0151 532 #{rand{0..100}}",
+    size: "#{rand(0..25)} employees",
+    business_hours: business['properties']['datasource']['raw']['opening_hours'],
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    category: if business['properties']['categories'].include?('catering.pub')
+                'Pub'
+              elsif business['properties']['categories'].include?('catering.bar')
+                'Bar'
+              elsif business['properties']['categories'].include?('catering.cafe') && business['properties']['categories'].include?('vegan')
+                'Cafe || Vegan Friendly'
+              elsif business['properties']['categories'].include?('catering.cafe') && business['properties']['categories'].include?('vegetarian')
+                'Cafe || Vegatarian Friendly'
+              elsif business['properties']['categories'].include?('catering.cafe')
+                'Cafe'
+              elsif business['properties']['categories'].include?('catering.restaurant') && business['properties']['categories'].include?('vegan')
+                "Restaurant || Vegan Friendly"
+              elsif business['properties']['categories'].include?('catering.restaurant') && business['properties']['categories'].include?('vegetarian')
+                'Restaurant || Vegatarian Friendly'
+              elsif business['properties']['categories'].include?('catering.restaurant')
+                'Restaurant'
+              end
+  )
+  images_url = 'https://source.unsplash.com/random/600x600/?bar,restaurant,cafe'
+  image = URI.open(images_url)
+  Business.all.last.photo.attach(io: image, filename: "#{Time.now.to_i}_unsplash_random.jpg", content_type: 'image/jpg')
+  puts "Scouse business created"
+end
+
+
+puts "creating hardcoded businesses"
 
   business_1 = Business.create!(
     name: "Well & Bucket",
@@ -461,7 +660,7 @@ puts "creating 32 businesses"
 
   business_31 = Business.create!(
     name: "Temple Bar",
-    address: "KLOVENIERSBURGWAL 2, 1012 CT, AMSTERDAM CENTRUM, DE WALLEN",
+    address: "Klovenierburgswal 2, Amsterdam, 1012 CT",
     email: "info@temple-bar.com",
     phone_number: "+329 8784 9435",
     category: "Pub",
@@ -484,7 +683,6 @@ puts "creating 32 businesses"
   )
 
   business_32.photo.attach(io: File.open(Rails.root.join("app/assets/images/swinging-arm.jpg")), filename: "swinging-arm.jpg", content_type: 'image/jpg')
-
 
 
   puts "creating 10 users"
@@ -665,6 +863,7 @@ puts "creating 32 businesses"
 
     positive_title = ["Great Work Environment", "Excellent Team", "Flexible schedule - great for casual work", "Good money", "Free lunches and good management"]
     negative_title = ["I hated every second there", "Don't work there", "They never pay on time", "They don't pay fair", "Terrible management"]
+
     businesses.each do |business|
 
       content = user_content.sample.gsub('{business.name}', "#{business.name}")

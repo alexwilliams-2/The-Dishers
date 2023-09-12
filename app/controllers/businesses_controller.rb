@@ -29,13 +29,13 @@ class BusinessesController < ApplicationController
       @businesses = Business.where(id: result)
     end
 
-    sql_subquery = "name ILIKE :query OR category ILIKE :query"
+    sql_subquery = "(category ILIKE :query OR name ILIKE :query)"
     location_sqlquery = "address ILIKE :region_query"
 
     if params[:query].present? && params[:region_query].present?
       @businesses = Business.where("#{sql_subquery} AND #{location_sqlquery}",
       query: "%#{params[:query]}%", region_query: "%#{params[:region_query]}%")
-      
+
     elsif params[:query].present? && !params[:region_query].present?
       @businesses = Business.where(sql_subquery, query: "%#{params[:query]}%")
 

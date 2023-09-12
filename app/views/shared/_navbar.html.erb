@@ -3,7 +3,7 @@
     <div class="d-flex w-100 justify-content-between align-items-center" >
       <%= link_to "/", class: "navbar-brand col-sm-2 ml-4 p-0 " do %>
         <%= image_tag "dishers-logo.png" %>
-        <% end %>
+      <% end %>
 
       <div class="col-sm-6" id="search-bar-container">
         <%= form_with url: businesses_path, method: :get, class: "d-flex" do %>
@@ -12,13 +12,13 @@
             class: "form-control",
             placeholder: "Cocktail bar, Thai restaurant, Café"
           %>
-            <div class='right-margin'> </div>
-            <%= text_field_tag :region_query,
-              params[:region_query],
-              class: "form-control",
-              id: 'right-search-bar',
-              placeholder: "London, Manchester, Glasgow"
-            %>
+          <div class='right-margin'> </div>
+          <%= text_field_tag :region_query,
+            params[:region_query],
+            class: "form-control",
+            id: 'right-search-bar',
+            placeholder: "London, Manchester, Glasgow"
+          %>
           <%= submit_tag "Search", name: "", class: "btn-flat" %>
         <% end %>
       </div>
