@@ -37,17 +37,17 @@ class BusinessesController < ApplicationController
     location_sqlquery = "address ILIKE :region_query"
 
     if params[:query].present? && params[:region_query].present?
-      @businesses = Business.where("#{sql_subquery} AND #{location_sqlquery}",
+      all_businesses = all_businesses.where("#{sql_subquery} AND #{location_sqlquery}",
       query: "%#{params[:query]}%", region_query: "%#{params[:region_query]}%")
 
     elsif params[:query].present? && !params[:region_query].present?
-      @businesses = Business.where(sql_subquery, query: "%#{params[:query]}%")
+      all_businesses = all_businesses.where(sql_subquery, query: "%#{params[:query]}%")
 
     elsif !params[:query].present? && params[:region_query].present?
-      @businesses = Business.where(location_sqlquery, region_query: "%#{params[:region_query]}%")
+      all_businesses = all_businesses.where(location_sqlquery, region_query: "%#{params[:region_query]}%")
     end
 
-    @markers = @businesses.geocoded.map do |business|
+    @markers = all_businesses.geocoded.map do |business|
       {
         lat: business.latitude,
         lng: business.longitude,
