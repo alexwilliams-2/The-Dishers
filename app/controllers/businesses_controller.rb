@@ -31,8 +31,6 @@ class BusinessesController < ApplicationController
       all_businesses = all_businesses.where(id: result)
     end
 
-    @pagy, @businesses = pagy(all_businesses, items: 5)
-
     sql_subquery = "(category ILIKE :query OR name ILIKE :query)"
     location_sqlquery = "address ILIKE :region_query"
 
@@ -46,6 +44,8 @@ class BusinessesController < ApplicationController
     elsif !params[:query].present? && params[:region_query].present?
       all_businesses = all_businesses.where(location_sqlquery, region_query: "%#{params[:region_query]}%")
     end
+
+    @pagy, @businesses = pagy(all_businesses, items: 5)
 
     @markers = all_businesses.geocoded.map do |business|
       {
