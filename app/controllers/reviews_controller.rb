@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   def new
     @business = Business.find(params[:business_id])
     @review = Review.new
+    @authorize review
     redirect_to business_path(@business)
   end
 
@@ -11,6 +12,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.business = @business
     @review.user = current_user
+    authorize @review
     @review.save
     if @review.save
       redirect_to business_path(@business)
@@ -20,6 +22,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    authorize @review
     @review.destroy
     redirect_to business_path(@business), status: :see_other
   end

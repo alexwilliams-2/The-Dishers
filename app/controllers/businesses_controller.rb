@@ -35,7 +35,7 @@ class BusinessesController < ApplicationController
     if params[:query].present? && params[:region_query].present?
       @businesses = Business.where("#{sql_subquery} AND #{location_sqlquery}",
       query: "%#{params[:query]}%", region_query: "%#{params[:region_query]}%")
-      
+
     elsif params[:query].present? && !params[:region_query].present?
       @businesses = Business.where(sql_subquery, query: "%#{params[:query]}%")
 
@@ -55,6 +55,7 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.where(id: params[:id])
+    authorize @business
     @review = Review.new
     @wages = []
     @ratings = []
