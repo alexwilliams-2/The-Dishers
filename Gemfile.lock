@@ -180,6 +180,7 @@ GEM
       time
       uri
     orm_adapter (0.5.0)
+    pagy (6.0.4)
     pg (1.5.3)
     public_suffix (5.0.1)
     puma (5.6.5)
@@ -254,6 +255,12 @@ GEM
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     stringio (3.0.7)
+    tailwindcss-rails (2.0.30-arm64-darwin)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.0.30-x86_64-darwin)
+      railties (>= 6.0.0)
+    tailwindcss-rails (2.0.30-x86_64-linux)
+      railties (>= 6.0.0)
     thor (1.2.2)
     tilt (2.1.0)
     time (0.2.2)
@@ -309,6 +316,7 @@ DEPENDENCIES
   jsbundling-rails
   kredis
   open-uri
+  pagy
   pg (~> 1.1)
   puma (~> 5.0)
   pundit
@@ -319,6 +327,7 @@ DEPENDENCIES
   simple_form!
   sprockets-rails
   stimulus-rails
+  tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data
   web-console
