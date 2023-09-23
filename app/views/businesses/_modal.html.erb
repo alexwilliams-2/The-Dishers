@@ -3,15 +3,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Share your thoughts about <%= @business.first.name %> 👇</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <%= simple_form_for [@business.first, @review] do |f| %>
         <div class="modal-body">
-        <%= f.input :title, label: 'Summarise your review in 5 words or less'%>
-         <%= f.input :content, label: 'Your review', input_html: { style: "height: 100px;" } %>
-        <%= f.input :job_title, as: :select, collection: ["Chef 👨‍🍳", "Kitchen Porter 💪", "Bar Staff 🍺", "Bar Back 🍸", "Wait Staff 🍲", "Barista ☕️", "Management 💻", "Supervisor 🗣️"], include_blank: false, label: 'Your job title', input_html: { style: "height: 50px; font-size: 12px; background-color: white;" } %>
+          <%= f.input :title, label: 'Summarise your review in 5 words or less'%>
+          <%= f.input :content, label: 'Your review', input_html: { style: "height: 100px;" } %>
+          <%= f.input :job_title, as: :select, collection: ["Chef 👨‍🍳", "Kitchen Porter 💪", "Bar Staff 🍺", "Bar Back 🍸", "Wait Staff 🍲", "Barista ☕️", "Management 💻", "Supervisor 🗣️"], include_blank: false, label: 'Your job title', input_html: { style: "height: 50px; font-size: 12px; background-color: white;" } %>
           <%= f.input :rating, as: :range, label: 'Rate your experience working here (1-5)', input_html: { min: 1, max: 5 }, wrapper_html: { class: 'range-slider-container' } %>
           <div class="range-markers mb-5 mt-3">
             <div class="range-marker"></div>

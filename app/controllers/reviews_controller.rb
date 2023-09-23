@@ -15,9 +15,19 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to business_path(@business)
     else
-      render :template => "businesses/show", :locals => {:review => Review.new}, status: :unprocessable_entity
+      render :partial => "businesses/modal", :locals => {:review => Review.new, :business => @business}
     end
   end
+
+      #redirect_to business_reviews_path(@business), status: :unprocessable_entity
+      # render "businesses/show", locals: { review: Review.new }, status: :unprocessable_entity
+
+  # if
+  #   redirect_to business_path(@business)
+  # else
+  #     render :partial => "businesses/modal", :locals => {:review => Review.new, :business => @business}, status: :unprocessable_entity
+  # end
+
 
   def destroy
     @review.destroy

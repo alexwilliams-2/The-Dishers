@@ -1,4 +1,4 @@
-<% public_id = Cloudinary::Utils.cloudinary_url(@business.first.photo.key, type: :asset)[/[^\/]+(?=\.[^.]+\z)/] %>
+<%# <% public_id = Cloudinary::Utils.cloudinary_url(@business.first.photo.key, type: :asset)[/[^\/]+(?=\.[^.]+\z)/] %> %>
 
 <div class="business-banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('<%= cl_image_path(@business.first.photo.key) %>');">
   <div class="business-banner-content row w-100 align-items-center">
