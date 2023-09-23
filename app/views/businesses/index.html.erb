@@ -1,106 +1,97 @@
-
 <div class="main-container"> <%#For sticky map%>
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-4"> <%#This column should be used for filters%>
         <div class="container-fluid">
           <div class="row" id="fs_app">
-              <section class="col-12" id="fs_header_bar">
-                  <div class="row">
-                      <div class="col-2 col-lg-1">
-                          <i class="fa fa-filter"></i>
-                      </div>
-                      <div class="col-2 col-lg-1" id="fs_page_title">
-                          Filters
-                      </div>
+            <section class="col-12" id="fs_header_bar">
+              <div class="row">
+                <div class="col-2 col-lg-1">
+                  <i class="fa fa-filter"></i>
+                </div>
+                  <div class="col-2 col-lg-1" id="fs_page_title">
+                    Filters
                   </div>
+                </div>
               </section>
               <section class="col-12" id="fs_price_body">
-                  <div>
-                      <span class="heading">
-                          By Average Wage
-                      </span>
-                      <div class="row">
-                          <div class="col-3", id="filter-buttons" data-controller="filter">
-                              <%= button_to "£9-£10", businesses_path, method: :get, params: { wage: 9.00 }, class: 'btn', remote: true, data: { wage: 9.00 } %>
-                          </div>
-                          <div class="col-3", id="filter-buttons" data-controller="filter">
-                              <%= button_to "£10-£11", businesses_path, method: :get, params: { wage: 10.00 }, class: 'btn', remote: true, data: { wage: 10.00 } %>
-                          </div>
-                          <div class="col-3", id="filter-buttons" data-controller="filter">
-                               <%= button_to "£11-£12", businesses_path, method: :get, params: { wage: 11.00}, class: 'btn', remote: true, data: { wage: 11.00 } %>
-                          </div>
-                           <div class="col-3", id="filter-buttons" data-controller="filter">
-                                <%= button_to "£12-£13", businesses_path, method: :get, params: { wage: 12.00}, class: 'btn', remote: true, data: { wage: 12.00 } %>
-                          </div>
-                          <div class="col-3", id="filter-buttons" data-controller="filter">
-                                <%= button_to "£12-£13", businesses_path, method: :get, params: { wage: 12.00}, class: 'btn', remote: true, data: { wage: 12.00 } %>
-                          </div>
-                      </div>
-                      <div>
-                          <ul>
-                          </ul>
-                      </div>
+                <div>
+                  <span class="heading">
+                    By Average Wage
+                  </span>
+                  <div class="row">
+                    <div class="col-3", id="filter-buttons" data-controller="filter">
+                      <%= button_to "£9-£10", businesses_path, method: :get, params: { wage: 9.00 }, class: 'btn', remote: true, data: { wage: 9.00 } %>
+                    </div>
+                    <div class="col-3", id="filter-buttons" data-controller="filter">
+                      <%= button_to "£10-£11", businesses_path, method: :get, params: { wage: 10.00 }, class: 'btn', remote: true, data: { wage: 10.00 } %>
+                    </div>
+                    <div class="col-3", id="filter-buttons" data-controller="filter">
+                      <%= button_to "£11-£12", businesses_path, method: :get, params: { wage: 11.00}, class: 'btn', remote: true, data: { wage: 11.00 } %>
+                    </div>
+                    <div class="col-3", id="filter-buttons" data-controller="filter">
+                      <%= button_to "£12-£13", businesses_path, method: :get, params: { wage: 12.00}, class: 'btn', remote: true, data: { wage: 12.00 } %>
+                    </div>
+                    <div class="col-3", id="filter-buttons" data-controller="filter">
+                      <%= button_to "£12-£13", businesses_path, method: :get, params: { wage: 12.00}, class: 'btn', remote: true, data: { wage: 12.00 } %>
+                    </div>
                   </div>
               </section>
 
               <section class="col-12" id="fs_category_body">
-                  <span class="heading">
-                      By Type of Business
-                  </span>
-                  <div class="contents" id="filter-buttons" data-controller="filter">
-                    <%= button_to "All", businesses_path, method: :get, params: { category: nil }, class: 'btn', type: "button", remote: true, data: { category: nil } %>
-                    <%= button_to "Pub", businesses_path, method: :get, params: { category: 'Pub' }, class: 'btn', type: "button", remote: true, data: { category: 'Pub' } %>
-                    <%= button_to "Cafe", businesses_path, method: :get, params: { category: 'Cafe' }, class: 'btn', type: "button", remote: true, data: { category: 'Cafe' } %>
-                    <%= button_to "Restaurant", businesses_path, method: :get, params: { category: 'Restaurant' }, class: 'btn', type: "button", remote: true, data: { category: 'Restaurant' } %>
-                  </div>
-                  <div>
-                    <ul>
-                    </ul>
-                  </div>
+                <span class="heading">
+                  By Type of Business
+                </span>
+                <div class="contents" id="filter-buttons" data-controller="filter">
+                  <%= button_to "All", businesses_path, method: :get, params: { category: nil }, class: 'btn', type: "button", remote: true, data: { category: nil } %>
+                  <%= button_to "Pub", businesses_path, method: :get, params: { category: 'Pub' }, class: 'btn', type: "button", remote: true, data: { category: 'Pub' } %>
+                  <%= button_to "Cafe", businesses_path, method: :get, params: { category: 'Cafe' }, class: 'btn', type: "button", remote: true, data: { category: 'Cafe' } %>
+                  <%= button_to "Restaurant", businesses_path, method: :get, params: { category: 'Restaurant' }, class: 'btn', type: "button", remote: true, data: { category: 'Restaurant' } %>
+                </div>
               </section>
+
               <section class="col-12" id="fs_rating">
-                  <span class="heading">
-                      By Rating
-                  </span>
-                  <div class="contents">
-                    <%= button_to businesses_path, method: :get, params: { rating: 5 }, class: 'stars', remote: true, data: { rating: 5 } do %>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                    <% end %>
-                    <%= button_to businesses_path, method: :get, params: { rating: 4 }, class: 'stars', remote: true, data: { rating: 4 } do %>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa fa-star"></i>
-                    <% end %>
-                    <%= button_to businesses_path, method: :get, params: { rating: 3 }, class: 'stars', remote: true, data: { rating: 3 } do %>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    <% end %>
-                    <%= button_to businesses_path, method: :get, params: { rating: 2 }, class: 'stars', remote: true, data: { rating: 2 } do %>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    <% end %>
-                    <%= button_to businesses_path, method: :get, params: { rating: 1 }, class: 'stars', remote: true, data: { rating: 1 } do %>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    <% end %>
-                  </div>
-              </section>
+                <span class="heading">
+                    By Rating
+                </span>
+                <div class="contents">
+                  <%= button_to businesses_path, method: :get, params: { rating: 5 }, class: 'stars', remote: true, data: { rating: 5 } do %>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                  <% end %>
+                  <%= button_to businesses_path, method: :get, params: { rating: 4 }, class: 'stars', remote: true, data: { rating: 4 } do %>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa fa-star"></i>
+                  <% end %>
+                  <%= button_to businesses_path, method: :get, params: { rating: 3 }, class: 'stars', remote: true, data: { rating: 3 } do %>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  <% end %>
+                  <%= button_to businesses_path, method: :get, params: { rating: 2 }, class: 'stars', remote: true, data: { rating: 2 } do %>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  <% end %>
+                  <%= button_to businesses_path, method: :get, params: { rating: 1 }, class: 'stars', remote: true, data: { rating: 1 } do %>
+                    <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  <% end %>
+                </div>
+            </section>
 
           </div>
         </div>
@@ -146,4 +137,3 @@
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
-
