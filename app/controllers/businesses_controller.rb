@@ -6,30 +6,13 @@ class BusinessesController < ApplicationController
     @wages = []
     all_businesses = Business.all
 
-    if params[:category].present?
-      all_businesses = all_businesses.where(category: params[:category])
-    end
+    filtering_params = params.slice(:category, :rating, :wage)
 
-    if params[:rating].present?
-      result = []
-      all_businesses.each do |business|
-        if (business.reviews.sum(:rating) / business.reviews.count).ceil == params[:rating].to_i
-          result.push(business.id)
-        end
-      end
-      all_businesses = all_businesses.where(id: result)
-    end
+    all_businesses = Business.filter(filtering_params)
 
-    if params[:wage].present?
-      result = []
-      all_businesses.each do |business|
-        average_wage = (business.reviews.sum(:wage) / business.reviews.count).to_f
-        if average_wage >= params[:wage].to_f && average_wage <= params[:wage].to_f + 1
-          result.push(business.id)
-        end
-      end
-      all_businesses = all_businesses.where(id: result)
-    end
+    all_businesses
+
+
 
     sql_subquery = "(category ILIKE :query OR name ILIKE :query)"
     location_sqlquery = "address ILIKE :region_query"

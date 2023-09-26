@@ -21,21 +21,24 @@
                           By Average Wage
                       </span>
                       <div class="row">
-                          <div class="col-3", id="filter-buttons" data-controller="filter">
-                              <%= button_to "£9-£10", businesses_path, method: :get, params: { wage: 9.00 }, class: 'btn', remote: true, data: { wage: 9.00 } %>
+                        <%= form_tag({ controller: 'businesses', action: 'index' }, method: 'get') do %>
+                          <div class="form-group">
+                            <%= label_tag 'category', 'Category:' %>
+                            <%= text_field_tag 'category', params[:category] %>
                           </div>
-                          <div class="col-3", id="filter-buttons" data-controller="filter">
-                              <%= button_to "£10-£11", businesses_path, method: :get, params: { wage: 10.00 }, class: 'btn', remote: true, data: { wage: 10.00 } %>
+
+                          <div class="form-group">
+                            <%= label_tag 'rating', 'Rating:' %>
+                            <%= text_field_tag 'rating', params[:rating] %>
                           </div>
-                          <div class="col-3", id="filter-buttons" data-controller="filter">
-                               <%= button_to "£11-£12", businesses_path, method: :get, params: { wage: 11.00}, class: 'btn', remote: true, data: { wage: 11.00 } %>
+
+                          <div class="form-group">
+                            <%= label_tag 'wage', 'Wage:' %>
+                            <%= text_field_tag 'wage', params[:wage] %>
                           </div>
-                           <div class="col-3", id="filter-buttons" data-controller="filter">
-                                <%= button_to "£12-£13", businesses_path, method: :get, params: { wage: 12.00}, class: 'btn', remote: true, data: { wage: 12.00 } %>
-                          </div>
-                          <div class="col-3", id="filter-buttons" data-controller="filter">
-                                <%= button_to "£12-£13", businesses_path, method: :get, params: { wage: 12.00}, class: 'btn', remote: true, data: { wage: 12.00 } %>
-                          </div>
+
+                          <%= submit_tag 'Filter' %>
+                        <% end %>
                       </div>
                       <div>
                           <ul>
