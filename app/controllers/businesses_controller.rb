@@ -4,7 +4,7 @@ class BusinessesController < ApplicationController
     @ratings = []
     @recommended_array = []
     @wages = []
-    all_businesses = Business.all
+    all_businesses = policy_scope(Business).all
 
     if params[:category].present?
       all_businesses = all_businesses.where(category: params[:category])
@@ -63,6 +63,8 @@ class BusinessesController < ApplicationController
     @review = Review.new
     @wages = []
     @ratings = []
+    @user_review = params[:user_review].to_i if params[:user_review].present?
+
 
     @markers = @business.geocoded.map do |business|
       {
@@ -72,6 +74,7 @@ class BusinessesController < ApplicationController
         marker_html: render_to_string(partial: "marker")
       }
     end
+    @business = @business.first
   end
 
   def average_wage

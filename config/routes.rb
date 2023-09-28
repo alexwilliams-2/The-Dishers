@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
   resources :businesses do
     resources :user_favourites, only: [:create]
-    resources :reviews, only: [:create]
-  end 
+    resources :reviews, only: [:create, :edit, :update]
+  end
 
 
   resources :reviews, only: [:destroy]

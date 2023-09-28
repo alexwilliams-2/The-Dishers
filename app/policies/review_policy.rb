@@ -6,12 +6,25 @@ class ReviewPolicy < ApplicationPolicy
     # end
   end
 
+  def show?
+    return true
+  end
+
   def new?
     return create
   end
 
   def create?
     return true
+  end
+
+  def edit?
+    # return record.user == user
+    true
+  end
+
+  def update?
+    return edit
   end
 
   def destroy?
