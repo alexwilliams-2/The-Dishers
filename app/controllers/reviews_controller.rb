@@ -31,11 +31,11 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to business_path(@business), notice: 'Review was successfully updated.'
     else
-      # redirect_to root_path
-      # render "reviews/edit", :locals => {:review => @review, :business => @business}, status: :unprocessable_entity
-      render "edit"
+
+      render "reviews/edit", :locals => {:review => @review, :business => @business}, status: :unprocessable_entity
     end
   end
+
 
   def destroy
     authorize @review
@@ -50,12 +50,12 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:title, :content, :job_title, :rating, :wage, :votes)
+    params.require(:review).permit(:title, :content, :job_title, :rating, :wage, :votes, :user_review)
   end
 
   def set_review
     @review = Review.find(params[:user_review])
+    authorize @review
   end
-
 
 end

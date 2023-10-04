@@ -1,7 +1,7 @@
 
   <div class="container w-75">
   <h1>Edit your review of <%= @business.name %></h1>
-    <%= simple_form_for [@business, @review] do |f| %>
+    <%= simple_form_for [@business, @review], method: :patch  do |f| %>
           <div class="">
           <%= f.input :title, label: 'Summarise your review in 5 words or less'%>
           <%= f.input :content, label: 'Your review', input_html: { style: "height: 100px;" } %>

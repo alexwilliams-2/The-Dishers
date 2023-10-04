@@ -11,7 +11,7 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def new?
-    return create
+    return create?
   end
 
   def create?
@@ -19,15 +19,14 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def edit?
-    # return record.user == user
-    true
+    user.present? && record.user == user
   end
 
   def update?
-    return edit
+    return edit?
   end
 
   def destroy?
-    return record.user == user
+    user.present? && record.user == user
   end
 end

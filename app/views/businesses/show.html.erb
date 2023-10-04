@@ -58,18 +58,16 @@
               <div>
                 <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %> <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
                 <i class="fa-regular fa-message" style="color: #009EFF;"></i>
+
               <% end %></h4>
-               <%# <button type="button" class="btn btn-flat mt-3" data-bs-toggle="modal" data-bs-target="#edit_review_modal">
-          Edit
-        </button> %>
-              <%= link_to "Edit review", edit_business_review_path(@business, user_review: review) if policy(Review).edit? %>
                 <% review.rating.to_i.times do %>
                 <span class="fa fa-star star-active ml-3"></span>
                 <% end %>
               </div>
             </div>
             <div class="col-sm-6">
-              <h4 class="blue-text mt-3"><b> "<%= review.title %>" </b></h4>
+              <h4 class="blue-text mt-3"><b> "<%= review.title %>" </b>  <%= link_to "Edit review", edit_business_review_path(@business, user_review: review.id) if policy(review).edit? %></h4>
+              <%= link_to "Delete review", business_review_path(@business, user_review: review), method: :delete, data: { confirm: 'Are you sure?' } if policy(review).destroy? %>
               <p class="review-content">"<%= review.content %>"</p>
             </div>
             <div class="col-sm-3" data-controller="upvote">
@@ -98,4 +96,3 @@
   </div>
 </div>
 <%= render "modal" %>
-

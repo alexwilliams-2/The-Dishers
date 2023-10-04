@@ -10,11 +10,11 @@ Rails.application.routes.draw do
 
   resources :businesses do
     resources :user_favourites, only: [:create]
-    resources :reviews, only: [:create, :edit, :update]
+    resources :reviews, param: :user_review
   end
 
 
-  resources :reviews, only: [:destroy]
+
 
   resources :chats, only: [:show] do
     resources :messages, only: [:create], param: :chat_id
