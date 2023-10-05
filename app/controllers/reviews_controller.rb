@@ -31,7 +31,6 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to business_path(@business), notice: 'Review was successfully updated.'
     else
-
       render "reviews/edit", :locals => {:review => @review, :business => @business}, status: :unprocessable_entity
     end
   end
