@@ -1,25 +1,25 @@
-<% public_id = Cloudinary::Utils.cloudinary_url(@business.first.photo.key, type: :asset)[/[^\/]+(?=\.[^.]+\z)/] %>
+<% public_id = Cloudinary::Utils.cloudinary_url(@business.photo.key, type: :asset)[/[^\/]+(?=\.[^.]+\z)/] %>
 
-<div class="business-banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('<%= cl_image_path(@business.first.photo.key) %>');">
+<div class="business-banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('<%= cl_image_path(@business.photo.key) %>');">
   <div class="business-banner-content row w-100 align-items-center">
     <div class="col-sm-3">
        <div class="like-button", style="transform: scale(0.50)">
-          <%= button_to business_user_favourites_path(@business.first.id), data:{ controller: "like-button", action: "click->like-button#fillheart"}, class: "btn-ghost like-wrapper ripple like-filled", method: :post, remote: true do %>
-            <svg class="<%= current_user.user_favourites.where(business_id: @business.first.id).any? ?  'heart-filled' : 'heart' %>" width="1" height="1" viewBox="0 0 24 24">
+          <%= button_to business_user_favourites_path(@business.id), data:{ controller: "like-button", action: "click->like-button#fillheart"}, class: "btn-ghost like-wrapper ripple like-filled", method: :post, remote: true do %>
+            <svg class="<%= current_user.user_favourites.where(business_id: @business.id).any? ?  'heart-filled' : 'heart' %>" width="1" height="1" viewBox="0 0 24 24">
               <path d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z" data-like-button-target="likeButton"></path>
             </svg>
           <% end %>
       </div>
     </div>
     <div class="col-sm-9">
-      <h2 class="business-banner-heading"><%= @business.first.name %></h2>
+      <h2 class="business-banner-heading"><%= @business.name %></h2>
       <div class="business-rating">
           <div class="rating-stars">
-            <% @business.first.calculate_average_rating.to_i.times do %>
+            <% @business.calculate_average_rating.to_i.times do %>
               <i class="fa-solid fa-star" style="color: #009eff;"></i>
             <% end %>
           </div>
-         <p class="business-banner-recommended"><%= @business.first.calculate_recommended %> recommend working here </p>
+         <p class="business-banner-recommended"><%= @business.calculate_recommended %> recommend working here </p>
          <button type="button" class="btn btn-flat mt-3" data-bs-toggle="modal" data-bs-target="#new_review_modal">
           Add a review
         </button>
@@ -30,42 +30,48 @@
 <div class="container-xl">
   <div class="business-card-show w-100">
     <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
-    <div class="business-card-show-body col-sm-6">
-      <h5 class="business-card-show-title"><%= @business.first.name %></h5>
-      <p class="business-card-show-text"><%= @business.first.description %></p>
+    <div class="business-card-show-body col-sm-5">
+      <h5 class="business-card-show-title"><%= @business.name %></h5>
+      <p class="business-card-show-text"><%= @business.description %></p>
     </div>
     <ul class="list-group list-group-flush mb-0 col-sm-6">
-      <li class="list-group-item"> <strong> Address: </strong> <%= @business.first.address %></li>
-      <li class="list-group-item"> <strong> Category: </strong> <%= @business.first.category %></li>
-      <li class="list-group-item"> <strong> Size: </strong> <%= pluralize @business.first.size, 'employee'%></li>
-      <li class="list-group-item"> <strong> Business Hours: </strong> <%= @business.first.business_hours %></li>
-      <li class="list-group-item"> <strong> Email: </strong> <%= @business.first.email %></li>
-      <li class="list-group-item"> <strong> Phone Number: </strong> <%= @business.first.phone_number %></li>
+      <li class="list-group-item"> <strong> Address: </strong> <%= @business.address %></li>
+      <li class="list-group-item"> <strong> Category: </strong> <%= @business.category %></li>
+      <li class="list-group-item"> <strong> Size: </strong> <%= pluralize @business.size, 'employee'%></li>
+      <li class="list-group-item"> <strong> Business Hours: </strong> <%= @business.business_hours %></li>
+      <li class="list-group-item"> <strong> Email: </strong> <%= @business.email %></li>
+      <li class="list-group-item"> <strong> Phone Number: </strong> <%= @business.phone_number %></li>
       <li class="list-group-item"> <strong> Average wage: </strong>
-        <%= @business.first.calculate_average_wage %>
+        <%= @business.calculate_average_wage %>
       </li>
     </ul>
   </div>
   <div class="main-container mt-5 w-100">
     <div class="businesses-for-map col-9">
-      <h2> <strong> <%= pluralize @business.first.reviews.count, "Review" %> </strong></h2>
-      <% if @business.first.reviews.blank? %>
+      <h2> <strong> <%= pluralize @business.reviews.count, "Review" %> </strong></h2>
+      <% if @business.reviews.blank? %>
         <h3> Be the first to review <%= @business.name %> </h3>
       <% else %>
-        <% @business.first.reviews.reverse_each do |review| %>
+        <% @business.reviews.reverse_each do |review| %>
           <div class="review-card col col-sm-11">
             <div class="col-sm-3">
               <div>
-                <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %> <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
-                <i class="fa-regular fa-message" style="color: #009EFF;"></i>
-              <% end %></h4>
+                <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %>
+                <% if review.user != current_user %>
+                  <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
+                    <i class="fa-regular fa-message" style="color: #009EFF;"></i>
+                  <% end %>
+                <% end %>
+                </h4>
                 <% review.rating.to_i.times do %>
                 <span class="fa fa-star star-active ml-3"></span>
                 <% end %>
               </div>
+              <div> <%= link_to "Edit review", edit_business_review_path(@business, user_review: review.id), class: "text-decoration-none " if policy(review).edit? %>
+               <%= button_to "Delete Review", business_review_path(@business, user_review: review), class: "text-danger ", method: :delete, data: { confirm: 'Are you sure?' } if policy(review).destroy? %> </div>
             </div>
             <div class="col-sm-6">
-              <h4 class="blue-text mt-3"><b> "<%= review.title %>" </b></h4>
+              <h4 class="blue-text mt-3"><b> "<%= review.title %>" </b> </h4>
               <p class="review-content">"<%= review.content %>"</p>
             </div>
             <div class="col-sm-3" data-controller="upvote">

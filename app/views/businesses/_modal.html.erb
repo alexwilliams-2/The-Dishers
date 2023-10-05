@@ -2,12 +2,12 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Share your thoughts about <%= @business.first.name %> 👇</h5>
+        <h5 class="modal-title">Share your thoughts about <%= @business.name %> 👇</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
         </button>
       </div>
 
-      <%= simple_form_for [@business.first, @review] do |f| %>
+      <%= simple_form_for [@business, @review] do |f| %>
         <div class="modal-body">
         <%= f.input :title, label: 'Summarise your review in 5 words or less'%>
          <%= f.input :content, label: 'Your review', input_html: { style: "height: 100px;" } %>
