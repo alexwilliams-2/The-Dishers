@@ -30,7 +30,7 @@
 <div class="container-xl">
   <div class="business-card-show w-100">
     <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
-    <div class="business-card-show-body col-sm-6">
+    <div class="business-card-show-body col-sm-5">
       <h5 class="business-card-show-title"><%= @business.name %></h5>
       <p class="business-card-show-text"><%= @business.description %></p>
     </div>

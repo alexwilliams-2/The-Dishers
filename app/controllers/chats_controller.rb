@@ -3,7 +3,7 @@ class ChatsController < ApplicationController
     @user = current_user
     @chats = @user.chats
     @chat = find_or_create_chat
-    # authorize @chat, policy_class: ChatPolicy
+    authorize @chat
     @messages = @chat.messages
     @message = Message.new
     @message.user = current_user
