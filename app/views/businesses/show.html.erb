@@ -56,18 +56,22 @@
           <div class="review-card col col-sm-11">
             <div class="col-sm-3">
               <div>
-                <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %> <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
-                <i class="fa-regular fa-message" style="color: #009EFF;"></i>
-
-              <% end %></h4>
+                <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %>
+                <% if review.user != current_user %>
+                  <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
+                    <i class="fa-regular fa-message" style="color: #009EFF;"></i>
+                  <% end %>
+                <% end %>
+                </h4>
                 <% review.rating.to_i.times do %>
                 <span class="fa fa-star star-active ml-3"></span>
                 <% end %>
               </div>
+              <div> <%= link_to "Edit review", edit_business_review_path(@business, user_review: review.id), class: "text-decoration-none " if policy(review).edit? %>
+               <%= button_to "Delete Review", business_review_path(@business, user_review: review), class: "text-danger ", method: :delete, data: { confirm: 'Are you sure?' } if policy(review).destroy? %> </div>
             </div>
             <div class="col-sm-6">
-              <h4 class="blue-text mt-3"><b> "<%= review.title %>" </b>  <%= link_to "Edit review", edit_business_review_path(@business, user_review: review.id) if policy(review).edit? %></h4>
-              <%= link_to "Delete review", business_review_path(@business, user_review: review), method: :delete, data: { confirm: 'Are you sure?' } if policy(review).destroy? %>
+              <h4 class="blue-text mt-3"><b> "<%= review.title %>" </b> </h4>
               <p class="review-content">"<%= review.content %>"</p>
             </div>
             <div class="col-sm-3" data-controller="upvote">

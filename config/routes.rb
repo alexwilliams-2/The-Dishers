@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :reviews, param: :user_review
   end
 
-
+  # resources :reviews, only: [:destroy], param: :user_review
 
 
   resources :chats, only: [:show] do

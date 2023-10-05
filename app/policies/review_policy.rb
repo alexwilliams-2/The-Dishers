@@ -1,9 +1,5 @@
 class ReviewPolicy < ApplicationPolicy
   class Scope < Scope
-    # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
   end
 
   def show?
@@ -15,7 +11,7 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def create?
-    return true
+    user.present?
   end
 
   def edit?
