@@ -21,24 +21,42 @@
                           By Average Wage
                       </span>
                       <div class="row">
-                        <%= form_tag({ controller: 'businesses', action: 'index' }, method: 'get') do %>
-                          <div class="form-group">
-                            <%= label_tag 'category', 'Category:' %>
-                            <%= text_field_tag 'category', params[:category] %>
-                          </div>
+                        <%= form_tag({ controller: 'businesses', action: 'index' }, method: 'get', class: 'filter-form') do %>
+                        <div class="form-group">
+                          <label>Category:</label>
+                          <br>
+                          <% # Checkboxes for category filtering %>
+                          <label>
+                            <%= check_box_tag 'category[]', 'Pub', params[:category].include?('Pub') %>
+                            Pub
+                          </label>
+                          <br>
+                          <label>
+                            <%= check_box_tag 'category[]', 'Cafe', params[:category].include?('Cafe') %>
+                            Cafe
+                          </label>
+                          <br>
+                          <label>
+                            <%= check_box_tag 'category[]', 'Restaurant', params[:category].include?('Restaurant') %>
+                            Restaurant
+                          </label>
+                        </div>
 
-                          <div class="form-group">
-                            <%= label_tag 'rating', 'Rating:' %>
-                            <%= text_field_tag 'rating', params[:rating] %>
-                          </div>
+                        <div class="form-group">
+                          <label>Rating:</label>
+                          <br>
+                          <% # Radio buttons for rating filtering %>
+                          <% (1..5).each do |rating| %>
+                            <label>
+                              <%= radio_button_tag 'rating', rating.to_s, params[:rating] == rating.to_s %>
+                              <%= rating %>
+                            </label>
+                            <br>
+                          <% end %>
+                        </div>
 
-                          <div class="form-group">
-                            <%= label_tag 'wage', 'Wage:' %>
-                            <%= text_field_tag 'wage', params[:wage] %>
-                          </div>
-
-                          <%= submit_tag 'Filter' %>
-                        <% end %>
+                        <%= submit_tag 'Filter', class: 'btn btn-primary' %>
+                      <% end %>
                       </div>
                       <div>
                           <ul>

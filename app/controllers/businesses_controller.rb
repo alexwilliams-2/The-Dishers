@@ -13,7 +13,6 @@ class BusinessesController < ApplicationController
     all_businesses
 
 
-
     sql_subquery = "(category ILIKE :query OR name ILIKE :query)"
     location_sqlquery = "address ILIKE :region_query"
 
