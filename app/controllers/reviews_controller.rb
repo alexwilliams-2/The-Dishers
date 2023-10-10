@@ -1,9 +1,11 @@
 class ReviewsController < ApplicationController
-  before_action :set_business, only: %i[new create]
+  before_action :set_business
+  before_action :set_review, only: %i[edit update destroy]
 
   def new
     @business = Business.find(params[:business_id])
     @review = Review.new
+    authorize @review
     redirect_to business_path(@business)
   end
 
@@ -11,15 +13,31 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.business = @business
     @review.user = current_user
+    authorize @review
     @review.save
     if @review.save
       redirect_to business_path(@business)
     else
-      render :template => "businesses/show", :locals => {:review => Review.new}, status: :unprocessable_entity
+      render :partial => "businesses/modal", :locals => {:review => Review.new, :business => @business}, status: :unprocessable_entity
     end
   end
 
+  def edit
+    authorize @review
+  end
+
+  def update
+    authorize @review
+    if @review.update(review_params)
+      redirect_to business_path(@business), notice: 'Review was successfully updated.'
+    else
+      render "reviews/edit", :locals => {:review => @review, :business => @business}, status: :unprocessable_entity
+    end
+  end
+
+
   def destroy
+    authorize @review
     @review.destroy
     redirect_to business_path(@business), status: :see_other
   end
@@ -31,6 +49,12 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:title, :content, :job_title, :rating, :wage, :votes)
+    params.require(:review).permit(:title, :content, :job_title, :rating, :wage, :votes, :user_review)
   end
+
+  def set_review
+    @review = Review.find(params[:user_review])
+    authorize @review
+  end
+
 end
