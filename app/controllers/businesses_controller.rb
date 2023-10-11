@@ -71,6 +71,9 @@ class BusinessesController < ApplicationController
         marker_html: render_to_string(partial: "marker")
       }
     end
+    @business = @business.first
+    @reviews = @business.reviews
+
   end
 
   def average_wage

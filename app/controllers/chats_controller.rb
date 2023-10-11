@@ -1,6 +1,5 @@
 class ChatsController < ApplicationController
 
- 
   def show
     @user = current_user
     @chats = @user.chats
@@ -11,7 +10,6 @@ class ChatsController < ApplicationController
     @message.user = current_user
     @other_user = User.find(@other_user_id) if @other_user_id
   end
-
 
   private
 
