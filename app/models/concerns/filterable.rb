@@ -18,7 +18,17 @@ module Filterable
         joins(:reviews).group('businesses.id').having('AVG(reviews.rating) IN (?)', ratings)
       end
     }
-    scope :filter_by_wage, -> (wage) { joins(:reviews).group('businesses.id').having('AVG(reviews.wage) >= ? AND AVG(reviews.wage) <= ?', wage.to_f, wage.to_f + 1) if wage.present? }
+    scope :filter_by_wage, -> (wage_ranges) {
+      if wage_ranges.present?
+        having_condition = wage_ranges.map do |range|
+          "AVG(reviews.wage) >= ? AND AVG(reviews.wage) <= ?"
+        end.join(' OR ')
+        having_values = wage_ranges.flat_map do |range|
+          [range.split('..').first.to_f, range.split('..').last.to_f + 1]
+        end
+        joins(:reviews).group('businesses.id').having(having_condition, *having_values)
+      end
+    }
   end
 
   class_methods do
