@@ -3,8 +3,21 @@ module Filterable
   extend ActiveSupport::Concern
 
   included do
-    scope :filter_by_category, -> (category) { where(category: category) if category.present? }
-    scope :filter_by_rating, -> (rating) { joins(:reviews).group('businesses.id').having('AVG(reviews.rating) >= ? AND AVG(reviews.rating) <= ?', rating.to_f, rating.to_f + 1) if rating.present? }
+    scope :filter_by_category, -> (categories) {
+      if categories.present?
+        if categories.include?('All')
+          where(category: ['Pub', 'Cafe', 'Restaurant'])
+        else
+          where(category: categories)
+        end
+      end
+    }
+    scope :filter_by_rating, -> (ratings) {
+      ratings = Array(ratings).map(&:to_f)
+      if ratings.present?
+        joins(:reviews).group('businesses.id').having('AVG(reviews.rating) IN (?)', ratings)
+      end
+    }
     scope :filter_by_wage, -> (wage) { joins(:reviews).group('businesses.id').having('AVG(reviews.wage) >= ? AND AVG(reviews.wage) <= ?', wage.to_f, wage.to_f + 1) if wage.present? }
   end
 
