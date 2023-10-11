@@ -13,6 +13,8 @@ class Business < ApplicationRecord
   validates :phone_number, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
+  include Filterable
+
   def calculate_average_rating
     @ratings = []
     set_business(self.id)
