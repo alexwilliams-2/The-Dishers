@@ -1,8 +1,9 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  purge: [
+  content: [
     'app/views/businesses/index.html.erb',
+    'app/javascript/application.js'
   ],
 
 }
