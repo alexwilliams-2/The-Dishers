@@ -27,17 +27,17 @@
                           <br>
                           <% # Checkboxes for category filtering %>
                           <label>
-                            <%= check_box_tag 'category[]', 'Pub', params[:category].include?('Pub') %>
+                            <%= check_box_tag 'category[]', 'Pub', params[:category]&.include?('Pub') %>
                             Pub
                           </label>
                           <br>
                           <label>
-                            <%= check_box_tag 'category[]', 'Cafe', params[:category].include?('Cafe') %>
+                            <%= check_box_tag 'category[]', 'Cafe', params[:category]&.include?('Cafe') %>
                             Cafe
                           </label>
                           <br>
                           <label>
-                            <%= check_box_tag 'category[]', 'Restaurant', params[:category].include?('Restaurant') %>
+                            <%= check_box_tag 'category[]', 'Restaurant', params[:category]&.include?('Restaurant') %>
                             Restaurant
                           </label>
                         </div>
