@@ -4,9 +4,9 @@ class MessagesController < ApplicationController
 
 
     if @chat
+      authorize @chat
       @message = @chat.messages.new(message_params)
       @message.user = current_user
-
       @message.save
         ChatChannel.broadcast_to(
           @chat,

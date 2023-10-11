@@ -1,14 +1,19 @@
 class ReviewsController < ApplicationController
-  before_action :set_business, only: %i[new create]
+  before_action :set_business
+  before_action :set_review, only: %i[edit update destroy]
 
   def new
     @review = Review.new
+    authorize @review
+    redirect_to business_path(@business)
   end
 
   def create
     @review = Review.new(review_params)
     @review.business = @business
     @review.user = current_user
+    authorize @review
+    @review.save
     if @review.save
       redirect_to business_path(@business)
     else
@@ -16,18 +21,22 @@ class ReviewsController < ApplicationController
     end
   end
 
-    # respond_to do |format|
-    #   if @review.save
-    #     format.html { redirect_to business_path(@business), notice: "Review was successfully created." }
-    #     format.json { render :show, status: :created, location: @review }
-    #   else
-    #     format.html { redirect_to business_path(@business), status: :unprocessable_entity, alert: @review.errors.full_messages }
-    #     format.json { render json: @review.errors, status: :unprocessable_entity }
-    #   end
-    # end
+  def edit
+    authorize @review
+  end
+
+  def update
+    authorize @review
+    if @review.update(review_params)
+      redirect_to business_path(@business), notice: 'Review was successfully updated.'
+    else
+      render "reviews/edit", :locals => {:review => @review, :business => @business}, status: :unprocessable_entity
+    end
+  end
 
 
   def destroy
+    authorize @review
     @review.destroy
     redirect_to business_path(@business), status: :see_other
   end
@@ -39,6 +48,12 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:title, :content, :job_title, :rating, :wage, :votes, :recommended)
+    params.require(:review).permit(:title, :content, :job_title, :rating, :wage, :votes, :user_review)
   end
+
+  def set_review
+    @review = Review.find(params[:user_review])
+    authorize @review
+  end
+
 end

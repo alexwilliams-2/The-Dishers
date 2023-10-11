@@ -1,3 +1,5 @@
+<% public_id = Cloudinary::Utils.cloudinary_url(@business.photo.key, type: :asset)[/[^\/]+(?=\.[^.]+\z)/] %>
+
 <div class="business-banner" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('<%= cl_image_path(@business.photo.key) %>');">
   <div class="business-banner-content row w-100 align-items-center">
     <div class="col-sm-3">
@@ -28,8 +30,8 @@
 </div>
 <div class="container-xl">
   <div class="business-card-show w-100">
-    <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use  or .last to get this business out of the array %>
-    <div class="business-card-show-body col-sm-6">
+    <%# As the show method in business controller was changed to where(id: params[:id]) (AN ARRAY WAS CREATED), we have to use .first or .last to get this business out of the array %>
+    <div class="business-card-show-body col-sm-5">
       <h5 class="business-card-show-title"><%= @business.name %></h5>
       <p class="business-card-show-text"><%= @business.description %></p>
     </div>
@@ -47,41 +49,44 @@
   </div>
   <div class="main-container mt-5 w-100">
     <div class="businesses-for-map col-9">
-      <h2> <strong> <%= pluralize @business.reviews.count, "Review" %> </strong> </h2>
+      <h2> <strong> <%= pluralize @business.reviews.count, "Review" %> </strong></h2>
       <% if @business.reviews.blank? %>
         <h3> Be the first to review <%= @business.name %> </h3>
       <% else %>
         <% @business.reviews.reverse_each do |review| %>
-            <div class="review-card col col-sm-11">
-              <div class="col-sm-3">
-                <div>
-                  <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %>
-                  <% if params[:id] %>
-                    <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
-                      <i class="fa-regular fa-message" style="color: #009EFF;"></i>
-                    <% end %> </h4>
+          <div class="review-card col col-sm-11">
+            <div class="col-sm-3">
+              <div>
+                <h4 class="mt-2 mb-0 username text-left">@<%= review.user.username %>
+                <% if review.user != current_user %>
+                  <%= link_to chat_path(other_user_id: review.user.id), class: "message-icon" do %>
+                    <i class="fa-regular fa-message" style="color: #009EFF;"></i>
                   <% end %>
-                  <% review.rating.to_i.times do %>
-                  <span class="fa fa-star star-active ml-3"></span>
-                  <% end %>
-                </div>
+                <% end %>
+                </h4>
+                <% review.rating.to_i.times do %>
+                <span class="fa fa-star star-active ml-3"></span>
+                <% end %>
               </div>
-              <div class="col-sm-6">
-                <h4 class="blue-text mt-3"><b> "<%= review.title %>" </b></h4>
-                <p class="review-content">"<%= review.content %>"</p>
+              <div> <%= link_to "Edit review", edit_business_review_path(@business, user_review: review.id), class: "text-decoration-none " if policy(review).edit? %>
+               <%= button_to "Delete Review", business_review_path(@business, user_review: review), class: "text-danger ", method: :delete, data: { confirm: 'Are you sure?' } if policy(review).destroy? %> </div>
+            </div>
+            <div class="col-sm-6">
+              <h4 class="blue-text mt-3"><b> "<%= review.title %>" </b> </h4>
+              <p class="review-content">"<%= review.content %>"</p>
+            </div>
+            <div class="col-sm-3" data-controller="upvote">
+              <div class="like mr-3 vote">
+                <img src="https://i.imgur.com/mHSQOaX.png" data-action="click->upvote#upvote" id="<%=review.id %>">
+                <span class="blue-text pl-2" data-upvote-target="upVoteNumber"> <%= rand(1..50) %>
+                </span>
               </div>
-              <div class="col-sm-3" data-controller="upvote">
-                <div class="like mr-3 vote">
-                  <img src="https://i.imgur.com/mHSQOaX.png" data-action="click->upvote#upvote" id="<%=review.id %>">
-                  <span class="blue-text pl-2" data-upvote-target="upVoteNumber"> <%= rand(1..50) %>
-                  </span>
-                </div>
-                <div class="unlike vote">
-                  <img src="https://i.imgur.com/bFBO3J7.png" data-action="click->upvote#downvote">
-                  <span class="text-muted pl-2" data-upvote-target="downVoteNumber"> <%= rand(1..20) %></span>
-                </div>
+              <div class="unlike vote">
+                <img src="https://i.imgur.com/bFBO3J7.png" data-action="click->upvote#downvote">
+                <span class="text-muted pl-2" data-upvote-target="downVoteNumber"> <%= rand(1..20) %></span>
               </div>
             </div>
+          </div>
         <% end %>
       <% end %>
     </div>

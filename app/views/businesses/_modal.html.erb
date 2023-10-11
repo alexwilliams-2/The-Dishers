@@ -3,7 +3,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Share your thoughts about <%= @business.name %> 👇</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+        </button>
       </div>
 
       <%= simple_form_for [@business, @review] do |f| %>

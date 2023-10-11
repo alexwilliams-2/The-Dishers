@@ -4,50 +4,32 @@ class BusinessesController < ApplicationController
     @ratings = []
     @recommended_array = []
     @wages = []
-    all_businesses = Business.all
+    all_businesses = policy_scope(Business).all
 
-    if params[:category].present?
-      all_businesses = all_businesses.where(category: params[:category])
-    end
+    filtering_params = params.slice(:category, :rating, :wage)
 
-    if params[:rating].present?
-      result = []
-      all_businesses.each do |business|
-        if (business.reviews.sum(:rating) / business.reviews.count).ceil == params[:rating].to_i
-          result.push(business.id)
-        end
-      end
-      all_businesses = all_businesses.where(id: result)
-    end
+    all_businesses = Business.filter(filtering_params)
 
-    if params[:wage].present?
-      result = []
-      all_businesses.each do |business|
-        average_wage = (business.reviews.sum(:wage) / business.reviews.count).to_f
-        if average_wage >= params[:wage].to_f && average_wage <= params[:wage].to_f + 1
-          result.push(business.id)
-        end
-      end
-      all_businesses = all_businesses.where(id: result)
-    end
+    all_businesses
 
-    @pagy, @businesses = pagy(all_businesses, items: 5)
 
     sql_subquery = "(category ILIKE :query OR name ILIKE :query)"
     location_sqlquery = "address ILIKE :region_query"
 
     if params[:query].present? && params[:region_query].present?
-      @businesses = Business.where("#{sql_subquery} AND #{location_sqlquery}",
+      all_businesses = all_businesses.where("#{sql_subquery} AND #{location_sqlquery}",
       query: "%#{params[:query]}%", region_query: "%#{params[:region_query]}%")
 
     elsif params[:query].present? && !params[:region_query].present?
-      @businesses = Business.where(sql_subquery, query: "%#{params[:query]}%")
+      all_businesses = all_businesses.where(sql_subquery, query: "%#{params[:query]}%")
 
     elsif !params[:query].present? && params[:region_query].present?
-      @businesses = Business.where(location_sqlquery, region_query: "%#{params[:region_query]}%")
+      all_businesses = all_businesses.where(location_sqlquery, region_query: "%#{params[:region_query]}%")
     end
 
-    @markers = @businesses.geocoded.map do |business|
+    @pagy, @businesses = pagy(all_businesses, items: 5)
+
+    @markers = all_businesses.geocoded.map do |business|
       {
         lat: business.latitude,
         lng: business.longitude,
@@ -59,9 +41,12 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.where(id: params[:id])
+    authorize @business
     @review = Review.new
     @wages = []
     @ratings = []
+    @user_review = params[:user_review].to_i if params[:user_review].present?
+
 
     @markers = @business.geocoded.map do |business|
       {
@@ -72,8 +57,6 @@ class BusinessesController < ApplicationController
       }
     end
     @business = @business.first
-    @reviews = @business.reviews
-
   end
 
   def average_wage
