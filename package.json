@@ -21,7 +21,8 @@
     "npm": "6.x"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "install": "npm install && yarn install",
+    "build": "npm run build && yarn build",
     "build:css": "postcss app/assets/stylesheets/styles.css -o public/build/tailwind.css",
     "watch:css": "postcss app/assets/stylesheets/styles.css -o public/build/tailwind.css --watch",
     "heroku-postbuild": "npm run build:css && NODE_ENV=production rails assets:precompile"
