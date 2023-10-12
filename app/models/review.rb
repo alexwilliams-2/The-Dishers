@@ -8,6 +8,7 @@ class Review < ApplicationRecord
   validates :rating, presence: true, inclusion: { in: 1..5 }
 
   validate :profanity
+  validate :named_individual
 
   def profanity
     profanity_filter = LanguageFilter::Filter.new matchlist: File.join(Rails.root, 'config/language_filter_profanity.yml')
@@ -19,7 +20,7 @@ class Review < ApplicationRecord
   def named_individual
     profanity_filter = LanguageFilter::Filter.new matchlist: File.join(Rails.root, '/config/language_filter.yml')
     if profanity_filter.match?(content)
-      errors.add(:base, 'We encourage healthy criticism! But please keep your review informative and hate-free for our community.')
+      errors.add(:base, 'We unfortunately do not allow you to name colleagues or customers, even if that manager was always out for a smoke break. Please keep your review informative without naming names.')
     end
   end
 
