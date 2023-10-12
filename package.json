@@ -21,7 +21,7 @@
     "build": "webpack --config webpack.config.js",
     "build:css": "postcss app/assets/stylesheets/**/*.css -o public/build/tailwind.css",
     "watch:css": "postcss app/assets/stylesheets/styles.css -o public/build/tailwind.css --watch",
-    "heroku-postbuild": "npm run build:css && NODE_ENV=production rails assets:precompile"
+    "heroku-postbuild": "yarn build:css && NODE_ENV=production rails assets:precompile"
   },
   "devDependencies": {
     "@prettier/plugin-ruby": "^4.0.2",
