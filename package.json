@@ -19,7 +19,7 @@
 
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "build:css": "postcss app/assets/stylesheets/styles.css -o public/build/tailwind.css",
+    "build:css": "postcss app/assets/stylesheets/**/*.css -o public/build/tailwind.css",
     "watch:css": "postcss app/assets/stylesheets/styles.css -o public/build/tailwind.css --watch",
     "heroku-postbuild": "npm run build:css && NODE_ENV=production rails assets:precompile"
   },
