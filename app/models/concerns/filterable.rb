@@ -13,11 +13,13 @@ module Filterable
       end
     }
     scope :filter_by_rating, -> (ratings) {
-      ratings = Array(ratings).map(&:to_f)
       if ratings.present?
-        joins(:reviews).group('businesses.id').having('AVG(reviews.rating) IN (?)', ratings)
+        having_condition = ratings.map { "AVG(reviews.rating) >= ? AND AVG(reviews.rating) <= ?" }.join(' OR ')
+        having_values = ratings.flat_map { |rating| [rating.to_f, rating.to_f + 1] }
+        joins(:reviews).group('businesses.id').having(having_condition, *having_values)
       end
     }
+
     scope :filter_by_wage, -> (wage_ranges) {
       if wage_ranges.present?
         having_condition = wage_ranges.map do |range|
