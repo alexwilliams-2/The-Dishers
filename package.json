@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "private": "false",
+  "private": false,
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.3.0",
@@ -17,7 +17,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "scripts": {
-    "start": "yarn webpack-dev-server --config webpack.config.js",
+    "start": "rails server",
     "build": "webpack --config webpack.config.js",
     "build:css": "postcss app/assets/stylesheets/**/*.css -o public/build/tailwind.css",
     "watch:css": "postcss app/assets/stylesheets/styles.css -o public/build/tailwind.css --watch",
