@@ -5,85 +5,85 @@
       <div class="col-12 col-lg-4"> <%#This column should be used for filters%>
         <div class="container-fluid">
           <div class="row" id="fs_app">
-              <section class="col-12" id="fs_header_bar">
-                  <div class="row">
-                      <div class="col-2 col-lg-1">
-                          <i class="fa fa-filter"></i>
-                      </div>
-                      <div class="col-2 col-lg-1" id="fs_page_title">
-                          Filters
-                      </div>
+            <section class="col-12" id="fs_header_bar">
+              <div class="row">
+                <div class="col-2 col-lg-1">
+                  <i class="fa fa-filter"></i>
+                </div>
+                <div class="col-2 col-lg-1" id="fs_page_title">
+                    Filters
+                </div>
+              </div>
+             </section>
+            <section class="col-12" id="fs_price_body">
+              <div>
+                <span class="heading">
+                    By Average Wage
+                </span>
+                <div class="row">
+                  <%= form_tag({ controller: 'businesses', action: 'index' }, method: 'get', class: 'filter-form') do %>
+                  <div class="form-group">
+                    <label>Category:</label>
+                    <br>
+                    <% # Checkboxes for category filtering %>
+                    <label>
+                      <%= check_box_tag 'category[]', 'Pub', params[:category]&.include?('Pub') %>
+                      Pub
+                    </label>
+                    <br>
+                    <label>
+                      <%= check_box_tag 'category[]', 'Cafe', params[:category]&.include?('Cafe') %>
+                      Cafe
+                    </label>
+                    <br>
+                    <label>
+                      <%= check_box_tag 'category[]', 'Restaurant', params[:category]&.include?('Restaurant') %>
+                      Restaurant
+                    </label>
                   </div>
-              </section>
-              <section class="col-12" id="fs_price_body">
-                  <div>
-                      <span class="heading">
-                          By Average Wage
-                      </span>
-                      <div class="row">
-                        <%= form_tag({ controller: 'businesses', action: 'index' }, method: 'get', class: 'filter-form') do %>
-                        <div class="form-group">
-                          <label>Category:</label>
-                          <br>
-                          <% # Checkboxes for category filtering %>
-                          <label>
-                            <%= check_box_tag 'category[]', 'Pub', params[:category]&.include?('Pub') %>
-                            Pub
-                          </label>
-                          <br>
-                          <label>
-                            <%= check_box_tag 'category[]', 'Cafe', params[:category]&.include?('Cafe') %>
-                            Cafe
-                          </label>
-                          <br>
-                          <label>
-                            <%= check_box_tag 'category[]', 'Restaurant', params[:category]&.include?('Restaurant') %>
-                            Restaurant
-                          </label>
-                        </div>
 
-                        <div class="form-group">
-                          <label>Rating:</label>
-                          <br>
-                          <% # Radio buttons for rating filtering %>
-                          <% (1..5).each do |rating| %>
-                            <label>
-                              <%= radio_button_tag 'rating', rating.to_s, params[:rating] == rating.to_s %>
-                              <%= rating %>
-                            </label>
-                            <br>
-                          <% end %>
-                        </div>
-
-                        <%= submit_tag 'Filter', class: 'btn btn-primary' %>
-                      <% end %>
-                      </div>
-                      <div>
-                          <ul>
-                          </ul>
-                      </div>
+                  <div class="form-group">
+                    <label>Rating:</label>
+                    <br>
+                    <% # Radio buttons for rating filtering %>
+                    <% (1..5).each do |rating| %>
+                      <label>
+                        <%= radio_button_tag 'rating', rating.to_s, params[:rating] == rating.to_s %>
+                        <%= rating %>
+                      </label>
+                    <br>
+                    <% end %>
                   </div>
-              </section>
 
-              <section class="col-12" id="fs_category_body">
-                  <span class="heading">
-                      By Type of Business
-                  </span>
-                  <div class="contents" id="filter-buttons" data-controller="filter">
-                    <%= button_to "All", businesses_path, method: :get, params: { category: nil }, class: 'btn', type: "button", remote: true, data: { category: nil } %>
-                    <%= button_to "Pub", businesses_path, method: :get, params: { category: 'Pub' }, class: 'btn', type: "button", remote: true, data: { category: 'Pub' } %>
-                    <%= button_to "Cafe", businesses_path, method: :get, params: { category: 'Cafe' }, class: 'btn', type: "button", remote: true, data: { category: 'Cafe' } %>
-                    <%= button_to "Restaurant", businesses_path, method: :get, params: { category: 'Restaurant' }, class: 'btn', type: "button", remote: true, data: { category: 'Restaurant' } %>
+                  <%= submit_tag 'Filter', class: 'btn btn-primary' %>
+                  <% end %>
                   </div>
                   <div>
                     <ul>
                     </ul>
                   </div>
-              </section>
-              <section class="col-12" id="fs_rating">
-                  <span class="heading">
-                      By Rating
-                  </span>
+              </div>
+          </section>
+
+          <section class="col-12" id="fs_category_body">
+              <span class="heading">
+                  By Type of Business
+              </span>
+              <div class="contents" id="filter-buttons" data-controller="filter">
+                <%= button_to "All", businesses_path, method: :get, params: { category: nil }, class: 'btn', type: "button", remote: true, data: { category: nil } %>
+                <%= button_to "Pub", businesses_path, method: :get, params: { category: 'Pub' }, class: 'btn', type: "button", remote: true, data: { category: 'Pub' } %>
+                <%= button_to "Cafe", businesses_path, method: :get, params: { category: 'Cafe' }, class: 'btn', type: "button", remote: true, data: { category: 'Cafe' } %>
+                <%= button_to "Restaurant", businesses_path, method: :get, params: { category: 'Restaurant' }, class: 'btn', type: "button", remote: true, data: { category: 'Restaurant' } %>
+              </div>
+              <div>
+                <ul>
+                </ul>
+              </div>
+          </section>
+          <section class="col-12" id="fs_rating">
+              <span class="heading">
+                  By Rating
+              </span>
                   <div class="contents">
                     <%= button_to businesses_path, method: :get, params: { rating: 5 }, class: 'stars', remote: true, data: { rating: 5 } do %>
                       <i class="fa-solid fa-star" style="color: #009EFF;"></i>
