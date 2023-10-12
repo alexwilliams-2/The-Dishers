@@ -17,49 +17,44 @@
               </section>
               <section class="col-12" id="fs_price_body">
                   <div>
-                      <span class="heading">
-                          By Average Wage
-                      </span>
                       <div class="row">
                         <%= form_tag({ controller: 'businesses', action: 'index' }, method: 'get', class: 'filter-form') do %>
                         <div class="form-group">
-                          <label>By Type of Business</label>
+                          <span class="heading"> By Type of Business</span>
                           <br>
-                          <label>
                             <%= check_box_tag 'category[]', 'All', params[:category]&.include?('All') %>
                             All
-                          </label>
                           <br>
-                          <label>
                             <%= check_box_tag 'category[]', 'Pub', params[:category]&.include?('Pub') %>
                             Pub
-                          </label>
                           <br>
-                          <label>
                             <%= check_box_tag 'category[]', 'Cafe', params[:category]&.include?('Cafe') %>
                             Cafe
-                          </label>
                           <br>
-                          <label>
                             <%= check_box_tag 'category[]', 'Restaurant', params[:category]&.include?('Restaurant') %>
                             Restaurant
-                          </label>
                         </div>
+                                                  <br>
 
                         <div class="form-group">
-                          <label>By Average Wage</label>
+                          <span class="heading">By Average Wage</span>
                           <br>
-                          <%= wage_checkbox('9..10', '£9-£10') %>
+                          <%= check_box_tag 'wage[]', '9', params[:wage] == 9.to_f %>
+                          £9-£10
                           <br>
-                          <%= wage_checkbox('10..11', '£10-£11') %>
+                          <%= check_box_tag 'wage[]', '10', params[:wage] == 10.to_f %>
+                          £10-£11
                           <br>
-                          <%= wage_checkbox('11..12', '£11-£12') %>
+                          <%= check_box_tag 'wage[]', '11', params[:wage] == 11.to_f %>
+                          £11-£12
                           <br>
-                          <%= wage_checkbox('12..13', '£12-£13') %>
+                          <%= check_box_tag 'wage[]', '12', params[:wage] == 12.to_f %>
+                          £12-£13
                         </div>
+                        <br>
 
                          <div class="form-group" >
-                          <label>By Rating</label>
+                          <span class="heading">By Rating</span>
                           <br>
                          <label>
                             <%= check_box_tag 'rating[]', '5', params[:rating] == 5.to_f %>
@@ -107,7 +102,7 @@
                           </label>
                         </div>
 
-                        <%= submit_tag 'Filter', class: 'btn btn-primary' %>
+                        <%= submit_tag 'Filter', class: 'btn' %>
                       <% end %>
                       </div>
                       <div>
