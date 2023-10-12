@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to business_path(@business)
     else
-      redirect_to business_path(@business), alert: "Feel free to criticize! But please keep your reviews clean and informative in order to better aid our community."
+      redirect_to business_path(@business), alert: "#{@review.errors.full_messages.join(", ")}"
     end
   end
 

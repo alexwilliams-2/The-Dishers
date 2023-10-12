@@ -10,10 +10,20 @@ class Review < ApplicationRecord
   validate :profanity
 
   def profanity
-    profanity_filter = LanguageFilter::Filter.new matchlist: File.join(Rails.root, '/config/language_filter.yml')
+    profanity_filter = LanguageFilter::Filter.new matchlist: File.join(Rails.root, 'config/language_filter_profanity.yml')
     if profanity_filter.match?(content)
-      errors.add(:content, 'Hi there - you can be critical but please keep your review informative and hate-free. Thanks!')
+      errors.add(:base, 'Mind your language! Whilst we encourage healthy criticism, please keep your review informative and hate-free for our community.')
     end
   end
+
+  def named_individual
+    profanity_filter = LanguageFilter::Filter.new matchlist: File.join(Rails.root, '/config/language_filter.yml')
+    if profanity_filter.match?(content)
+      errors.add(:base, 'We encourage healthy criticism! But please keep your review informative and hate-free for our community.')
+    end
+  end
+
+
+
 
 end
