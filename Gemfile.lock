@@ -142,6 +142,7 @@ GEM
       activemodel (>= 6.0.0)
       activesupport (>= 6.0.0)
       redis (>= 4.2, < 6)
+    language_filter (0.3.01)
     loofah (2.21.4)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -171,6 +172,8 @@ GEM
     netrc (0.11.0)
     nio4r (2.5.9)
     nokogiri (1.15.4-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.15.4-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
@@ -255,6 +258,8 @@ GEM
     stringio (3.0.8)
     tailwindcss-rails (2.0.31-arm64-darwin)
       railties (>= 6.0.0)
+    tailwindcss-rails (2.0.31-x86_64-darwin)
+      railties (>= 6.0.0)
     tailwindcss-rails (2.0.31-x86_64-linux)
       railties (>= 6.0.0)
     thor (1.2.2)
@@ -292,6 +297,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  x86_64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
@@ -308,9 +314,11 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kredis
+  language_filter
   open-uri
   pagy
   pg (~> 1.1)
+  psych
   puma (~> 5.0)
   pundit
   rails (~> 7.0.5)
