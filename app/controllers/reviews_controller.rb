@@ -13,11 +13,11 @@ class ReviewsController < ApplicationController
     @review.business = @business
     @review.user = current_user
     authorize @review
-    @review.save
     if @review.save
       redirect_to business_path(@business)
     else
-      redirect_to business_path(@business), alert: "#{@review.errors.full_messages.join(", ")}"
+      error_message = @review.errors.messages.flatten.last
+      redirect_to business_path(@business), alert: error_message.join
     end
   end
 

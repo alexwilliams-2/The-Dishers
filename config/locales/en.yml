@@ -4,7 +4,7 @@
 #
 # To use the locales, use `I18n.t`:
 #
-#     I18n.t "hello"
+    # I18n.t "hello"
 #
 # In views, this is aliased to just `t`:
 #
@@ -31,3 +31,13 @@
 
 en:
   hello: "Hello world"
+
+# en:
+#   activerecord:
+#     errors:
+#       models:
+#         review:
+#           attributes:
+#             content:
+#               blank: "Content can't be blank."
+#               too_short: "Your review was too short to be submitted! The Dishers works when explain our experiences - please go into more detail for your fellow Dishers!"
