@@ -9,6 +9,7 @@ class Review < ApplicationRecord
 
   validate :profanity
   validate :named_individual
+  validate :too_short
 
   def profanity
     profanity_filter = LanguageFilter::Filter.new matchlist: File.join(Rails.root, 'config/language_filter_profanity.yml')
