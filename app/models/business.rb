@@ -23,8 +23,11 @@ class Business < ApplicationRecord
       @ratings.push(review.rating)
     end
 
-    unless @business.reviews.empty?
-      @rating = (@ratings.sum / @business.reviews.length).ceil
+    if @business.reviews.empty?
+      @rating = 0
+    else
+      average_rating = @ratings.sum.to_f / @business.reviews.length
+      @rating = average_rating < 0.5 ? average_rating.floor : average_rating.round
     end
   end
 

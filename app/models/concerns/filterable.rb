@@ -14,8 +14,8 @@ module Filterable
     }
     scope :filter_by_rating, -> (ratings) {
       if ratings.present?
-        having_condition = ratings.map { "AVG(reviews.rating) >= ? AND AVG(reviews.rating) <= ?" }.join(' OR ')
-        having_values = ratings.flat_map { |rating| [rating.to_f, rating.to_f + 1] }
+        having_condition = ratings.map { "ROUND(AVG(reviews.rating)) = ?" }.join(' OR ')
+        having_values = ratings.map(&:to_f)
         joins(:reviews).group('businesses.id').having(having_condition, *having_values)
       end
     }
