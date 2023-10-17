@@ -1,8 +1,9 @@
-
-<div class="main-container"> <%#For sticky map%>
+<div class="main-container">
+  <%# For sticky map %>
   <div class="container">
     <div class="row">
-      <div class="col-12 col-lg-4"> <%#This column should be used for filters%>
+      <div class="col-12 col-lg-4">
+        <%# This column should be used for filters %>
         <div class="container-fluid">
           <div class="row" id="fs_app">
             <section class="col-12" id="fs_header_bar">
@@ -11,149 +12,137 @@
                   <i class="fa fa-filter"></i>
                 </div>
                 <div class="col-2 col-lg-1" id="fs_page_title">
-                    Filters
+                  Filters
                 </div>
               </div>
-             </section>
+            </section>
             <section class="col-12" id="fs_price_body">
               <div>
-                <span class="heading">
-                    By Average Wage
-                </span>
                 <div class="row">
                   <%= form_tag({ controller: 'businesses', action: 'index' }, method: 'get', class: 'filter-form') do %>
-                  <div class="form-group">
-                    <label>Category:</label>
-                    <br>
-                    <% # Checkboxes for category filtering %>
-                    <label>
+                    <div class="form-group">
+                      <span class="heading">By Type of Business</span>
+                      <br>
+                      <%= check_box_tag 'category[]', 'All', params[:category]&.include?('All') %>
+                      All
+                      <br>
                       <%= check_box_tag 'category[]', 'Pub', params[:category]&.include?('Pub') %>
                       Pub
-                    </label>
-                    <br>
-                    <label>
+                      <br>
                       <%= check_box_tag 'category[]', 'Cafe', params[:category]&.include?('Cafe') %>
                       Cafe
-                    </label>
-                    <br>
-                    <label>
+                      <br>
                       <%= check_box_tag 'category[]', 'Restaurant', params[:category]&.include?('Restaurant') %>
                       Restaurant
-                    </label>
-                  </div>
-
-                  <div class="form-group">
-                    <label>Rating:</label>
+                    </div>
                     <br>
-                    <% # Radio buttons for rating filtering %>
-                    <% (1..5).each do |rating| %>
+
+                    <div class="form-group">
+                      <span class="heading">By Average Wage</span>
+                      <br>
+                      <%= check_box_tag 'wage[]', '9', params[:wage] == 9.to_f %>
+                      £9-£10
+                      <br>
+                      <%= check_box_tag 'wage[]', '10', params[:wage] == 10.to_f %>
+                      £10-£11
+                      <br>
+                      <%= check_box_tag 'wage[]', '11', params[:wage] == 11.to_f %>
+                      £11-£12
+                      <br>
+                      <%= check_box_tag 'wage[]', '12', params[:wage] == 12.to_f %>
+                      £12-£13
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                      <span class="heading">By Rating</span>
+                      <br>
                       <label>
-                        <%= radio_button_tag 'rating', rating.to_s, params[:rating] == rating.to_s %>
-                        <%= rating %>
+                        <%= check_box_tag 'rating[]', '5', params[:rating] == 5.to_f %>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
                       </label>
-                    <br>
-                    <% end %>
-                  </div>
+                      <br>
+                      <label>
+                        <%= check_box_tag 'rating[]', '4', params[:rating] == 4.to_f  %>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa fa-star"></i>
+                      </label>
+                      <br>
+                      <label>
+                        <%= check_box_tag 'rating[]', '3', params[:rating] == 3.to_f  %>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </label>
+                      <br>
+                      <label>
+                        <%= check_box_tag 'rating[]', '2', params[:rating] == 2.to_f  %>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </label>
+                      <br>
+                      <label>
+                        <%= check_box_tag 'rating[]', '1', params[:rating] == 1.to_f  %>
+                        <i class="fa-solid fa-star" style="color: #009EFF;"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                      </label>
+                    </div>
 
-                  <%= submit_tag 'Filter', class: 'btn btn-primary' %>
+                    <%= submit_tag 'Filter', class: 'btn' %>
                   <% end %>
-                  </div>
-                  <div>
-                    <ul>
-                    </ul>
-                  </div>
+                </div>
+                <div>
+                  <ul>
+                  </ul>
+                </div>
               </div>
-          </section>
-
-          <section class="col-12" id="fs_category_body">
-              <span class="heading">
-                  By Type of Business
-              </span>
-              <div class="contents" id="filter-buttons" data-controller="filter">
-                <%= button_to "All", businesses_path, method: :get, params: { category: nil }, class: 'btn', type: "button", remote: true, data: { category: nil } %>
-                <%= button_to "Pub", businesses_path, method: :get, params: { category: 'Pub' }, class: 'btn', type: "button", remote: true, data: { category: 'Pub' } %>
-                <%= button_to "Cafe", businesses_path, method: :get, params: { category: 'Cafe' }, class: 'btn', type: "button", remote: true, data: { category: 'Cafe' } %>
-                <%= button_to "Restaurant", businesses_path, method: :get, params: { category: 'Restaurant' }, class: 'btn', type: "button", remote: true, data: { category: 'Restaurant' } %>
-              </div>
-              <div>
-                <ul>
-                </ul>
-              </div>
-          </section>
-          <section class="col-12" id="fs_rating">
-              <span class="heading">
-                  By Rating
-              </span>
-                  <div class="contents">
-                    <%= button_to businesses_path, method: :get, params: { rating: 5 }, class: 'stars', remote: true, data: { rating: 5 } do %>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                    <% end %>
-                    <%= button_to businesses_path, method: :get, params: { rating: 4 }, class: 'stars', remote: true, data: { rating: 4 } do %>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa fa-star"></i>
-                    <% end %>
-                    <%= button_to businesses_path, method: :get, params: { rating: 3 }, class: 'stars', remote: true, data: { rating: 3 } do %>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    <% end %>
-                    <%= button_to businesses_path, method: :get, params: { rating: 2 }, class: 'stars', remote: true, data: { rating: 2 } do %>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    <% end %>
-                    <%= button_to businesses_path, method: :get, params: { rating: 1 }, class: 'stars', remote: true, data: { rating: 1 } do %>
-                      <i class="fa-solid fa-star" style="color: #009EFF;"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                      <i class="fa fa-star"></i>
-                    <% end %>
-                  </div>
-              </section>
-
+            </section>
           </div>
         </div>
       </div>
-        <div class="col-12 col-lg-8">
-          <div class="row justify-content-center">
-            <div class="col-sm-10 my-6">
-             <h2>Find Your New Workplace</h2>
-              <div class="businesses-for-map">
-                <% if @businesses.any? %>
-                  <% @businesses.each do |business| %>
-                  <%# to make sure link is whole card - not just name %>
-                  <%= link_to business, style: 'text-decoration: none; color: #000000' do %>
-                    <div class="business-card mt-5">
-                      <%= cl_image_tag business.photo.key, height: 300 %>
-                      <div class="business-card-infos">
-                        <div class="d-flex justify-content-between">
-                          <h2> <%= business.name %> </h2>
-                          <p>Average wage: <%= business.calculate_average_wage %></p>
-                        </div>
-                        <% business.calculate_average_rating.to_i.times do %>
-                            <i class="fa-solid fa-star" style="color: #009eff;"></i>
-                        <% end %>
-                        <p> <%= business.description[0..100] %> </p>
-                       <p> <%= business.calculate_recommended %> Dishers recommends working here </p>
+      <div class="col-12 col-lg-8">
+        <div class="row justify-content-center">
+          <div class="col-sm-10 my-6">
+            <h2>Find Your New Workplace</h2>
+            <div class="businesses-for-map">
+              <% if @businesses.any? %>
+                <% @businesses.each do |business| %>
+                <%# to make sure link is whole card - not just name %>
+                <%= link_to business, style: 'text-decoration: none; color: #000000' do %>
+                  <div class="business-card mt-5">
+                    <%= cl_image_tag business.photo.key, height: 300 %>
+                    <div class="business-card-infos">
+                      <div class="d-flex justify-content-between">
+                        <h2> <%= business.name %> </h2>
+                        <p>Average wage: <%= business.calculate_average_wage %></p>
                       </div>
+                      <% business.calculate_average_rating.to_i.times do %>
+                        <i class="fa-solid fa-star" style="color: #009eff;"></i>
+                      <% end %>
+                      <p> <%= business.description[0..100] %> </p>
+                      <p> <%= business.calculate_recommended %> Dishers recommends working here </p>
                     </div>
-                    <% end %>
-                  <% end %>
-                <% else %>
-                  <em> Sorry, no businesses found. </em>
+                  </div>
                 <% end %>
+                <% end %>
+              <% else %>
+                <em> Sorry, no businesses found. </em>
+              <% end %>
               </div>
                 <%== raw pagy_nav(@pagy) %>
             </div>
