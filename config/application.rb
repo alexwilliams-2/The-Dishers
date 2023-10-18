@@ -15,6 +15,9 @@ module TheDishers
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # So we can configure the i18n file, which allows us to overrride Ruby error formats
+    # config.i18n.default_locale = :en
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
