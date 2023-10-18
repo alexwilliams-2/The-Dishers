@@ -31,6 +31,31 @@ glasgow_url = "https://api.geoapify.com/v2/places?categories=catering.bar,cateri
 glasgow_business_response = URI.open(glasgow_url).read
 glasgow_businesses = JSON.parse(glasgow_business_response)
 
+description_line_1 = "#{business['features']['properties']['name']} is a popular and friendly
+#{if business['features']['properties']['categories'].include?('catering.pub')
+'Pub'
+elsif business['features']['properties']['categories'].include?('catering.bar')
+  'Bar'
+elsif business['features']['properties']['categories'].include?('catering.restaurant')
+  'Restaurant'
+elsif business['features']['properties']['categories'].include?('catering.cafe')
+  'Cafe'
+} in the city of #{business['features']['properties']['city']}."
+
+description_line_2 = "Nestled amongs the other delights of #{business['features']['properties']['datasource']['raw']]['addr:street']},
+#{business['features']['properties']['name']} is a popular destination for many #{ business['features']['properties']['categories'].include?('catering.pub') || business['features']['properties']['categories'].include?('catering.bar') ? "drinkers and revellers" : "foodies"}"
+
+business_description_line_3 = "Offering a wide range of #{business['features']['properties']['categories'].include?('catering.pub')
+ 'classic lagers and homely food'
+elsif business['features']['properties']['categories'].include?('catering.bar')
+  'smart cocktails with a smooth atmosphere'
+elsif  business['features']['properties']['categories'].include?('catering.restaurant')
+  'fantasatic food in a relaxing environment'
+elsif business['features']['properties']['categories'].include?('catering.cafe')
+  'caffeinated treats and homecooked snacks'
+  }, this is not a place you would want to miss out on."
+
+
 puts "Creating Glesga businesses"
 
 glasgow_businesses['features'].each do |business|
