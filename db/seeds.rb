@@ -31,30 +31,34 @@ glasgow_url = "https://api.geoapify.com/v2/places?categories=catering.bar,cateri
 glasgow_business_response = URI.open(glasgow_url).read
 glasgow_businesses = JSON.parse(glasgow_business_response)
 
-description_line_1 = "#{business['features']['properties']['name']} is a popular and friendly
-#{if business['features']['properties']['categories'].include?('catering.pub')
-'Pub'
-elsif business['features']['properties']['categories'].include?('catering.bar')
-  'Bar'
-elsif business['features']['properties']['categories'].include?('catering.restaurant')
-  'Restaurant'
-elsif business['features']['properties']['categories'].include?('catering.cafe')
-  'Cafe'
-} in the city of #{business['features']['properties']['city']}."
+# description_line_1 = "#{business['features']['properties']['name']} is a popular and friendly #{
+# if business['features']['properties']['categories'].include?('catering.pub')
+# 'Pub'
+# elsif business['features']['properties']['categories'].include?('catering.bar')
+#   'Bar'
+# elsif business['features']['properties']['categories'].include?('catering.restaurant')
+#   'Restaurant'
+# elsif business['features']['properties']['categories'].include?('catering.cafe')
+#   'Cafe'
+# end
+# } in the city of #{business['features']['properties']['city']}."
 
-description_line_2 = "Nestled amongs the other delights of #{business['features']['properties']['datasource']['raw']]['addr:street']},
-#{business['features']['properties']['name']} is a popular destination for many #{ business['features']['properties']['categories'].include?('catering.pub') || business['features']['properties']['categories'].include?('catering.bar') ? "drinkers and revellers" : "foodies"}"
+# description_line_2 = "Nestled amongs the other delights of #{business['features']['properties']['datasource']['raw']['addr:street']},
+# #{business['features']['properties']['name']} is a popular destination for many #{ business['features']['properties']['categories'].include?('catering.pub') || business['features']['properties']['categories'].include?('catering.bar') ? "drinkers and revellers" : "tourists, locals and foodies"}."
 
-business_description_line_3 = "Offering a wide range of #{business['features']['properties']['categories'].include?('catering.pub')
- 'classic lagers and homely food'
-elsif business['features']['properties']['categories'].include?('catering.bar')
-  'smart cocktails with a smooth atmosphere'
-elsif  business['features']['properties']['categories'].include?('catering.restaurant')
-  'fantasatic food in a relaxing environment'
-elsif business['features']['properties']['categories'].include?('catering.cafe')
-  'caffeinated treats and homecooked snacks'
-  }, this is not a place you would want to miss out on."
+# description_line_3 = "Offering a wide range of #{
+# if business['features']['properties']['categories'].include?('catering.pub')
+#  'classic lagers and homely food'
+# elsif business['features']['properties']['categories'].include?('catering.bar')
+#   'smart cocktails with a smooth, relaxing atmosphere'
+# elsif  business['features']['properties']['categories'].include?('catering.restaurant')
+#   'fantasatic food in a relaxing environment'
+# elsif business['features']['properties']['categories'].include?('catering.cafe')
+#   'caffeinated treats and homecooked snacks'
+# end
+# }, this is not a place you would want to miss out on. Please read on on more information from other Dishers who have experienced working at #{business['features']['properties']['name']} and see what they have to say."
 
+# description = "#{description_line_1} \r #{description_line_2} \r #{description_line_3}"
 
 puts "Creating Glesga businesses"
 
@@ -66,7 +70,27 @@ glasgow_businesses['features'].each do |business|
     phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0121 532 #{rand{0..100}}",
     size: "#{rand(0..25)} employees",
     business_hours: business['properties']['datasource']['raw']['opening_hours'],
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    description: "#{business['properties']['name']} is a popular #{
+      if business['properties']['categories'].include?('catering.pub')
+      'Pub'
+      elsif business['properties']['categories'].include?('catering.bar')
+        'Bar'
+      elsif business['properties']['categories'].include?('catering.restaurant')
+        'Restaurant'
+      elsif business['properties']['categories'].include?('catering.cafe')
+        'Cafe'
+      end
+      } in the city of #{business['properties']['city']}. /r Located on #{business['properties']['datasource']['raw']['addr:street']}, #{business['properties']['name']} offers a wide range of #{
+         if business['properties']['categories'].include?('catering.pub')
+          'classic lagers and homely food'
+         elsif business['properties']['categories'].include?('catering.bar')
+           'smart cocktails and a smooth, relaxing atmosphere'
+         elsif  business['properties']['categories'].include?('catering.restaurant')
+           'fantasatic food in a relaxing environment'
+         elsif business['properties']['categories'].include?('catering.cafe')
+           'caffeinated treats and homecooked snacks'
+         end
+         }, this is not a place you would want to miss out on. /r Please read on on more information from other Dishers who have experienced working at #{business['properties']['name']} and see what they have to say.",
     category: if business['properties']['categories'].include?('catering.pub')
                 'Pub'
               elsif business['properties']['categories'].include?('catering.bar')
@@ -100,7 +124,29 @@ manc_businesses['features'].each do |business|
     phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0161 532 #{rand{0..1000}}",
     size: "#{rand(0..25)} employees",
     business_hours: business['properties']['datasource']['raw']['opening_hours'],
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    description: "#{business['properties']['name']} is a popular #{
+      if business['properties']['categories'].include?('catering.pub')
+      'Pub'
+      elsif business['properties']['categories'].include?('catering.bar')
+        'Bar'
+      elsif business['properties']['categories'].include?('catering.restaurant')
+        'Restaurant'
+      elsif business['properties']['categories'].include?('catering.cafe')
+        'Cafe'
+      end
+      } in the city of #{business['properties']['city']}. /r
+      Located on #{business['properties']['datasource']['raw']['addr:street']}, #{business['properties']['name']} offers a wide range of #{
+         if business['properties']['categories'].include?('catering.pub')
+          'classic lagers and homely food'
+         elsif business['properties']['categories'].include?('catering.bar')
+           'smart cocktails and a smooth, relaxing atmosphere'
+         elsif  business['properties']['categories'].include?('catering.restaurant')
+           'fantasatic food in a relaxing environment'
+         elsif business['properties']['categories'].include?('catering.cafe')
+           'caffeinated treats and homecooked snacks'
+         end
+         }, this is not a place you would want to miss out on. /r
+         Please read on on more information from other Dishers who have experienced working at #{business['properties']['name']} and see what they have to say.",
     category: if business['properties']['categories'].include?('catering.pub')
                 'Pub'
               elsif business['properties']['categories'].include?('catering.bar')
@@ -134,7 +180,29 @@ cov_businesses['features'].each do |business|
     phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0191 532 #{rand{0..100}}",
     size: "#{rand(0..25)} employees",
     business_hours: business['properties']['datasource']['raw']['opening_hours'],
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    description: "#{business['properties']['name']} is a popular #{
+      if business['properties']['categories'].include?('catering.pub')
+      'Pub'
+      elsif business['properties']['categories'].include?('catering.bar')
+        'Bar'
+      elsif business['properties']['categories'].include?('catering.restaurant')
+        'Restaurant'
+      elsif business['properties']['categories'].include?('catering.cafe')
+        'Cafe'
+      end
+      } in the city of #{business['properties']['city']}.
+      Located on #{business['properties']['datasource']['raw']['addr:street']}, #{business['properties']['name']} offers a wide range of #{
+         if business['properties']['categories'].include?('catering.pub')
+          'classic lagers and homely food'
+         elsif business['properties']['categories'].include?('catering.bar')
+           'smart cocktails and a smooth, relaxing atmosphere'
+         elsif  business['properties']['categories'].include?('catering.restaurant')
+           'fantasatic food in a relaxing environment'
+         elsif business['properties']['categories'].include?('catering.cafe')
+           'caffeinated treats and homecooked snacks'
+         end
+         }, this is not a place you would want to miss out on. 
+         Please read on on more information from other Dishers who have experienced working at #{business['properties']['name']} and see what they have to say.",
     category: if business['properties']['categories'].include?('catering.pub')
                 'Pub'
               elsif business['properties']['categories'].include?('catering.bar')
@@ -170,7 +238,29 @@ brum_businesses['features'].each do |business|
     phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0121 532 #{rand{0..100}}",
     size: "#{rand(0..25)} employees",
     business_hours: business['properties']['datasource']['raw']['opening_hours'],
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    description: "#{business['properties']['name']} is a popular #{
+      if business['properties']['categories'].include?('catering.pub')
+      'Pub'
+      elsif business['properties']['categories'].include?('catering.bar')
+        'Bar'
+      elsif business['properties']['categories'].include?('catering.restaurant')
+        'Restaurant'
+      elsif business['properties']['categories'].include?('catering.cafe')
+        'Cafe'
+      end
+      } in the city of #{business['properties']['city']}. /r
+      Located on #{business['properties']['datasource']['raw']['addr:street']}, #{business['properties']['name']} offers a wide range of #{
+         if business['properties']['categories'].include?('catering.pub')
+          'classic lagers and homely food'
+         elsif business['properties']['categories'].include?('catering.bar')
+           'smart cocktails and a smooth, relaxing atmosphere'
+         elsif  business['properties']['categories'].include?('catering.restaurant')
+           'fantasatic food in a relaxing environment'
+         elsif business['properties']['categories'].include?('catering.cafe')
+           'caffeinated treats and homecooked snacks'
+         end
+         }, this is not a place you would want to miss out on. /r
+         Please read on on more information from other Dishers who have experienced working at #{business['properties']['name']} and see what they have to say.",
     category: if business['properties']['categories'].include?('catering.pub')
                 'Pub'
               elsif business['properties']['categories'].include?('catering.bar')
@@ -205,7 +295,29 @@ lpool_businesses['features'].each do |business|
     phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0151 532 #{rand{0..100}}",
     size: "#{rand(0..25)} employees",
     business_hours: business['properties']['datasource']['raw']['opening_hours'],
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    description: "#{business['properties']['name']} is a popular #{
+      if business['properties']['categories'].include?('catering.pub')
+      'Pub'
+      elsif business['properties']['categories'].include?('catering.bar')
+        'Bar'
+      elsif business['properties']['categories'].include?('catering.restaurant')
+        'Restaurant'
+      elsif business['properties']['categories'].include?('catering.cafe')
+        'Cafe'
+      end
+      } in the city of #{business['properties']['city']}. /r
+      Located on #{business['properties']['datasource']['raw']['addr:street']}, #{business['properties']['name']} offers a wide range of #{
+         if business['properties']['categories'].include?('catering.pub')
+          'classic lagers and homely food'
+         elsif business['properties']['categories'].include?('catering.bar')
+           'smart cocktails and a smooth, relaxing atmosphere'
+         elsif  business['properties']['categories'].include?('catering.restaurant')
+           'fantasatic food in a relaxing environment'
+         elsif business['properties']['categories'].include?('catering.cafe')
+           'caffeinated treats and homecooked snacks'
+         end
+         }, this is not a place you would want to miss out on. /r
+         Please read on on more information from other Dishers who have experienced working there and see what they have to say.",
     category: if business['properties']['categories'].include?('catering.pub')
                 'Pub'
               elsif business['properties']['categories'].include?('catering.bar')
@@ -489,7 +601,7 @@ puts "creating hardcoded businesses"
   puts "business created"
 
   business_18 = Business.create!(
-    name: "Mildreds Kings Cross",
+    name: "Milldreds Kings Cross",
     address: "200 Pentonville Rd, London N1 9JP",
     email: "hello@mildreds.co.uk",
     phone_number: "02072789422",
@@ -519,7 +631,7 @@ puts "creating hardcoded businesses"
   puts "business created"
 
   business_20 = Business.create!(
-    name: "Megan's Clapham Old Town",
+    name: "Megano's Clapham Old Town",
     address: "55-57 The Pavement, London SW4 0JQ",
     email: "hello@megans.co.uk",
     phone_number: "02034680215",
@@ -579,7 +691,7 @@ puts "creating hardcoded businesses"
   puts "business created"
 
   business_24 = Business.create!(
-    name: "Terry's Cafe London",
+    name: "Terryie's Cafe London",
     address: "158 Great Suffolk St, London SE1 0DT",
     email: "info@terryscafe.co.uk",
     phone_number: "02074079358",
