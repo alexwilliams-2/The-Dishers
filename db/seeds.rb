@@ -67,20 +67,26 @@ glasgow_businesses['features'].each do |business|
     name: business['properties']['name'],
     address: business['properties']['formatted'],
     email: business['properties']['datasource']['raw'].include?('email') ? business['properties']['datasource']['raw']['email'] : "#{business['properties']['name']}.outlook.com",
-    phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0121 532 #{rand{0..100}}",
+    phone_number: business['properties']['datasource']['raw'].include?('phone') ? business['properties']['datasource']['raw']['phone'] : "0121 532 #{Random.rand(100..999)}",
     size: "#{rand(0..25)} employees",
-    business_hours: business['properties']['datasource']['raw']['opening_hours'],
+    business_hours: business['properties']['datasource']['raw']['opening_hours'] ? business['properties']['datasource']['raw']['opening_hours'] : 'Unknown Business Hours',
     description: "#{business['properties']['name']} is a popular #{
       if business['properties']['categories'].include?('catering.pub')
-      'Pub'
+      'pub'
       elsif business['properties']['categories'].include?('catering.bar')
-        'Bar'
+        'bar'
       elsif business['properties']['categories'].include?('catering.restaurant')
-        'Restaurant'
+        'restaurant'
       elsif business['properties']['categories'].include?('catering.cafe')
-        'Cafe'
+        'cafe'
       end
-      } in the city of #{business['properties']['city']}. /r Located on #{business['properties']['datasource']['raw']['addr:street']}, #{business['properties']['name']} offers a wide range of #{
+      } in the city of #{business['properties']['city']}. \n\n Located on #{
+        if business['properties']['datasource']['raw']['addr:street']
+            "#{business['properties']['datasource']['raw']['addr:street']}"
+        else
+          'a bustling street'
+        end
+        }, #{business['properties']['name']} offers a wide range of #{
          if business['properties']['categories'].include?('catering.pub')
           'classic lagers and homely food'
          elsif business['properties']['categories'].include?('catering.bar')
@@ -90,7 +96,7 @@ glasgow_businesses['features'].each do |business|
          elsif business['properties']['categories'].include?('catering.cafe')
            'caffeinated treats and homecooked snacks'
          end
-         }, this is not a place you would want to miss out on. /r Please read on on more information from other Dishers who have experienced working at #{business['properties']['name']} and see what they have to say.",
+         }, this is not a place you would want to miss out on. \n\n Please read on for more information from other Dishers who have experienced working at #{business['properties']['name']} and see what they have to say.",
     category: if business['properties']['categories'].include?('catering.pub')
                 'Pub'
               elsif business['properties']['categories'].include?('catering.bar')
@@ -134,7 +140,7 @@ manc_businesses['features'].each do |business|
       elsif business['properties']['categories'].include?('catering.cafe')
         'Cafe'
       end
-      } in the city of #{business['properties']['city']}. /r
+      } in the city of #{business['properties']['city']}. \n
       Located on #{business['properties']['datasource']['raw']['addr:street']}, #{business['properties']['name']} offers a wide range of #{
          if business['properties']['categories'].include?('catering.pub')
           'classic lagers and homely food'
@@ -145,7 +151,7 @@ manc_businesses['features'].each do |business|
          elsif business['properties']['categories'].include?('catering.cafe')
            'caffeinated treats and homecooked snacks'
          end
-         }, this is not a place you would want to miss out on. /r
+         }, this is not a place you would want to miss out on. \n
          Please read on on more information from other Dishers who have experienced working at #{business['properties']['name']} and see what they have to say.",
     category: if business['properties']['categories'].include?('catering.pub')
                 'Pub'
@@ -190,7 +196,7 @@ cov_businesses['features'].each do |business|
       elsif business['properties']['categories'].include?('catering.cafe')
         'Cafe'
       end
-      } in the city of #{business['properties']['city']}.
+      } in the city of #{business['properties']['city']}. \n
       Located on #{business['properties']['datasource']['raw']['addr:street']}, #{business['properties']['name']} offers a wide range of #{
          if business['properties']['categories'].include?('catering.pub')
           'classic lagers and homely food'
@@ -201,7 +207,7 @@ cov_businesses['features'].each do |business|
          elsif business['properties']['categories'].include?('catering.cafe')
            'caffeinated treats and homecooked snacks'
          end
-         }, this is not a place you would want to miss out on. 
+         }, this is not a place you would want to miss out on. \n
          Please read on on more information from other Dishers who have experienced working at #{business['properties']['name']} and see what they have to say.",
     category: if business['properties']['categories'].include?('catering.pub')
                 'Pub'
@@ -248,7 +254,7 @@ brum_businesses['features'].each do |business|
       elsif business['properties']['categories'].include?('catering.cafe')
         'Cafe'
       end
-      } in the city of #{business['properties']['city']}. /r
+      } in the city of #{business['properties']['city']}. \n
       Located on #{business['properties']['datasource']['raw']['addr:street']}, #{business['properties']['name']} offers a wide range of #{
          if business['properties']['categories'].include?('catering.pub')
           'classic lagers and homely food'
@@ -259,7 +265,7 @@ brum_businesses['features'].each do |business|
          elsif business['properties']['categories'].include?('catering.cafe')
            'caffeinated treats and homecooked snacks'
          end
-         }, this is not a place you would want to miss out on. /r
+         }, this is not a place you would want to miss out on. \n
          Please read on on more information from other Dishers who have experienced working at #{business['properties']['name']} and see what they have to say.",
     category: if business['properties']['categories'].include?('catering.pub')
                 'Pub'
@@ -305,7 +311,7 @@ lpool_businesses['features'].each do |business|
       elsif business['properties']['categories'].include?('catering.cafe')
         'Cafe'
       end
-      } in the city of #{business['properties']['city']}. /r
+      } in the city of #{business['properties']['city']}. \n
       Located on #{business['properties']['datasource']['raw']['addr:street']}, #{business['properties']['name']} offers a wide range of #{
          if business['properties']['categories'].include?('catering.pub')
           'classic lagers and homely food'
@@ -316,8 +322,8 @@ lpool_businesses['features'].each do |business|
          elsif business['properties']['categories'].include?('catering.cafe')
            'caffeinated treats and homecooked snacks'
          end
-         }, this is not a place you would want to miss out on. /r
-         Please read on on more information from other Dishers who have experienced working there and see what they have to say.",
+         }, this is not a place you would want to miss out on. \n
+         Please read on on more information from other Dishers who have experienced working at #{business['properties']['name']} and see what they have to say.",
     category: if business['properties']['categories'].include?('catering.pub')
                 'Pub'
               elsif business['properties']['categories'].include?('catering.bar')
