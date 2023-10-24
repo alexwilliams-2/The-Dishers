@@ -1,9 +1,10 @@
 <div class="background" style="height:130vh">
   <div class='container home-sections d-flex flex-row justify-content-center pt-5 align-items-center"'>
+
     <div class="login-section pt-3">
       <div class="text-center pt-5 mx-auto">
-        <%= image_tag 'dishers-logo.png', class: "card-img-top align-self-center" %>
-        <h3 class="w-100 fs-10 fw-bold text-white align-self-center mt-3 pt-4"> Need to change your details? </h3>
+        <%= image_tag 'dishers-logo.png', class: "card-img-top m-auto" %>
+        <h3 class="w-100 fs-10 fw-bold align-self-center mt-3 pt-4"> Need to change your details? </h3>
   <%# registration_path(resource_name) %>
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
           <%= f.error_notification %>
@@ -41,9 +42,12 @@
             <%= f.button :submit, "Update" %>
           </div>
         <% end %>
-        <div> Unhappy?
-          <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
-          <%= link_to "Back", :back %>
+        <div class='pt-4'>
+          <h6> We don't want you to leave - but you can delete your account below </h6>
+          <%= button_to "Cancel my account", registration_path(resource_name), class: :btn, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+        </div>
+        <div class='mt-4'>
+          <%= link_to "Back", :back, style: 'text-decoration: none'%>
         </div>
     </div>
   </div>
