@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   resources :user_favourites, only: [:index]
 
 
+
   resources :businesses do
-    resources :user_favourites, only: [:create]
+    # resources :user_favourites, only: [:create]
+    post "toggle_like", to:  "user_favourites#toggle_like", as: :toggle_like
     resources :reviews, param: :user_review
   end
 
