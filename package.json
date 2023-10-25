@@ -7,7 +7,6 @@
     "@popperjs/core": "^2.11.8",
     "@rails/actioncable": "^7.0.5",
     "autoprefixer": "^10.4.16",
-    "axios": "^1.5.1",
     "bootstrap": "^5.1.0",
     "bootstrap-icons": "^1.10.5",
     "postcss": "^8.4.31",
