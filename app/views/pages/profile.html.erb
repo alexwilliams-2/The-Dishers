@@ -3,16 +3,19 @@
 
 <div class="container">
           <div class="col-sm-4">
-            <div class="user-profile wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
-              <div class="user-thumb"> <%= image_tag(@user.photo, alt: "...", width: 350) %>
+            <%= link_to edit_user_registration_path(@user) do %>
+              <div class="user-profile wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+                <div class="user-thumb"> <%= image_tag(@user.photo, alt: "...", width: 350) %>
+                </div>
+                <!-- Team Details-->
+                <div class="user-info">
+                  <h6><strong> @<%= @user.username %></strong> </h6>
+                    <p> <%= @user.email %></p>
+                    <p> "<%= @user.bio %>" </p>
+                  <p class="designation"><i class="fa-solid fa-location-dot" style="color: #009eff;"></i><%= @user.location %></p>
+                </div>
               </div>
-              <div class="user-info">
-                <h6><strong> @<%= @user.username %></strong> </h6>
-                  <p> <%= @user.email %></p>
-                  <p> "<%= @user.bio %>" </p>
-                <p class="designation"><i class="fa-solid fa-location-dot" style="color: #009eff;"></i><%= @user.location %></p>
-              </div>
-            </div>
+            <% end %>
           </div>
           <div class="col-sm-8 mt-3"> <h2> Your Favourites </h2>
             <div class="fave-cards">
