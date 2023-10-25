@@ -43,8 +43,10 @@ export default class extends Controller {
 
       // event to close the popup
       customMarker.addEventListener("mouseout", () => {
-        popup.remove();
-      })
+        setTimeout(() => {
+          popup.remove();
+        }, 1000); // 2000 milliseconds (2 seconds)
+      });
     })
   }
 }
