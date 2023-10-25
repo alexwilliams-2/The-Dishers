@@ -5,10 +5,14 @@ export default class extends Controller {
   static targets = ['likeButton']
 
   connect() {
-    console.log("we are connected")
+    console.log("hey");
+
   }
 
   fillheart(e) {
-    this.likeButtonTarget.classList.add("heart-filled")
+    this.likeButtonTarget.classList.toggle("heart-filled");
+
   }
+
+
 }

@@ -13,11 +13,11 @@ class ReviewsController < ApplicationController
     @review.business = @business
     @review.user = current_user
     authorize @review
-    @review.save
     if @review.save
       redirect_to business_path(@business)
     else
-      redirect_to business_path(@business), alert: "Feel free to criticize! But please keep your reviews clean and informative in order to better aid our community."
+      error_message = @review.errors.messages.flatten.last
+      redirect_to business_path(@business), alert: error_message.join
     end
   end
 
