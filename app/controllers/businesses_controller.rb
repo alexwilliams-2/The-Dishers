@@ -12,7 +12,6 @@ class BusinessesController < ApplicationController
 
     all_businesses
 
-
     sql_subquery = "(category ILIKE :query OR name ILIKE :query)"
     location_sqlquery = "address ILIKE :region_query"
 
@@ -47,7 +46,6 @@ class BusinessesController < ApplicationController
     @ratings = []
     @user_review = params[:user_review].to_i if params[:user_review].present?
 
-
     @markers = @business.geocoded.map do |business|
       {
         lat: business.latitude,
@@ -75,7 +73,6 @@ class BusinessesController < ApplicationController
   end
 
   private
-
 
   def business_params
     params.require(:business).permit(:name, :address, :rating, :photo)
