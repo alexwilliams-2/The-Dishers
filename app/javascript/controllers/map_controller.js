@@ -35,7 +35,18 @@ export default class extends Controller {
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup) // Adds info window
         .addTo(this.map);
+
+      //event to open the popup
+      customMarker.addEventListener("mouseover", () => {
+        popup.addTo(this.map);
+      });
+
+      // event to close the popup
+      customMarker.addEventListener("mouseout", () => {
+        setTimeout(() => {
+          popup.remove();
+        }, 1000);
+      });
     })
   }
 }
-
