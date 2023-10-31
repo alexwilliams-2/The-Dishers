@@ -94,3 +94,5 @@ gem "tailwindcss-rails", "~> 2.0"
 gem 'psych'
 
 gem 'language_filter'
+
+

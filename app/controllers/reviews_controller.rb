@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
     redirect_to business_path(@business)
   end
 
+
   def create
     @review = Review.new(review_params)
     @review.business = @business
@@ -18,6 +19,7 @@ class ReviewsController < ApplicationController
     else
       error_message = @review.errors.messages.flatten.last
       redirect_to business_path(@business), alert: error_message.join
+      
     end
   end
 
