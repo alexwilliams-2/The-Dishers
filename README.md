@@ -1,1 +1,1 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+ A Ruby-on-Rails application that aims to empower professionals in the service industry by offering a platform to explore and review hospitality and service businesses. http://www.thedishers.co.uk/ 
